@@ -19,7 +19,7 @@ class _BodyState extends State<Body> {
       "image": ""
     },
     {
-      "text": "Venha conhecer nosso ChatBots!",
+      "text": "Venha conhecer nossos ChatBots!",
       "image": "assets/images/tina.jpeg"
     }
   ];

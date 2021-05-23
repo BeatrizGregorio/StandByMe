@@ -8,6 +8,10 @@ class SignInScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
+        //Image.asset(
+        //"assets/images/logo.jpeg",
+        //scale: 3,
+        //),
       ),
       body: Body(),
     );

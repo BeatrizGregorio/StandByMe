@@ -18,25 +18,28 @@ class Body extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: SizeConfig.screenHeight * 0.05,
+                  height: SizeConfig.screenHeight * 0.04,
                 ),
                 Text(
                   "Bem-vindo",
                   style: TextStyle(
-                      color: Colors.black,
+                      color: kPrimaryColor,
                       fontSize: getProportionateScreenWidth(28),
                       fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(5),
                 ),
                 Text(
                   "Faça login com seu email e senha  \nou continue com uma rede social",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
-                  height: SizeConfig.screenHeight * 0.08,
+                  height: SizeConfig.screenHeight * 0.1,
                 ),
                 SignForm(),
                 SizedBox(
-                  height: SizeConfig.screenHeight * 0.08,
+                  height: SizeConfig.screenHeight * 0.05,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
