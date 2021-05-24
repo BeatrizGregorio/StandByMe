@@ -11,6 +11,8 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  bool passwordFocus = false;
+  bool emailFocus = false;
   final _formKey = GlobalKey<FormState>();
   String email;
   String password;
@@ -74,6 +76,12 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
+      onTap: () {
+        setState(() {
+          passwordFocus = true;
+          emailFocus = false;
+        });
+      },
       obscureText: true,
       onSaved: (newValue) => password = newValue,
       validator: (value) {
@@ -93,8 +101,14 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(28),
+          borderSide: BorderSide(color: kPrimaryColor),
+          gapPadding: 10,
+        ),
         labelText: "Senha",
-        labelStyle: TextStyle(color: kPrimaryColor),
+        labelStyle:
+            TextStyle(color: passwordFocus ? kPrimaryColor : Colors.grey),
         hintText: "Digite sua senha",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Padding(
@@ -102,7 +116,7 @@ class _SignFormState extends State<SignForm> {
               getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
           child: Icon(
             Icons.lock_outlined,
-            color: Colors.grey,
+            color: passwordFocus ? kPrimaryColor : Colors.grey,
           ),
         ),
       ),
@@ -111,6 +125,12 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      onTap: () {
+        setState(() {
+          emailFocus = true;
+          passwordFocus = false;
+        });
+      },
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue,
       validator: (value) {
@@ -130,7 +150,12 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelStyle: TextStyle(color: kPrimaryColor),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(28),
+          borderSide: BorderSide(color: kPrimaryColor),
+          gapPadding: 10,
+        ),
+        labelStyle: TextStyle(color: emailFocus ? kPrimaryColor : Colors.grey),
         labelText: "Email",
         hintText: "Digite seu email",
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -139,7 +164,7 @@ class _SignFormState extends State<SignForm> {
               getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
           child: Icon(
             Icons.mail_outline_outlined,
-            color: Colors.grey,
+            color: emailFocus ? kPrimaryColor : Colors.grey,
           ),
         ),
       ),

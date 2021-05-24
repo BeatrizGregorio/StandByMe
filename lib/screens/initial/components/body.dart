@@ -8,61 +8,67 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            child: Image.asset(
+      child: Align(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: getProportionateScreenHeight(15),
+            ),
+            Image.asset(
               "assets/images/logo.png",
               scale: 0.9,
             ),
-          ),
-          SizedBox(
-            width: getProportionateScreenWidth(250),
-            height: getProportionateScreenHeight(55),
-            /*child: Container(
-              decoration: BoxDecoration(color: Colors.transparent, boxShadow: [
-                BoxShadow(
-                    color: Colors.grey[500],
-                    blurRadius: 4.0,
-                    offset: Offset(0, 8))
-              ]),*/
-            child: FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              color: kPrimaryLightColor,
-              onPressed: () {
-                Navigator.pushNamed(context, SignInScreen.routeName);
-              },
-              child: Text("Login",
-                  style: TextStyle(
-                      fontSize: getProportionateScreenWidth(18),
-                      color: Colors.white)),
+            Spacer(),
+            SizedBox(
+              width: getProportionateScreenWidth(250),
+              height: getProportionateScreenHeight(55),
+              /*child: Container(
+                decoration: BoxDecoration(color: Colors.transparent, boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey[500],
+                      blurRadius: 4.0,
+                      offset: Offset(0, 8))
+                ]),*/
+              child: FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                color: kPrimaryLightColor,
+                onPressed: () {
+                  Navigator.pushNamed(context, SignInScreen.routeName);
+                },
+                child: Text("Login",
+                    style: TextStyle(
+                        fontSize: getProportionateScreenWidth(18),
+                        color: Colors.white)),
+              ),
+              // ),
             ),
-            // ),
-          ),
-          SizedBox(
-            height: getProportionateScreenHeight(15),
-          ),
-          SizedBox(
-            width: getProportionateScreenWidth(200),
-            height: getProportionateScreenHeight(50),
-            child: FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              color: Colors.grey[200],
-              onPressed: () {
-                Navigator.pushNamed(context, SignInScreen.routeName);
-              },
-              child: Text("Cadastrar-se",
-                  style: TextStyle(
-                      fontSize: getProportionateScreenWidth(18),
-                      color: kPrimaryLightColor)),
+            SizedBox(
+              height: getProportionateScreenHeight(15),
             ),
-          )
-        ],
+            SizedBox(
+              width: getProportionateScreenWidth(200),
+              height: getProportionateScreenHeight(50),
+              child: FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                color: Colors.grey[200],
+                onPressed: () {
+                  Navigator.pushNamed(context, SignInScreen.routeName);
+                },
+                child: Text("Cadastrar-se",
+                    style: TextStyle(
+                        fontSize: getProportionateScreenWidth(18),
+                        color: kPrimaryLightColor)),
+              ),
+            ),
+            SizedBox(
+              height: getProportionateScreenHeight(70),
+            )
+          ],
+        ),
       ),
     );
   }
