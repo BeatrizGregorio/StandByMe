@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
+import 'package:standbyme_tcc/screens/initial/inital_screen.dart';
 import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
 import 'package:standbyme_tcc/size_config.dart';
 import '../components/splash_content.dart';
@@ -13,7 +14,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
-    {"text": "Bem-vindo ao Stand By Me!", "image": "assets/images/logo.jpeg"},
+    {"text": "Bem-vindo ao Stand By Me!", "image": "assets/images/logo.png"},
     {
       "text": "Nós ajudamos pessoas na sua nova fase \nao morar sozinha.",
       "image": ""
@@ -66,7 +67,7 @@ class _BodyState extends State<Body> {
                       DefaultButton(
                         text: "Continuar",
                         press: () {
-                          Navigator.pushNamed(context, SignInScreen.routeName);
+                          Navigator.pushNamed(context, InitialScreen.routeName);
                         },
                       ),
                       Spacer(),
