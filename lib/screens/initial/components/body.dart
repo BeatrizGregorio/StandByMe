@@ -14,11 +14,13 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: getProportionateScreenHeight(15),
+              height: getProportionateScreenHeight(5),
             ),
-            Image.asset(
-              "assets/images/logo.png",
-              scale: 0.9,
+            SizedBox(
+              height: getProportionateScreenHeight(265),
+              child: Image.asset(
+                "assets/images/logo_preta.PNG",
+              ),
             ),
             Spacer(),
             SizedBox(
