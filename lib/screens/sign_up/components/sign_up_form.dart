@@ -1,83 +1,115 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
-import 'package:standbyme_tcc/screens/login_success/login_sucess_screen.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-class SignForm extends StatefulWidget {
+class SignUpForm extends StatefulWidget {
   @override
-  _SignFormState createState() => _SignFormState();
+  _SignUpFormState createState() => _SignUpFormState();
 }
 
-class _SignFormState extends State<SignForm> {
+class _SignUpFormState extends State<SignUpForm> {
   bool passwordFocus = false;
   bool emailFocus = false;
   final _formKey = GlobalKey<FormState>();
   String email;
   String password;
-  bool remember = false;
+  String confirm_password;
   final List<String> errors = [];
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Column(
-        children: [
+      child: Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        child: Column(children: [
           buildEmailFormField(),
           SizedBox(
-            height: getProportionateScreenHeight(30),
+            height: getProportionateScreenHeight(25),
           ),
-          buildPasswordFormField(),
+          buildPassFormField(),
           SizedBox(
-            height: getProportionateScreenHeight(10),
+            height: getProportionateScreenHeight(25),
           ),
+          buildConfirmPassField(),
           FormError(errors: errors),
           SizedBox(
-            height: getProportionateScreenHeight(1),
-          ),
-          Row(
-            children: [
-              Checkbox(
-                activeColor: kPrimaryColor,
-                value: remember,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },
-              ),
-              Text(
-                "Lembre de mim",
-                style: TextStyle(color: Colors.black),
-              ),
-              Spacer(),
-              Text(
-                "Esqueci minha senha",
-                style: TextStyle(decoration: TextDecoration.underline),
-              )
-            ],
-          ),
-          SizedBox(
-            height: getProportionateScreenHeight(75),
+            height: getProportionateScreenHeight(35),
           ),
           DefaultButton(
-            text: "Continuar",
+            text: "Próximo passo",
             press: () {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-                // se está tudo válido, direciona para a tela de sucesso do login
-                //Navigator.pushNamed(context, LoginSucessScreen.routeName);
-              }
+              if (_formKey.currentState.validate()) {}
             },
           )
-        ],
+        ]),
       ),
     );
   }
 
-  TextFormField buildPasswordFormField() {
+  TextFormField buildConfirmPassField() {
+    return TextFormField(
+      onTap: () {
+        setState(() {
+          passwordFocus = true;
+          emailFocus = false;
+        });
+      },
+      obscureText: true,
+      onSaved: (newValue) => password = newValue,
+      validator: (value) {
+        if (value.isEmpty && !errors.contains(kConfirmPassNullError)) {
+          setState(() {
+            errors.add(kConfirmPassNullError);
+          });
+          return "";
+        } else if (password == confirm_password) {
+          setState(() {
+            errors.add(kMatchPassError);
+          });
+          return "";
+        }
+        return null;
+      },
+      onChanged: (value) {
+        if (value.isNotEmpty &&
+            errors.contains(kMatchPassError) &&
+            errors.contains(kConfirmPassNullError)) {
+          setState(() {
+            errors.remove(kMatchPassError);
+            errors.remove(kConfirmPassNullError);
+          });
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(28),
+          borderSide: BorderSide(color: kPrimaryColor),
+          gapPadding: 10,
+        ),
+        labelText: "Confirme a senha",
+        labelStyle:
+            TextStyle(color: passwordFocus ? kPrimaryColor : Colors.grey),
+        hintText: "Confirme sua senha",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Padding(
+          padding: EdgeInsets.fromLTRB(0, getProportionateScreenWidth(20),
+              getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
+          child: Icon(
+            Icons.lock_outlined,
+            color: passwordFocus ? kPrimaryColor : Colors.grey,
+          ),
+        ),
+      ),
+    );
+  }
+
+  TextFormField buildPassFormField() {
     return TextFormField(
       onTap: () {
         setState(() {
@@ -94,6 +126,7 @@ class _SignFormState extends State<SignForm> {
           });
           return "";
         }
+        password = value;
         return null;
       },
       onChanged: (value) {

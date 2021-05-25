@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:standbyme_tcc/screens/sign_in/components/body.dart';
+import 'package:standbyme_tcc/screens/sign_up/components/body.dart';
 
 import '../../size_config.dart';
 
-class SignInScreen extends StatelessWidget {
-  static String routeName = "/sign_in";
+class SignUpScreen extends StatelessWidget {
+  static String routeName = "/sign_up";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

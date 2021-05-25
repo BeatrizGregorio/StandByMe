@@ -3,6 +3,7 @@ import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/screens/sign_in/components/sign_form.dart';
+import 'package:standbyme_tcc/screens/sign_up/sign_up_screen.dart';
 import 'package:standbyme_tcc/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -57,27 +58,41 @@ class Body extends StatelessWidget {
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Não possui uma conta? ",
-                      style:
-                          TextStyle(fontSize: getProportionateScreenWidth(16)),
-                    ),
-                    Text(
-                      "Cadastre-se",
-                      style: TextStyle(
-                          fontSize: getProportionateScreenWidth(16),
-                          color: kPrimaryColor),
-                    ),
-                  ],
-                )
+                NoAccountText()
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class NoAccountText extends StatelessWidget {
+  const NoAccountText({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Não possui uma conta? ",
+          style: TextStyle(fontSize: getProportionateScreenWidth(16)),
+        ),
+        GestureDetector(
+          onTap: () =>
+              Navigator.popAndPushNamed(context, SignUpScreen.routeName),
+          child: Text(
+            "Cadastre-se",
+            style: TextStyle(
+                fontSize: getProportionateScreenWidth(16),
+                color: kPrimaryColor),
+          ),
+        ),
+      ],
     );
   }
 }

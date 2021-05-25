@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
+import 'package:standbyme_tcc/screens/sign_up/sign_up_screen.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -58,7 +59,7 @@ class Body extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15)),
                 color: Colors.grey[200],
                 onPressed: () {
-                  Navigator.pushNamed(context, SignInScreen.routeName);
+                  Navigator.pushNamed(context, SignUpScreen.routeName);
                 },
                 child: Text("Cadastrar-se",
                     style: TextStyle(
