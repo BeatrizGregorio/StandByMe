@@ -12,24 +12,26 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        children: [
-          Text(
-            "Cadastre-se",
-            style: TextStyle(
-                fontSize: getProportionateScreenWidth(28),
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                height: 1.5),
-          ),
-          Text(
-            "Complete com seus dados ou continue \ncom as redes socias",
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: SizeConfig.screenHeight * 0.08),
-          SignUpForm(),
-          SizedBox(height: SizeConfig.screenHeight * 0.08),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text(
+              "Cadastre-se",
+              style: TextStyle(
+                  fontSize: getProportionateScreenWidth(28),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  height: 1.5),
+            ),
+            Text(
+              "Complete com seus dados ou continue \ncom as redes socias",
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: SizeConfig.screenHeight * 0.08),
+            SignUpForm(),
+            SizedBox(height: SizeConfig.screenHeight * 0.08),
+          ],
+        ),
       ),
     );
   }

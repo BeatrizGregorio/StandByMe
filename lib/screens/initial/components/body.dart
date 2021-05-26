@@ -23,7 +23,9 @@ class Body extends StatelessWidget {
                 "assets/images/logo_preta.PNG",
               ),
             ),
-            Spacer(),
+            SizedBox(
+              height: getProportionateScreenHeight(240),
+            ),
             SizedBox(
               width: getProportionateScreenWidth(250),
               height: getProportionateScreenHeight(55),
@@ -34,17 +36,28 @@ class Body extends StatelessWidget {
                       blurRadius: 4.0,
                       offset: Offset(0, 8))
                 ]),*/
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                color: kPrimaryLightColor,
-                onPressed: () {
-                  Navigator.pushNamed(context, SignInScreen.routeName);
-                },
-                child: Text("Login",
-                    style: TextStyle(
-                        fontSize: getProportionateScreenWidth(18),
-                        color: Colors.white)),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: kPrimaryColor,
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                          color: Colors.grey[300],
+                          blurRadius: 4.0,
+                          offset: Offset(0, 8))
+                    ]),
+                child: FlatButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  //color: kPrimaryLightColor,
+                  onPressed: () {
+                    Navigator.pushNamed(context, SignInScreen.routeName);
+                  },
+                  child: Text("Login",
+                      style: TextStyle(
+                          fontSize: getProportionateScreenWidth(18),
+                          color: Colors.white)),
+                ),
               ),
               // ),
             ),
@@ -54,17 +67,28 @@ class Body extends StatelessWidget {
             SizedBox(
               width: getProportionateScreenWidth(200),
               height: getProportionateScreenHeight(50),
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                color: Colors.grey[200],
-                onPressed: () {
-                  Navigator.pushNamed(context, SignUpScreen.routeName);
-                },
-                child: Text("Cadastrar-se",
-                    style: TextStyle(
-                        fontSize: getProportionateScreenWidth(18),
-                        color: kPrimaryLightColor)),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.grey[200],
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                          color: Colors.grey[300],
+                          blurRadius: 4.0,
+                          offset: Offset(0, 8))
+                    ]),
+                child: FlatButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  //color: Colors.grey[200],
+                  onPressed: () {
+                    Navigator.pushNamed(context, SignUpScreen.routeName);
+                  },
+                  child: Text("Cadastrar-se",
+                      style: TextStyle(
+                          fontSize: getProportionateScreenWidth(18),
+                          color: kPrimaryColor)),
+                ),
               ),
             ),
             SizedBox(

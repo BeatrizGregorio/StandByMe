@@ -14,14 +14,25 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
-    {"text": "Bem-vindo ao Stand By Me!", "image": "assets/images/logo.png"},
+    {
+      "text": "Bem-vindo ao Stand By Me!",
+      "image": "assets/images/logo_preta.PNG"
+    },
     {
       "text": "Nós ajudamos pessoas na sua nova fase \nao morar sozinha.",
       "image": ""
     },
     {
-      "text": "Venha conhecer nossos ChatBots!",
-      "image": "assets/images/tina.jpeg"
+      "text": "Eu sou a Tina e te ajudarei na parte doméstica!",
+      "image": "assets/images/tina.PNG"
+    },
+    {
+      "text": "Eu sou o Otto e te ajudarei \nna cozinha!",
+      "image": "assets/images/otto.PNG"
+    },
+    {
+      "text": "Eu sou a Luna e te ajudarei \nna parte financeira!",
+      "image": "assets/images/luna.PNG"
     }
   ];
 
@@ -61,8 +72,8 @@ class _BodyState extends State<Body> {
                           (index) => buildDot(index: index),
                         ),
                       ),
-                      Spacer(
-                        flex: 3,
+                      SizedBox(
+                        height: getProportionateScreenHeight(40),
                       ),
                       DefaultButton(
                         text: "Continuar",
@@ -70,7 +81,9 @@ class _BodyState extends State<Body> {
                           Navigator.pushNamed(context, InitialScreen.routeName);
                         },
                       ),
-                      Spacer(),
+                      SizedBox(
+                        height: getProportionateScreenHeight(60),
+                      )
                     ],
                   ),
                 ))

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kPrimaryColor = Color.fromARGB(255, 153, 51, 153);
-const kPrimaryLightColor = Color.fromARGB(255, 172, 88, 170);
+const kPrimaryLightColor = Color.fromARGB(255, 182, 95, 207);
 const kPrimaryGradientColor = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
