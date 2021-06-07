@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
+import 'package:standbyme_tcc/screens/home/home_screen.dart';
 import 'package:standbyme_tcc/screens/login_success/login_sucess_screen.dart';
 
 import '../../../constants.dart';
@@ -27,11 +28,11 @@ class _SignFormState extends State<SignForm> {
         children: [
           buildEmailFormField(),
           SizedBox(
-            height: getProportionateScreenHeight(10),
+            height: getProportionateScreenHeight(15),
           ),
           buildPasswordFormField(),
           SizedBox(
-            height: getProportionateScreenHeight(10),
+            height: getProportionateScreenHeight(5),
           ),
           FormError(errors: errors),
           SizedBox(
@@ -68,7 +69,7 @@ class _SignFormState extends State<SignForm> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // se está tudo válido, direciona para a tela de sucesso do login
-                //Navigator.pushNamed(context, LoginSucessScreen.routeName);
+                Navigator.pushNamed(context, HomeScreen.routeName);
               }
             },
           )
