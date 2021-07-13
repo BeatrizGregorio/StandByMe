@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
+import 'package:standbyme_tcc/screens/complete_profile/complete_profile_screen.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -42,7 +43,9 @@ class _SignUpFormState extends State<SignUpForm> {
           DefaultButton(
             text: "Próximo passo",
             press: () {
-              if (_formKey.currentState.validate()) {}
+              if (_formKey.currentState.validate()) {
+                Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+              }
             },
           )
         ]),
@@ -59,16 +62,16 @@ class _SignUpFormState extends State<SignUpForm> {
         });
       },
       obscureText: true,
-      onSaved: (newValue) => password = newValue,
+      onSaved: (newValue) => confirm_password = newValue,
       validator: (value) {
         if (value.isEmpty && !errors.contains(kConfirmPassNullError)) {
           setState(() {
             errors.add(kConfirmPassNullError);
           });
           return "";
-        } else if (password == confirm_password) {
+        } else if (password != value) {
           setState(() {
-            errors.add(kMatchPassError);
+            errors.remove(kMatchPassError);
           });
           return "";
         }

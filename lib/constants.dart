@@ -16,3 +16,7 @@ const String kPasswordNullError = "Por favor, digite sua senha";
 const String kInvalidError = "Email ou senha inválidos";
 const String kMatchPassError = "As senhas não são iguais";
 const String kConfirmPassNullError = "Por favor, confirme sua senha";
+const String kNameNullError = "Por favor, digite seu nome";
+const String kLastNameNullError = "Por favor, digite seu sobrenome";
+const String kPhoneNullError = "Por favor, digite seu telefone";
+const String kInfoNullError = "Por favor, digite suas informações";
