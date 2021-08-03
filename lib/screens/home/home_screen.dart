@@ -3,10 +3,13 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/components/custom_drawer.dart';
 import 'package:standbyme_tcc/constants.dart';
+import 'package:standbyme_tcc/screens/chatbot_Tina/chatbot_Tina.dart';
 import 'package:standbyme_tcc/screens/home/components/body.dart';
 
 import '../../size_config.dart';
 import '../calendar/calendar_screen.dart';
+import '../chatbot_Luna/chatbot_Luna.dart';
+import '../chatbot_Otto/chatbot_Otto.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = '/home';
@@ -68,7 +71,13 @@ class _HomeScreenState extends State<HomeScreen> {
             _page = p;
           });
         },
-        children: [Body(), CalendarScreen()],
+        children: [
+          Body(),
+          CalendarScreen(),
+          Chatbot_Luna(),
+          Chatbot_Otto(),
+          Chatbot_Tina()
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
