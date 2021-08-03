@@ -1,9 +1,12 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/components/custom_drawer.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/screens/home/components/body.dart';
 
 import '../../size_config.dart';
+import '../calendar/calendar_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = '/home';
@@ -15,6 +18,22 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  PageController _pageController;
+  int _page = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +61,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       backgroundColor: Colors.white,
-      body: Body(),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (p) {
+          setState(() {
+            _page = p;
+          });
+        },
+        children: [Body(), CalendarScreen()],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         iconSize: 30.0,
-        currentIndex: _selectedIndex,
+        currentIndex: _page,
         onTap: _onItemTapped,
         showSelectedLabels: false,
         selectedItemColor: kPrimaryColor,
@@ -91,5 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _selectedIndex = index;
     });
+    _pageController.animateToPage(_selectedIndex,
+        duration: Duration(milliseconds: 300), curve: Curves.ease);
   }
 }
