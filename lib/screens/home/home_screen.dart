@@ -5,6 +5,7 @@ import 'package:standbyme_tcc/components/custom_drawer.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/screens/chatbot_Tina/chatbot_Tina.dart';
 import 'package:standbyme_tcc/screens/home/components/body.dart';
+import 'package:standbyme_tcc/screens/home/components/home_screen_background.dart';
 
 import '../../size_config.dart';
 import '../calendar/calendar_screen.dart';
@@ -48,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
           "assets/images/logo_porta.PNG",
           height: SizeConfig.screenHeight * 0.08,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(200, 153, 51, 153),
         centerTitle: true,
         actions: [
           Padding(
@@ -64,21 +65,24 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       backgroundColor: Colors.white,
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (p) {
-          setState(() {
-            _page = p;
-          });
-        },
-        children: [
-          Body(),
-          CalendarScreen(),
-          Chatbot_Luna(),
-          Chatbot_Otto(),
-          Chatbot_Tina()
-        ],
-      ),
+      body: Stack(children: [
+        HomeScreenBackground(screenHeight: MediaQuery.of(context).size.height),
+        PageView(
+          controller: _pageController,
+          onPageChanged: (p) {
+            setState(() {
+              _page = p;
+            });
+          },
+          children: [
+            Body(),
+            CalendarScreen(),
+            Chatbot_Luna(),
+            Chatbot_Otto(),
+            Chatbot_Tina()
+          ],
+        ),
+      ]),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         iconSize: 30.0,
@@ -101,20 +105,23 @@ class _HomeScreenState extends State<HomeScreen> {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.attribution_rounded,
+            icon: Image.asset(
+              "assets/images/otto_oficial.PNG",
+              height: SizeConfig.screenHeight * 0.05,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.attribution_rounded,
+            icon: Image.asset(
+              "assets/images/tina.PNG",
+              height: SizeConfig.screenHeight * 0.05,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.attribution_rounded,
+            icon: Image.asset(
+              "assets/images/luna_preta.png",
+              height: SizeConfig.screenHeight * 0.05,
             ),
             label: '',
           ),
