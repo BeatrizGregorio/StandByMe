@@ -1,4 +1,7 @@
+import 'dart:js';
+
 import 'package:flutter/widgets.dart';
+import 'package:standbyme_tcc/screens/bank/bank_card.dart';
 import 'package:standbyme_tcc/screens/complete_profile/complete_profile_screen.dart';
 import 'package:standbyme_tcc/screens/home/home_screen.dart';
 import 'package:standbyme_tcc/screens/initial/inital_screen.dart';
@@ -14,5 +17,6 @@ final Map<String, WidgetBuilder> routes = {
   SignUpScreen.routeName: (context) => SignUpScreen(),
   LoginSucessScreen.routeName: (context) => LoginSucessScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
-  CompleteProfileScreen.routeName: (context) => CompleteProfileScreen()
+  CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
+  BankCard.routeName: (context) => BankCard()
 };
