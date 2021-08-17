@@ -60,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.black,
                   size: 30,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/profile_screen');
+                },
               ))
         ],
       ),
@@ -106,6 +108,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
+              "assets/images/luna_preta.png",
+              height: SizeConfig.screenHeight * 0.05,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
               "assets/images/otto_oficial.PNG",
               height: SizeConfig.screenHeight * 0.05,
             ),
@@ -114,13 +123,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Image.asset(
               "assets/images/tina.PNG",
-              height: SizeConfig.screenHeight * 0.05,
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              "assets/images/luna_preta.png",
               height: SizeConfig.screenHeight * 0.05,
             ),
             label: '',
