@@ -111,7 +111,7 @@ class _BodyState extends State<Body> {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Color.fromARGB(200, 255, 193, 7),
+          color: Color.fromARGB(75, 255, 193, 7),
           boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.grey[200], blurRadius: 4.0, offset: Offset(4, 8))
