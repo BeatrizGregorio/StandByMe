@@ -25,7 +25,7 @@ class Body extends StatelessWidget {
               CalendarView.week,
               CalendarView.month,
             ],
-            todayHighlightColor: Colors.white,
+            todayHighlightColor: Color.fromARGB(100, 153, 51, 153),
             cellBorderColor: Colors.transparent,
             monthViewSettings: MonthViewSettings(
                 agendaStyle: AgendaStyle(
