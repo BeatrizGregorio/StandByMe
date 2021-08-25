@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class DrawerTile extends StatelessWidget {
   final IconData icon;
   final String text;
-  DrawerTile(this.icon, this.text);
+  final String route;
+  DrawerTile(this.icon, this.text, this.route);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class DrawerTile extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(route);
         },
         child: Container(
           height: 60.0,

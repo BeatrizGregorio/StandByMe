@@ -3,6 +3,10 @@ import 'package:standbyme_tcc/components/tiles/drawer_tile.dart';
 import 'package:standbyme_tcc/constants.dart';
 
 class CustomDrawer extends StatelessWidget {
+  final PageController _pageController;
+
+  CustomDrawer(this._pageController);
+
   Widget _buildDrawerBack() => Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -37,10 +41,10 @@ class CustomDrawer extends StatelessWidget {
               ), */
             ),
             Divider(),
-            DrawerTile(Icons.wallet_giftcard, "Carteira"),
-            DrawerTile(Icons.kitchen, "Cozinha"),
-            DrawerTile(Icons.house, "Casa"),
-            DrawerTile(Icons.settings, "Configurações"),
+            DrawerTile(Icons.wallet_giftcard, "Carteira", "/bank"),
+            DrawerTile(Icons.kitchen, "Cozinha", "/kitchen"),
+            // DrawerTile(Icons.house, "Casa", 7),
+            // DrawerTile(Icons.settings, "Configurações", 8),
           ],
         )
       ]),
