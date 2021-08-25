@@ -14,11 +14,15 @@ class Body extends StatelessWidget {
             view: CalendarView.month,
             showDatePickerButton: true,
             initialSelectedDate: DateTime.now(),
-            selectionDecoration: BoxDecoration(
+            /*selectionDecoration: BoxDecoration(
               color: Color.fromARGB(100, 153, 51, 153),
               border: Border.all(
                   color: Color.fromARGB(200, 153, 51, 153), width: 2),
               shape: BoxShape.circle,
+            ),*/
+            selectionDecoration: BoxDecoration(
+              border: Border.all(
+                  color: Color.fromARGB(200, 153, 51, 153), width: 2),
             ),
             allowedViews: [
               CalendarView.day,
