@@ -27,18 +27,20 @@ class CustomDrawer extends StatelessWidget {
               margin: EdgeInsets.only(bottom: 8.0),
               padding: EdgeInsets.fromLTRB(0.0, 16.0, 16.0, 8.0),
               height: 170.0,
-              /*
               child: Stack(
                 children: <Widget>[
                   Positioned(
-                      top: 8.0,
+                      top: 35.0,
                       left: 0.0,
                       child: Text(
-                        "Options",
-                        style: TextStyle(fontSize: 34.0),
+                        "Carteira",
+                        style: TextStyle(
+                            fontSize: 25.0,
+                            color: Colors.black,
+                            fontFamily: "Times New Roman"),
                       ))
                 ],
-              ), */
+              ),
             ),
             Divider(),
             DrawerTile(Icons.wallet_giftcard, "Carteira", "/bank"),

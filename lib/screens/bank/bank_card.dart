@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'bank_card_model.dart';
 
 class BankCard extends StatefulWidget {
-  static String routeName = '/bank';
+  static String routeName = "/bankcard";
   const BankCard({
     Key key,
     this.bankCard,

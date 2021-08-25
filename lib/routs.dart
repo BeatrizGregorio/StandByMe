@@ -10,7 +10,6 @@ import 'package:standbyme_tcc/screens/profile/profile_screen.dart';
 import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
 import 'package:standbyme_tcc/screens/sign_up/sign_up_screen.dart';
 import 'package:standbyme_tcc/screens/splash/splash_screen.dart';
-import 'package:standbyme_tcc/screens/bank/bank_card.dart';
 import 'package:standbyme_tcc/screens/kitchen/kitchen.dart';
 
 final Map<String, WidgetBuilder> routes = {
@@ -23,6 +22,5 @@ final Map<String, WidgetBuilder> routes = {
   CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
   BankCard.routeName: (context) => BankCard(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
-  BankCard.routeName: (context) => BankCard(),
   Kitchen.routeName: (context) => Kitchen()
 };
