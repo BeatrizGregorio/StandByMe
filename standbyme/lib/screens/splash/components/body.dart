@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/screens/initial/inital_screen.dart';
-import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
+//import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
 import 'package:standbyme_tcc/size_config.dart';
 import '../components/splash_content.dart';
 import '../../../components/default_button.dart';

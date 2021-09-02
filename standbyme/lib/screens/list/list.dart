@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/screens/list/components/body.dart';
-import 'package:standbyme_tcc/size_config.dart';
+//import 'package:standbyme_tcc/size_config.dart';
 
 class List extends StatelessWidget {
   static String routeName = "/list";

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
 import 'package:standbyme_tcc/screens/home/home_screen.dart';
-import 'package:standbyme_tcc/screens/login_success/login_sucess_screen.dart';
+//import 'package:standbyme_tcc/screens/login_success/login_sucess_screen.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';

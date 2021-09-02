@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/routs.dart';
 import 'package:standbyme_tcc/screens/splash/splash_screen.dart';
 import 'package:standbyme_tcc/theme.dart';
-import 'constants.dart';
+//import 'constants.dart';
 
 void main() {
   runApp(MyApp());

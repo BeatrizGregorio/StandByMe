@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:standbyme_tcc/components/default_button.dart';
-import 'package:standbyme_tcc/components/form_error.dart';
+//import 'package:standbyme_tcc/components/default_button.dart';
+//import 'package:standbyme_tcc/components/form_error.dart';
 import 'package:standbyme_tcc/components/socal_card.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/screens/sign_in/components/sign_form.dart';
