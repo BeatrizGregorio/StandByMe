@@ -8,13 +8,13 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-        width: 100.00,
-        height: 100.00,
-        decoration: new BoxDecoration(
-          image: new DecorationImage(
-            image: ExactAssetImage('assets\images\lunaTexto.png'),
-            fit: BoxFit.fitHeight,
-          ),
-        ));
+      width: 100.00,
+      height: 100.00,
+      //decoration: new BoxDecoration(
+      //  image: new DecorationImage(
+      //   image: ExactAssetImage('assets\images\lunaTexto.png'),
+      //fit: BoxFit.fitHeight,
+      //   ),
+    );
   }
 }
