@@ -1,22 +1,26 @@
 {
   "name": "standbyme-api",
   "version": "1.0.0",
-  "description": "Node.js API with MySQL",
-  "main": "server.js",
+  "description": "Api with MSSQL",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "github.com/BeatrizGregorio/standbyme"
+  },
   "keywords": [
-    "nodejs",
-    "express",
-    "mysql",
-    "restapi"
+    "mssql",
+    "sqlserver",
+    "api"
   ],
   "author": "jppedro",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mysql": "^2.18.1"
+    "mssql": "^7.2.1"
   }
 }
