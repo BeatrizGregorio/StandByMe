@@ -42,7 +42,7 @@ class CustomDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            DrawerTile(Icons.credit_card, "Cartão", "/card"),
+            DrawerTile(Icons.credit_card, "Cartão", "/bankcard"),
             DrawerTile(Icons.edit, "Editar cartão", "/editCard"),
             DrawerTile(Icons.monetization_on, "Transações", "/transactions"),
             DrawerTile(Icons.bar_chart, "Gráficos", "/graphics"),
