@@ -16,7 +16,6 @@ import 'package:standbyme_tcc/screens/card/card.dart';
 import 'package:standbyme_tcc/screens/editCard/editCard.dart';
 import 'package:standbyme_tcc/screens/transactions/transactions.dart';
 import 'package:standbyme_tcc/screens/graphics/graphics.dart';
-import 'package:standbyme_tcc/screens/chatbot_LunaTexto/chatbot_LunaTexto.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (context) => SplashScreen(),
@@ -34,5 +33,4 @@ final Map<String, WidgetBuilder> routes = {
   EditCard.routeName: (context) => EditCard(),
   Transactions.routeName: (context) => Transactions(),
   Graphics.routeName: (context) => Graphics(),
-  Chatbot_LunaTexto.routeName: (context) => Chatbot_LunaTexto()
 };
