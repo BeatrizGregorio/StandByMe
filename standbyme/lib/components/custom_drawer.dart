@@ -79,15 +79,16 @@ class CustomDrawer extends StatelessWidget {
                       top: 35.0,
                       left: 0.0,
                       child: Text(
-                        "Casa",
+                        "Perfil",
                         style: TextStyle(
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                             color: Colors.black,
                             fontFamily: "Times New Roman"),
                       ))
                 ],
               ),
             ),
+            DrawerTile(Icons.person, "Editar perfil", "/profile_screen"),
             //DrawerTile(),
           ],
         )

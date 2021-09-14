@@ -1,8 +1,6 @@
-import 'dart:ffi';
-//import 'dart:html';
-//TESTEE
 import 'package:flutter/material.dart';
-import 'package:standbyme_tcc/screens/list/components/body.dart';
+import 'package:standbyme_tcc/constants.dart';
+//import 'package:standbyme_tcc/screens/list/components/body.dart';
 //import 'package:standbyme_tcc/screens/profile/profile_screen.dart';
 
 import 'package:standbyme_tcc/size_config.dart';
@@ -24,6 +22,7 @@ class BodyState extends State<Body> {
             "assets/images/logo_porta.PNG",
             height: SizeConfig.screenHeight * 0.08,
           ),
+          backgroundColor: kPrimaryColor.withOpacity(0.7),
           centerTitle: true,
           actions: [
             Padding(
@@ -38,7 +37,7 @@ class BodyState extends State<Body> {
                 ))
           ]),
       body: Container(
-        padding: EdgeInsets.only(left: 15, top: 50, right: 15),
+        padding: EdgeInsets.only(left: 15, top: 20, right: 15),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -57,8 +56,7 @@ class BodyState extends State<Body> {
                           BoxShadow(
                               spreadRadius: 2,
                               blurRadius: 10,
-                              color: Color.fromARGB(200, 153, 51, 153)
-                                  .withOpacity(0.2))
+                              color: kPrimaryColor.withOpacity(0.2))
                         ],
                         shape: BoxShape.circle,
                         image: DecorationImage(
@@ -107,7 +105,7 @@ class BodyState extends State<Body> {
                           fontSize: 15, letterSpacing: 2, color: Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(200, 153, 51, 153),
+                        primary: kPrimaryColor.withOpacity(0.6),
                         padding: EdgeInsets.fromLTRB(25, 15, 25, 15),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
@@ -120,7 +118,7 @@ class BodyState extends State<Body> {
                           fontSize: 15, letterSpacing: 2, color: Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(200, 153, 51, 153),
+                        primary: kPrimaryColor.withOpacity(0.6),
                         padding: EdgeInsets.fromLTRB(35, 15, 35, 15),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),

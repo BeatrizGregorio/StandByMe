@@ -57,12 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.only(right: 10.0),
               child: IconButton(
                 icon: Icon(
-                  Icons.account_circle_sharp,
+                  Icons.settings,
                   color: Colors.black.withOpacity(0.6),
                   size: 30,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/profile_screen');
+                  Navigator.of(context).pushNamed('/settings');
                 },
               ))
         ],

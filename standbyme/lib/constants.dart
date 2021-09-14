@@ -9,7 +9,7 @@ const kPrimaryGradientColor = LinearGradient(
     colors: [Color(0XFFFFA53E), Color(0XFFFF7643)]);
 const kSecondaryColor = Color(0XFF979797);
 const kTextColor = Color(0XFF757575);
-
+const kDefaultPaddin = 20.0;
 const kAnimationDuration = Duration(milliseconds: 200);
 
 const String kEmailNullError = "Por favor, digite seu email";
