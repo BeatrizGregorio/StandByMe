@@ -4,12 +4,9 @@
   "description": "Api with MSSQL",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "github.com/BeatrizGregorio/standbyme"
-  },
+  "repository": "github.com/BeatrizGregorio/standbyme",
   "keywords": [
     "mssql",
     "sqlserver",
@@ -18,11 +15,18 @@
   "author": "jppedro",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mssql": "^7.2.1",
-    "mysql2": "^2.3.0"
+    "mysql2": "^2.3.0",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.6.5"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "sequelize-cli": "^6.2.0"
+  }
 }
