@@ -78,6 +78,7 @@ class _SignFormState extends State<SignForm> {
     );
   }
 
+  bool showPassword = false;
   TextFormField buildPasswordFormField() {
     return TextFormField(
       onTap: () {
@@ -86,7 +87,6 @@ class _SignFormState extends State<SignForm> {
           emailFocus = false;
         });
       },
-      obscureText: true,
       onSaved: (newValue) => password = newValue,
       validator: (value) {
         if (value.isEmpty && !errors.contains(kPasswordNullError)) {
@@ -106,25 +106,39 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(28),
-          borderSide: BorderSide(color: kPrimaryColor),
-          gapPadding: 10,
-        ),
-        labelText: "Senha",
-        labelStyle:
-            TextStyle(color: passwordFocus ? kPrimaryColor : Colors.grey),
-        hintText: "Digite sua senha",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Padding(
-          padding: EdgeInsets.fromLTRB(0, getProportionateScreenWidth(20),
-              getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
-          child: Icon(
-            Icons.lock_outlined,
-            color: passwordFocus ? kPrimaryColor : Colors.grey,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(28),
+            borderSide: BorderSide(color: kPrimaryColor),
+            gapPadding: 10,
           ),
-        ),
-      ),
+          labelText: "Senha",
+          labelStyle:
+              TextStyle(color: passwordFocus ? kPrimaryColor : Colors.grey),
+          hintText: "Digite sua senha",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          prefixIcon: Padding(
+            padding: EdgeInsets.fromLTRB(
+                15,
+                getProportionateScreenWidth(20),
+                getProportionateScreenWidth(20),
+                getProportionateScreenWidth(20)),
+            child: Icon(
+              Icons.lock_outlined,
+              color: passwordFocus ? kPrimaryColor : Colors.grey,
+            ),
+          ),
+          suffixIcon: GestureDetector(
+            child: Icon(
+                showPassword == false ? Icons.visibility_off : Icons.visibility,
+                color: Colors.grey),
+            onTap: () {
+              setState(() {
+                showPassword = !showPassword;
+              });
+            },
+          ),
+          hintStyle: TextStyle(color: kTextColor)),
+      obscureText: showPassword == false ? true : false,
     );
   }
 
@@ -165,8 +179,8 @@ class _SignFormState extends State<SignForm> {
         labelText: "Email",
         hintText: "Digite seu email",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Padding(
-          padding: EdgeInsets.fromLTRB(0, getProportionateScreenWidth(20),
+        prefixIcon: Padding(
+          padding: EdgeInsets.fromLTRB(15, getProportionateScreenWidth(20),
               getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
           child: Icon(
             Icons.mail_outline_outlined,

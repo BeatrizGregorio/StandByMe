@@ -28,6 +28,7 @@ class _SignUpFormState extends State<SignUpForm> {
   String lastName;
   String info;
   String phone;
+  bool showPassword = false;
   bool firstNameFocus = false;
   bool lastNameFocus = false;
   bool infoFocus = false;
@@ -102,6 +103,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 press: () {
                   if (_formKey.currentState.validate()) {
                     createUser();
+
                     //Navigator.pushNamed(context, SignInScreen.routeName);
                   }
                 },
@@ -119,7 +121,6 @@ class _SignUpFormState extends State<SignUpForm> {
           emailFocus = false;
         });
       },
-      obscureText: true,
       onSaved: (newValue) => confirm_password = newValue,
       validator: (value) {
         if (value.isEmpty && !errors.contains(kConfirmPassNullError)) {
@@ -148,25 +149,39 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(28),
-          borderSide: BorderSide(color: kPrimaryColor),
-          gapPadding: 10,
-        ),
-        labelText: "Confirme a senha",
-        labelStyle:
-            TextStyle(color: passwordFocus ? kPrimaryColor : Colors.grey),
-        hintText: "Confirme sua senha",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Padding(
-          padding: EdgeInsets.fromLTRB(0, getProportionateScreenWidth(20),
-              getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
-          child: Icon(
-            Icons.lock_outlined,
-            color: passwordFocus ? kPrimaryColor : Colors.grey,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(28),
+            borderSide: BorderSide(color: kPrimaryColor),
+            gapPadding: 10,
           ),
-        ),
-      ),
+          labelText: "Confirme a senha",
+          labelStyle:
+              TextStyle(color: passwordFocus ? kPrimaryColor : Colors.grey),
+          hintText: "Confirme sua senha",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          prefixIcon: Padding(
+            padding: EdgeInsets.fromLTRB(
+                15,
+                getProportionateScreenWidth(20),
+                getProportionateScreenWidth(20),
+                getProportionateScreenWidth(20)),
+            child: Icon(
+              Icons.lock_outlined,
+              color: passwordFocus ? kPrimaryColor : Colors.grey,
+            ),
+          ),
+          suffixIcon: GestureDetector(
+            child: Icon(
+                showPassword == false ? Icons.visibility_off : Icons.visibility,
+                color: Colors.grey),
+            onTap: () {
+              setState(() {
+                showPassword = !showPassword;
+              });
+            },
+          ),
+          hintStyle: TextStyle(color: kTextColor)),
+      obscureText: showPassword == false ? true : false,
     );
   }
 
@@ -178,7 +193,6 @@ class _SignUpFormState extends State<SignUpForm> {
           emailFocus = false;
         });
       },
-      obscureText: true,
       onSaved: (newValue) => password = newValue,
       validator: (value) {
         if (value.isEmpty && !errors.contains(kPasswordNullError)) {
@@ -199,25 +213,39 @@ class _SignUpFormState extends State<SignUpForm> {
         return null;
       },
       decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(28),
-          borderSide: BorderSide(color: kPrimaryColor),
-          gapPadding: 10,
-        ),
-        labelText: "Senha",
-        labelStyle:
-            TextStyle(color: passwordFocus ? kPrimaryColor : Colors.grey),
-        hintText: "Digite sua senha",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Padding(
-          padding: EdgeInsets.fromLTRB(0, getProportionateScreenWidth(20),
-              getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
-          child: Icon(
-            Icons.lock_outlined,
-            color: passwordFocus ? kPrimaryColor : Colors.grey,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(28),
+            borderSide: BorderSide(color: kPrimaryColor),
+            gapPadding: 10,
           ),
-        ),
-      ),
+          labelText: "Senha",
+          labelStyle:
+              TextStyle(color: passwordFocus ? kPrimaryColor : Colors.grey),
+          hintText: "Digite sua senha",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          prefixIcon: Padding(
+            padding: EdgeInsets.fromLTRB(
+                15,
+                getProportionateScreenWidth(20),
+                getProportionateScreenWidth(20),
+                getProportionateScreenWidth(20)),
+            child: Icon(
+              Icons.lock_outlined,
+              color: passwordFocus ? kPrimaryColor : Colors.grey,
+            ),
+          ),
+          suffixIcon: GestureDetector(
+            child: Icon(
+                showPassword == false ? Icons.visibility_off : Icons.visibility,
+                color: Colors.grey),
+            onTap: () {
+              setState(() {
+                showPassword = !showPassword;
+              });
+            },
+          ),
+          hintStyle: TextStyle(color: kTextColor)),
+      obscureText: showPassword == false ? true : false,
     );
   }
 
@@ -259,8 +287,8 @@ class _SignUpFormState extends State<SignUpForm> {
         labelText: "Email",
         hintText: "Digite seu email",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Padding(
-          padding: EdgeInsets.fromLTRB(0, getProportionateScreenWidth(20),
+        prefixIcon: Padding(
+          padding: EdgeInsets.fromLTRB(15, getProportionateScreenWidth(20),
               getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
           child: Icon(
             Icons.mail_outline_outlined,
@@ -306,8 +334,8 @@ class _SignUpFormState extends State<SignUpForm> {
         labelText: "Telefone",
         hintText: "Digite seu telefone",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Padding(
-          padding: EdgeInsets.fromLTRB(0, getProportionateScreenWidth(20),
+        prefixIcon: Padding(
+          padding: EdgeInsets.fromLTRB(15, getProportionateScreenWidth(20),
               getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
           child: Icon(
             Icons.phone_android_outlined,
@@ -353,8 +381,8 @@ class _SignUpFormState extends State<SignUpForm> {
         labelText: "Sobrenome",
         hintText: "Digite seu sobrenome",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Padding(
-          padding: EdgeInsets.fromLTRB(0, getProportionateScreenWidth(20),
+        prefixIcon: Padding(
+          padding: EdgeInsets.fromLTRB(15, getProportionateScreenWidth(20),
               getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
           child: Icon(
             Icons.person_outline_rounded,
@@ -367,48 +395,50 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
-      onTap: () {
-        setState(() {
-          phoneFocus = false;
-          lastNameFocus = false;
-          firstNameFocus = true;
-          infoFocus = false;
-        });
-      },
-      onSaved: (newValue) => firstName = newValue,
-      validator: (value) {
-        if (value.isEmpty) {
-          addError(error: kNameNullError);
-          return "";
-        }
-        return null;
-      },
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kNameNullError);
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(28),
-          borderSide: BorderSide(color: kPrimaryColor),
-          gapPadding: 10,
-        ),
-        labelStyle:
-            TextStyle(color: firstNameFocus ? kPrimaryColor : Colors.grey),
-        labelText: "Nome",
-        hintText: "Digite seu nome",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Padding(
-          padding: EdgeInsets.fromLTRB(0, getProportionateScreenWidth(20),
-              getProportionateScreenWidth(20), getProportionateScreenWidth(20)),
-          child: Icon(
-            Icons.person_outline_rounded,
-            color: firstNameFocus ? kPrimaryColor : Colors.grey,
+        onTap: () {
+          setState(() {
+            phoneFocus = false;
+            lastNameFocus = false;
+            firstNameFocus = true;
+            infoFocus = false;
+          });
+        },
+        onSaved: (newValue) => firstName = newValue,
+        validator: (value) {
+          if (value.isEmpty) {
+            addError(error: kNameNullError);
+            return "";
+          }
+          return null;
+        },
+        onChanged: (value) {
+          if (value.isNotEmpty) {
+            removeError(error: kNameNullError);
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(28),
+            borderSide: BorderSide(color: kPrimaryColor),
+            gapPadding: 10,
           ),
-        ),
-      ),
-    );
+          labelStyle:
+              TextStyle(color: firstNameFocus ? kPrimaryColor : Colors.grey),
+          labelText: "Nome",
+          hintText: "Digite seu nome",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          prefixIcon: Padding(
+            padding: EdgeInsets.fromLTRB(
+                15,
+                getProportionateScreenWidth(20),
+                getProportionateScreenWidth(20),
+                getProportionateScreenWidth(20)),
+            child: Icon(
+              Icons.person_outline_rounded,
+              color: firstNameFocus ? kPrimaryColor : Colors.grey,
+            ),
+          ),
+        ));
   }
 }
