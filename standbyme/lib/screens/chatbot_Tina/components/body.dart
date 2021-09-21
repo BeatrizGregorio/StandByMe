@@ -16,6 +16,17 @@ class Body extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          /*
+          Container(
+              child: Column(children: [
+            Center(
+              child: Container(
+                  padding: EdgeInsets.only(top: 15, bottom: 10),
+                  child: Text(
+                    "Hoje, ${DateFormat("Hm").format(DateTime.now())}",
+                    style: TextStyle(fontSize: 20),
+                  )),
+            ),*/
           ListView.builder(
             itemCount: 6,
             shrinkWrap: true,
@@ -32,46 +43,46 @@ class Body extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 5),
                       height: 60,
                       width: double.infinity,
-                      margin: EdgeInsets.all(15),
+                      margin: EdgeInsets.all(10),
                       decoration: BoxDecoration(
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(20)),
                       child: Row(
                         children: [
-                          Icon(
-                            Icons.emoji_emotions_outlined,
+                          IconButton(
+                            icon: Icon(Icons.camera_alt),
+                            onPressed: () {},
                             color: Colors.grey[500],
-                          ),
-                          SizedBox(
-                            width: 10,
                           ),
                           Expanded(
                             child: TextField(
                               decoration: InputDecoration(
                                   enabledBorder: InputBorder.none,
                                   hintText: "Digite uma mensagem...",
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.transparent)),
                                   hintStyle:
                                       TextStyle(color: Colors.grey[500])),
                             ),
                           ),
+                          IconButton(
+                              icon: Icon(Icons.send),
+                              color: kPrimaryColor,
+                              iconSize: 30,
+                              onPressed: () {})
                         ],
                       ),
                     ),
                   ),
-                  CircleAvatar(
-                    backgroundColor: kPrimaryColor,
-                    child: Icon(
-                      Icons.send,
-                      color: Colors.white,
-                    ),
-                  )
                 ],
               ),
             ),
           ),
+          //])),
         ],
       ),
     );

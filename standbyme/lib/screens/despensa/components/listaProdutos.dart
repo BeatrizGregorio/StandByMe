@@ -15,12 +15,35 @@ class ListaProdutos extends StatefulWidget {
 }
 
 class _ListaProdutosState extends State<ListaProdutos> {
-  final products = List<Product>.generate(
-      7,
-      (index) => Product(
-          "Tomate",
-          "https://superprix.vteximg.com.br/arquivos/ids/178639-292-292/Tomate-1-unidade-aprox-250g.png?v=636868090295370000",
-          "Tomate fresco"));
+  List<Product> products = List<Product>();
+  Product product1 = Product(
+      "Tomate",
+      "https://superprix.vteximg.com.br/arquivos/ids/178639-210-210/Tomate-1-unidade-aprox-250g.png?v=636868090295370000",
+      "Tomate fresco");
+  Product product2 = Product(
+      "Feijão",
+      "https://armazemsaovito.fbitsstatic.net/img/p/feijao-carioca-150269/346758.jpg?w=344&h=344&v=no-change",
+      "Feijão Carioca");
+  Product product3 = Product(
+      "Arroz",
+      "https://pubimg.band.uol.com.br/files/fea2747ceb5cf1febf1f.png",
+      "Arroz branco");
+  Product product4 = Product(
+      "Filé Mignon",
+      "https://static.paodeacucar.com/img/uploads/1/792/480792.jpg",
+      "Bife de filé mignon fresco");
+  Product product5 = Product(
+      "Batata",
+      "https://onisafra.com/manaus/wp-content/uploads/2020/03/batata-portuguesa.jpg",
+      "Batata fresca");
+  void addProducts() {
+    products[0] = product1;
+    products[1] = product2;
+    products[2] = product3;
+    products[3] = product4;
+    products[4] = product5;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
