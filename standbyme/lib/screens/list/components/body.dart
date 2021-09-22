@@ -100,12 +100,19 @@ class BodyState extends State<Body> {
                       labelStyle: TextStyle(color: kPrimaryColor)),
                 )),
                 SizedBox(width: 10),
-                RaisedButton(
-                  color: kPrimaryColor,
-                  child: Text("+"),
-                  textColor: Colors.white,
+                SizedBox(
+                    child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: kPrimaryColor,
+                    shape: BeveledRectangleBorder(),
+                    padding: EdgeInsets.all(12),
+                  ),
+                  child: Icon(
+                    Icons.add,
+                    size: 15,
+                  ),
                   onPressed: adicionar,
-                )
+                )),
               ],
             ),
           ),

@@ -19,6 +19,7 @@ class _UserProductTileState extends State<UserProductTile> {
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
                 width: 80,
@@ -31,17 +32,23 @@ class _UserProductTileState extends State<UserProductTile> {
             SizedBox(
               width: 10,
             ),
-            Column(
-              children: [
-                Text(
-                  this.widget.data.title,
-                  style: TextStyle(fontSize: 20.0, color: Colors.black),
-                ),
-                Text(
-                  this.widget.data.description,
-                  style: TextStyle(fontSize: 16.0, color: Colors.black),
-                )
-              ],
+            Container(
+              height: 60,
+              width: 100,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    this.widget.data.title,
+                    style: TextStyle(fontSize: 20.0, color: Colors.black),
+                  ),
+                  Text(
+                    this.widget.data.description,
+                    style: TextStyle(fontSize: 14.0, color: Colors.black),
+                  )
+                ],
+              ),
             ),
             SizedBox(
               width: 85,
