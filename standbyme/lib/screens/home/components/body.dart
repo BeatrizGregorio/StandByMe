@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
+import 'package:standbyme_tcc/screens/list/list.dart';
 
 class Body extends StatefulWidget {
   const Body({Key key}) : super(key: key);
@@ -22,17 +23,21 @@ class _BodyState extends State<Body> {
           color: Colors.transparent,
         ),
         Padding(
-            padding: EdgeInsets.only(top: 25.0),
-            child: _buildContainer(100.0, 350.0, Colors.tealAccent.shade100,
-                Colors.grey.shade400)),
+            padding: EdgeInsets.only(top: 20.0),
+            child: _buildContainer(
+                75.0, 350.0, Colors.tealAccent.shade100, Colors.grey.shade400)),
         Expanded(
           child: Container(
             child: Row(
               children: [
                 Expanded(
                     child: Padding(
-                  padding: const EdgeInsets.fromLTRB(35.0, 40.0, 20.0, 65.0),
-                  child: _buildContainerRoxo(),
+                  padding: EdgeInsets.fromLTRB(35.0, 40.0, 20.0, 65.0),
+                  child: GestureDetector(
+                      child: _buildContainerRoxo(),
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/list');
+                      }),
                 )),
                 Expanded(
                   child: Column(
@@ -86,12 +91,24 @@ class _BodyState extends State<Body> {
 
   Container _buildContainerRoxo() {
     return Container(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 3.0, top: 5),
+            child: Text(
+              "Lista de Compras:",
+              style: TextStyle(color: Colors.black, fontSize: 15.0),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: kPrimaryColor,
+          color: kPrimaryColor.withOpacity(0.5),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: Colors.grey[400], blurRadius: 4.0, offset: Offset(4, 8))
+                color: Colors.grey[300], blurRadius: 4.0, offset: Offset(4, 8))
           ]),
     );
   }
