@@ -15,7 +15,6 @@ class UsuarioRepository implements IUsuarioRepository {
                 'Content-Type': 'application/json; charset=UTF-8',
               },
               body: jsonEncode(<String, String>{
-                'id': usuario.id.toString(),
                 'nomeUsuario': usuario.primeiroNome,
                 'sobrenomeUsuario': usuario.sobrenome,
                 'email': usuario.email,

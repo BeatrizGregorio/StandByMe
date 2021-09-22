@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
+import 'package:standbyme_tcc/controllers/UsuarioController.dart';
+import 'package:standbyme_tcc/models/Usuario.dart';
 import 'package:standbyme_tcc/modules/http.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -50,6 +52,13 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   createUser() async {
+    await new UsuarioController().cadastrarUsuario(new Usuario(
+        nameController.text,
+        lastNameController.text,
+        telController.text,
+        emailController.text,
+        passwordController.text));
+    /*
     var result = await http_post("create-user", {
       "nomeUsuario": nameController.text,
       "sobrenomeUsuario": lastNameController.text,
@@ -61,7 +70,7 @@ class _SignUpFormState extends State<SignUpForm> {
       setState(() {
         response = result.data['status'];
       });
-    }
+    }*/
   }
 
   @override
