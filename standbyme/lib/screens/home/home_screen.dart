@@ -69,7 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       backgroundColor: Colors.white,
       body: Stack(children: [
-        HomeScreenBackground(screenHeight: MediaQuery.of(context).size.height),
         PageView(
           controller: _pageController,
           onPageChanged: (p) {

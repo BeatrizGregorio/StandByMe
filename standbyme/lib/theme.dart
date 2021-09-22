@@ -8,12 +8,12 @@ ThemeData theme() {
     appBarTheme: appBarTheme(),
     fontFamily: "Lato",
     textTheme: textTheme(),
-    inputDecorationTheme: inputDecorationTheme(),
+    //inputDecorationTheme: inputDecorationTheme(),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
 
-InputDecorationTheme inputDecorationTheme() {
+/*InputDecorationTheme inputDecorationTheme() {
   OutlineInputBorder outlineInputBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(28),
     borderSide: BorderSide(color: kTextColor),
@@ -26,7 +26,7 @@ InputDecorationTheme inputDecorationTheme() {
     focusedBorder: outlineInputBorder,
     border: outlineInputBorder,
   );
-}
+}*/
 
 TextTheme textTheme() {
   return TextTheme(

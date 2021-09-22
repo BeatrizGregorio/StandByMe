@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/screens/list/list.dart';
 
+import 'home_screen_background.dart';
+
 class Body extends StatefulWidget {
   const Body({Key key}) : super(key: key);
 
@@ -12,7 +14,81 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Scaffold(
+        body: Stack(
+      children: [
+        HomeScreenBackground(screenHeight: MediaQuery.of(context).size.height),
+        SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 30),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(29.5)),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        hintText: "Pesquisar",
+                        border: InputBorder.none,
+                        icon: Icon(
+                          Icons.search,
+                          size: 25,
+                        )),
+                  ),
+                ),
+                Text(
+                  "Carteira",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 25, color: Colors.black),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Expanded(
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio: .85,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20,
+                    children: [
+                      CategoryCard(
+                        img:
+                            "https://freepngimg.com/thumb/debit_card/4-2-debit-card-png-hd.png",
+                        title: "Cartão",
+                        press: () {},
+                      ),
+                      CategoryCard(
+                        img:
+                            "https://i.pinimg.com/originals/a1/1a/28/a11a28b200faa4fac95b63d7009fa107.png",
+                        title: "Editar cartão",
+                        press: () {},
+                      ),
+                      CategoryCard(
+                        img:
+                            "https://stories.freepiklabs.com/storage/44197/bitcoin-cuate-7077.png",
+                        title: "Transações",
+                        press: () {},
+                      ),
+                      CategoryCard(
+                        img:
+                            "https://library.kissclipart.com/20180921/paq/kissclipart-bar-chart-clipart-bar-chart-computer-icons-91a2464f875767ab.png",
+                        title: "Gráficos",
+                        press: () {},
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ],
+    ));
+    /*Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
@@ -63,7 +139,7 @@ class _BodyState extends State<Body> {
             ),
           ),
         )
-        /*Row(
+        Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -84,7 +160,7 @@ class _BodyState extends State<Body> {
                   ],
                 ))
               ],
-            ),*/
+            ),
       ],
     );
   }
@@ -147,6 +223,63 @@ class _BodyState extends State<Body> {
           boxShadow: <BoxShadow>[
             BoxShadow(color: corSombra, blurRadius: 4.0, offset: Offset(4, 8))
           ]),
+    );
+    //}*/
+  }
+}
+
+class CategoryCard extends StatelessWidget {
+  final String img;
+  final String title;
+  final Function press;
+  const CategoryCard({
+    Key key,
+    this.img,
+    this.title,
+    this.press,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(13),
+          boxShadow: [
+            BoxShadow(
+                offset: Offset(5, 17),
+                blurRadius: 10,
+                spreadRadius: -12,
+                color: Color(0xFFE6E6E6))
+          ]),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: press,
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Spacer(),
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.network(
+                    img,
+                    height: 90,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style:
+                      Theme.of(context).textTheme.title.copyWith(fontSize: 18),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
