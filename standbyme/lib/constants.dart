@@ -21,3 +21,6 @@ const String kNameNullError = "Por favor, digite seu nome";
 const String kLastNameNullError = "Por favor, digite seu sobrenome";
 const String kPhoneNullError = "Por favor, digite seu telefone";
 const String kInfoNullError = "Por favor, digite suas informações";
+
+const radius = 35.0;
+const padding = 15.0;
