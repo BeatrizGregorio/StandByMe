@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
     async store(req, res) {
+        console.log(req.body);
         const {nomeUsuario, sobrenomeUsuario, email, senha, telefone} = req.body;
     
         const isEmailExistente = await Usuario.findAll({ where: {email:email}});
