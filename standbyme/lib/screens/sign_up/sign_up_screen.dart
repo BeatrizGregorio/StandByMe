@@ -13,6 +13,7 @@ class SignUpScreen extends StatelessWidget {
           "assets/images/logo_porta.PNG",
           height: SizeConfig.screenHeight * 0.08,
         ),
+        centerTitle: true,
       ),
       body: Body(),
     );

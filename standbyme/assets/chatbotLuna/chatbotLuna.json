@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "chatbot-luna-fdbu",
+  "private_key_id": "b69ed18ef7c145960d5497052579af8c9b060960",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC/QByrrlaHAaYz\nJ870EswWmrNwDfSselmTl5ziV0GyfHZNdzx06MxB2YFoGjOt77KZxiEq0WyEAvkc\nR6MkMJKWxfgHvrov+GDzu66cz58MkEamJoWsMtkpZhB8yq0FaXpQgppNjF5vsycQ\nh3go5m0dQ2y1Glp1pOJ9rFTQGentLHhP8xAufh6vbS0M0GYfy9hyr4y3l6SasTKn\nvKCShXafXF8xXClB6hpz1Y11XgeaajFBV5ESU3t9db23oF3G6HUNBdTXpWFpwJAD\nP8/twMF0ONZiLb81d6oRyWN1RCgp8ccnMv0p2oOsRy5W+Tbb5eHXbbzTu6N6e/Pp\np6qTwlfdAgMBAAECggEACn8tU6rs6toHUjV0IWdKtk7lXFgXvsO0WOpwXOfnHjHA\nmH3b3prMYyzZ8mnFvl0yk0gRl/UInLJBE/FGnfzgfs/8zggE1g8u2xHJAqhOlXTx\nu7rPiWT9EE2eyAqjtnFUmkigyXLT2BOgKEMXMD99a6bAt6vrnRtgpv8nZIiXk0HO\nOPY7PWYonplZpll2/Go/3E4p+lJPNF4QZ5sgpLcu4y9TCuQIQeysHXrJRhY6QCQ9\nPmCUS3ip3IZV+9Lbk2wJiOwRTlnzEgYBbIx2vH5diHRLBzd06JkiQkAsSkHlPk9S\nqa/QdFVhJ0+14bM/BaLCVLsBQFQMOBMgzrp8AyAWzQKBgQDum1xosrcOuIlLSiZA\nISpweG9loK1ZT8RfNtE6VWqkw+9uT1mjiTU7urWaW27xh9Tr/jML/wGUgfK94xmG\n8ta1Gj2++3vDpphmUxafgzRMq/lefs1ZFTnx0+zd3aSJgT+DyLvL8u/9ohdkV0nm\nDL96+ybLMwKNUtMx/COFw//s7wKBgQDNMQiDNoAaqD++xBR0AYge/QZFX6GFP5cC\nuMOGtB0yVokJfhTNduD+K25319ojWu21PZqdaYKhXUksOqrk5nV2bqV69p6pXXLu\nXRztcqekMc5YHCLT3ehBEzMZBtmET7FpOyGQbhXCsvEAxVDkbM7dUwlh+3Gp5V/1\nZOtb/xSf8wKBgHjTvajbDy3qLsQsiVAiO1527lo1UnMOnK9mj+8NQBKtkbp3fjn9\nCjLz6nB+6qBum1jiAbGKcZ9laqnTraKTqDxPTINA0DyUSUpPuv4Nr9c/oujCJ3R7\n9jrKiYEUcvSaubIfXVH69KKoiVXrieVwASrisZNmgl1UWtRODSL4zMmLAoGACkT5\n+BcyMiNZjWKi42twNJzVQ4OVweV82VYF8yfwjiRml2MIB4B7ojzqOnVDJaHXY8rB\ngj9Vml3g26XUB8DBADxpa84MAs36gpOGbxvd6AnWGfLOi2v/w8ICPK5rFIQojOu4\nslHQJP5vsWousj//2nPddFnxRl+EffOfE+ugTKECgYAqQRZlJldhE2WqhrGr9zEs\nMwHnuMcSzEVIuLQgR6Fx2AsqKo7qOXcwovba1kW9FL6SMqdFdqvnzVvzH++HiVqP\nqIDsn3ADa0+bhXJt22brb4PeK/xrH6vMoGSMQkuAXqNm7TNj41ZcZkPF4j38714X\nxBdwZ0/QmKjZIuWHt2VBYA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "chatbotluna@chatbot-luna-fdbu.iam.gserviceaccount.com",
+  "client_id": "109380484807797092023",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chatbotluna%40chatbot-luna-fdbu.iam.gserviceaccount.com"
+}
