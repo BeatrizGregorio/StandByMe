@@ -3,7 +3,7 @@ import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
 import 'package:standbyme_tcc/controllers/UsuarioController.dart';
 import 'package:standbyme_tcc/models/Usuario.dart';
-import 'package:standbyme_tcc/modules/http.dart';
+//import 'package:standbyme_tcc/modules/http.dart';
 import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';

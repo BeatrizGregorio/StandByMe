@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/screens/settings/components/body.dart';
 import '../../size_config.dart';
-import 'package:standbyme_tcc/constants.dart';
+//import 'package:standbyme_tcc/constants.dart';
 
 class Settings extends StatelessWidget {
   static String routeName = "/settings";
