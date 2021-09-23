@@ -19,70 +19,127 @@ class _BodyState extends State<Body> {
       children: [
         HomeScreenBackground(screenHeight: MediaQuery.of(context).size.height),
         SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 30),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(29.5)),
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        hintText: "Pesquisar",
-                        border: InputBorder.none,
-                        icon: Icon(
-                          Icons.search,
-                          size: 25,
-                        )),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(15.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 30),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(29.5)),
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: "Pesquisar",
+                          border: InputBorder.none,
+                          icon: Icon(
+                            Icons.search,
+                            size: 25,
+                          )),
+                    ),
                   ),
-                ),
-                Text(
-                  "Carteira",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 25, color: Colors.black),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Expanded(
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    childAspectRatio: .85,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
-                    children: [
-                      CategoryCard(
-                        img:
-                            "https://freepngimg.com/thumb/debit_card/4-2-debit-card-png-hd.png",
-                        title: "Cartão",
-                        press: () {},
-                      ),
-                      CategoryCard(
-                        img:
-                            "https://i.pinimg.com/originals/a1/1a/28/a11a28b200faa4fac95b63d7009fa107.png",
-                        title: "Editar cartão",
-                        press: () {},
-                      ),
-                      CategoryCard(
-                        img:
-                            "https://stories.freepiklabs.com/storage/44197/bitcoin-cuate-7077.png",
-                        title: "Transações",
-                        press: () {},
-                      ),
-                      CategoryCard(
-                        img:
-                            "https://library.kissclipart.com/20180921/paq/kissclipart-bar-chart-clipart-bar-chart-computer-icons-91a2464f875767ab.png",
-                        title: "Gráficos",
-                        press: () {},
-                      ),
-                    ],
+                  Text(
+                    "Carteira",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600),
                   ),
-                )
-              ],
+                  SizedBox(
+                    height: 15,
+                  ),
+                  SizedBox(
+                    height: 500,
+                    child: Expanded(
+                      child: GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: .85,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                        children: [
+                          CategoryCard(
+                            img:
+                                "https://freepngimg.com/thumb/debit_card/4-2-debit-card-png-hd.png",
+                            title: "Cartão",
+                            press: () {
+                              Navigator.of(context).pushNamed("/bankcard");
+                            },
+                          ),
+                          CategoryCard(
+                            img:
+                                "https://www.pngrepo.com/png/230804/512/writing-edit.png",
+                            title: "Editar cartão",
+                            press: () {
+                              Navigator.of(context).pushNamed("/editCard");
+                            },
+                          ),
+                          CategoryCard(
+                            img:
+                                "https://stories.freepiklabs.com/storage/44197/bitcoin-cuate-7077.png",
+                            title: "Transações",
+                            press: () {
+                              Navigator.of(context).pushNamed("/transactions");
+                            },
+                          ),
+                          CategoryCard(
+                            img:
+                                "https://library.kissclipart.com/20180921/paq/kissclipart-bar-chart-clipart-bar-chart-computer-icons-91a2464f875767ab.png",
+                            title: "Gráficos",
+                            press: () {
+                              Navigator.of(context).pushNamed("/graphics");
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Text(
+                    "Cozinha",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  SizedBox(
+                    height: 300,
+                    child: Expanded(
+                      child: GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: .85,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                        children: [
+                          CategoryCard(
+                            img:
+                                "https://www.woodmans-food.com/portals/0/COHFood.png",
+                            title: "Despensa",
+                            press: () {
+                              Navigator.of(context).pushNamed("/despensa");
+                            },
+                          ),
+                          CategoryCard(
+                            img:
+                                "https://freepikpsd.com/media/2019/10/list-cartoon-png-3-Transparent-Images.png",
+                            title: "Lista de Compras",
+                            press: () {
+                              Navigator.of(context).pushNamed("/list");
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -243,7 +300,7 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.grey[100],
           borderRadius: BorderRadius.circular(13),
           boxShadow: [
             BoxShadow(
