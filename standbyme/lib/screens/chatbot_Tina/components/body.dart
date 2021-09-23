@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
-//import 'package:standbyme_tcc/screens/chatbot_Luna/chatbot_Luna.dart';
+//import 'package:standbyme_tcc/screens/chatbot_Tina/chatbot_Tina.dart';
 import 'package:intl/intl.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
@@ -19,7 +19,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   void response(query) async {
     AuthGoogle authGoogle =
-        await AuthGoogle(fileJson: "assets/chatbotLuna/chatbotLuna.json")
+        await AuthGoogle(fileJson: "assets/chatbotTina/chatbotTina.json")
             .build();
     Dialogflow dialogflow = await Dialogflow(
         authGoogle: authGoogle, language: Language.portugueseBrazilian);
@@ -94,7 +94,7 @@ class _BodyState extends State<Body> {
                 trailing: IconButton(
                     icon: Icon(
                       Icons.send,
-                      size: 30.0,
+                      size: 33.0,
                       color: kPrimaryColor,
                     ),
                     onPressed: () {
@@ -151,7 +151,7 @@ class _BodyState extends State<Body> {
                     data == 0 ? kPrimaryColor : kPrimaryColor.withOpacity(0.6),
                 elevation: 0.0,
                 child: Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.only(left: 1.0, top: 4, bottom: 4),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -165,8 +165,8 @@ class _BodyState extends State<Body> {
                           message,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
                         ),
                       ))
                     ],
@@ -178,7 +178,7 @@ class _BodyState extends State<Body> {
                   height: 53,
                   width: 53,
                   child: CircleAvatar(
-                    backgroundColor: kPrimaryColor,
+                    backgroundColor: Colors.grey[200],
                     backgroundImage: AssetImage("assets/userIcon.png"),
                   ),
                 )
