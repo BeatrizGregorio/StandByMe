@@ -1,17 +1,17 @@
 module.exports = {
-    dialect: 'mssql',
+    dialect: 'postgres',
     dialectOptions: {
         options: {
             encrypt: false,
             validateBulkLoadParameters: true
         },
     },
-    host: 'regulus.cotuca.unicamp.br',
-    username: 'BD19183',
-    password: 'juliakimura03',
-    database: 'BD19183',
+    host: 'standbyme-db.ccdvu9dqr23y.us-east-2.rds.amazonaws.com',
+    username: 'standbyme',
+    password: 'standbymeTCC',
+    database: 'standbyme',
     define: {
-        timestamps: true,
-        
+        timestamps: false,
+        freezeTableName: false,
     }
 };
