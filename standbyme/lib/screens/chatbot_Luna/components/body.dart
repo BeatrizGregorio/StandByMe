@@ -5,21 +5,10 @@ import 'package:standbyme_tcc/constants.dart';
 //import 'package:standbyme_tcc/screens/chatbot_Luna/chatbot_Luna.dart';
 import 'package:intl/intl.dart';
 import 'package:bubble/bubble.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
-import 'package:intl/intl.dart';
 
 class Body extends StatefulWidget {
   Body({Key key, this.title}) : super(key: key);
-
-// This widget is the home page of your application. It is stateful, meaning
-// that it has a State object (defined below) that contains fields that affect
-// how it looks.
-
-// This class is the configuration for the state. It holds the values (in this
-// case the title) provided by the parent (in this case the App widget) and
-// used by the build method of the State. Fields in a Widget subclass are
-// always marked "final".
 
   final String title;
 
@@ -32,8 +21,8 @@ class _BodyState extends State<Body> {
     AuthGoogle authGoogle =
         await AuthGoogle(fileJson: "assets/chatbotLuna/chatbotLuna.json")
             .build();
-    Dialogflow dialogflow =
-        Dialogflow(authGoogle: authGoogle, language: Language.english);
+    Dialogflow dialogflow = await Dialogflow(
+        authGoogle: authGoogle, language: Language.portugueseBrazilian);
     AIResponse aiResponse = await dialogflow.detectIntent(query);
     setState(() {
       messsages.insert(0, {
@@ -105,7 +94,7 @@ class _BodyState extends State<Body> {
                 trailing: IconButton(
                     icon: Icon(
                       Icons.send,
-                      size: 30.0,
+                      size: 33.0,
                       color: kPrimaryColor,
                     ),
                     onPressed: () {
@@ -116,6 +105,7 @@ class _BodyState extends State<Body> {
                           messsages.insert(
                               0, {"data": 1, "message": messageInsert.text});
                         });
+                        print(messageInsert.text);
                         response(messageInsert.text);
                         messageInsert.clear();
                       }
@@ -134,8 +124,6 @@ class _BodyState extends State<Body> {
       ),
     );
   }
-
-  //for better one i have use the bubble package check out the pubspec.yaml
 
   Widget chat(String message, int data) {
     return Container(
@@ -163,7 +151,7 @@ class _BodyState extends State<Body> {
                     data == 0 ? kPrimaryColor : kPrimaryColor.withOpacity(0.6),
                 elevation: 0.0,
                 child: Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.only(left: 1.0, top: 4, bottom: 4),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -177,8 +165,8 @@ class _BodyState extends State<Body> {
                           message,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
                         ),
                       ))
                     ],
@@ -190,7 +178,7 @@ class _BodyState extends State<Body> {
                   height: 53,
                   width: 53,
                   child: CircleAvatar(
-                    backgroundColor: kPrimaryColor,
+                    backgroundColor: Colors.grey[200],
                     backgroundImage: AssetImage("assets/userIcon.png"),
                   ),
                 )
