@@ -10,7 +10,7 @@ class UsuarioRepository implements IUsuarioRepository {
   Future<Usuario> cadastrarUsuario(Usuario usuario) async {
     try {
       final resposta =
-          await client.post(Uri.parse("http://143.106.201.235/usuarios"),
+          await client.post(Uri.parse("http://192.168.15.9/usuarios"),
               headers: <String, String>{
                 'Content-Type': 'application/json; charset=UTF-8',
               },

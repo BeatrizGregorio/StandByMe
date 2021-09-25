@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
@@ -14,11 +16,11 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  TextEditingController nameController,
-      lastNameController,
-      emailController,
-      passwordController,
-      telController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController telController = TextEditingController();
   String response = "";
   bool passwordFocus = false;
   bool emailFocus = false;
@@ -53,6 +55,8 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   createUser() async {
+    log("NOME");
+    log(nameController.text);
     await new UsuarioController().cadastrarUsuario(new Usuario(
         nameController.text,
         lastNameController.text,
