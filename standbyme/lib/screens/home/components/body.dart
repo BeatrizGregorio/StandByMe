@@ -26,6 +26,15 @@ class _BodyState extends State<Body> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Container(
+                    height: 52,
+                    width:52,
+                    decoration: BoxDecoration(
+                      color: ,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(Icons.person)
+                  ),
                   SizedBox(height: 20),
                   Container(
                     /*
