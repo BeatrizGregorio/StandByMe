@@ -77,7 +77,6 @@ class _BodyState extends State<Body> {
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                     color: Colors.grey.withOpacity(0.2),
                   ),
-                  padding: EdgeInsets.only(left: 15),
                   child: TextFormField(
                     controller: messageInsert,
                     decoration: InputDecoration(

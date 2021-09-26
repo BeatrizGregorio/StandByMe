@@ -42,9 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(_pageController),
+      //drawer: CustomDrawer(_pageController),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.transparent),
         shadowColor: Colors.transparent,
         title: Image.asset(
           "assets/images/logo_porta.PNG",
@@ -52,20 +52,20 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         backgroundColor: Color.fromARGB(200, 153, 51, 153),
         centerTitle: true,
-        actions: [
+        /*actions: [
           Padding(
               padding: EdgeInsets.only(right: 10.0),
-              child: IconButton(
+              /*child: IconButton(
                 icon: Icon(
-                  Icons.settings,
+                  Icons.person_outline,
                   color: Colors.black.withOpacity(0.6),
                   size: 30,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/settings');
+                  Navigator.of(context).pushNamed('/profile_screen');
                 },
-              ))
-        ],
+              ))*/
+        ],*/
       ),
       backgroundColor: Colors.white,
       body: Stack(children: [

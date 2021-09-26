@@ -26,21 +26,28 @@ class _BodyState extends State<Body> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 20),
                   Container(
+                    /*
                     margin: EdgeInsets.symmetric(vertical: 30),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(29.5)),
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),*/
                     child: TextField(
                       decoration: InputDecoration(
                           hintText: "Pesquisar",
+                          fillColor: Colors.white,
                           border: InputBorder.none,
                           icon: Icon(
                             Icons.search,
+                            color: Colors.black,
                             size: 25,
                           )),
                     ),
+                  ),
+                  SizedBox(
+                    height: 40,
                   ),
                   Text(
                     "Carteira",

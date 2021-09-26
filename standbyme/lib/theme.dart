@@ -8,7 +8,7 @@ ThemeData theme() {
     appBarTheme: appBarTheme(),
     fontFamily: "Lato",
     textTheme: textTheme(),
-    //inputDecorationTheme: inputDecorationTheme(),
+    inputDecorationTheme: inputDecorationTheme(),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
@@ -16,7 +16,7 @@ ThemeData theme() {
 InputDecorationTheme inputDecorationTheme() {
   OutlineInputBorder outlineInputBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(28),
-    borderSide: BorderSide(color: kTextColor),
+    borderSide: BorderSide(color: Colors.black),
     gapPadding: 10,
   );
   return InputDecorationTheme(
@@ -24,6 +24,7 @@ InputDecorationTheme inputDecorationTheme() {
     contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
     enabledBorder: outlineInputBorder,
     focusedBorder: outlineInputBorder,
+    fillColor: Colors.white,
     border: outlineInputBorder,
   );
 }
