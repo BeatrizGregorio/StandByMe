@@ -28,7 +28,7 @@ class MyCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "CARD NAME",
+                    "NOME",
                     style: ApptextStyle.MY_CARD_TITLE,
                   ),
                   Text(
@@ -47,7 +47,7 @@ class MyCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "EXP DATE",
+                        "VENC.",
                         style: ApptextStyle.MY_CARD_TITLE,
                       ),
                       Text(
@@ -61,7 +61,7 @@ class MyCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "CVV NUMBER",
+                        "CVV",
                         style: ApptextStyle.MY_CARD_TITLE,
                       ),
                       Text(

@@ -16,23 +16,16 @@ class CardHome extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Carteira",
+          "Transações",
           style: TextStyle(
             fontFamily: "Poppins",
             color: kPrimaryColor,
           ),
         ),
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CircleAvatar(
-            backgroundImage:
-                NetworkImage("https://placeimg.com/640/480/people"),
-          ),
-        ),
         actions: [
           IconButton(
               icon: Icon(
-                Icons.notifications_active_outlined,
+                Icons.person,
                 color: Colors.black,
                 size: 27,
               ),

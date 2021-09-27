@@ -20,17 +20,10 @@ class BankCard extends StatelessWidget {
               color: kPrimaryColor,
             ),
           ),
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              backgroundImage:
-                  NetworkImage("https://placeimg.com/640/480/people"),
-            ),
-          ),
           actions: [
             IconButton(
                 icon: Icon(
-                  Icons.notifications_active_outlined,
+                  Icons.person,
                   color: Colors.black,
                   size: 27,
                 ),
@@ -62,10 +55,6 @@ class BankCard extends StatelessWidget {
                 child: Icon(Icons.add, size: 50),
               ),
               SizedBox(height: 10),
-              Text(
-                "Adicionar Cartão",
-                style: ApptextStyle.LISTTILE_TITLE,
-              )
             ],
           ),
         ));

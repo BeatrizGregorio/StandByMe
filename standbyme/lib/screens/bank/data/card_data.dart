@@ -34,8 +34,8 @@ List<CardModel> myCards = [
   ),
   CardModel(
     cardHolderName: "João Rodrigues",
-    cardNumber: "****  ****  ****  765",
-    cvv: "**1",
+    cardNumber: "****  ****  ****  7655",
+    cvv: "**8",
     expDate: "01/23",
     cardColor: Colors.deepOrange,
   ),
