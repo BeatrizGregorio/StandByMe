@@ -9,7 +9,7 @@ module.exports = {
     host: 'standbyme-db.ccdvu9dqr23y.us-east-2.rds.amazonaws.com',
     username: 'standbyme',
     password: 'standbymeTCC',
-    database: 'standbyme',
+    database: 'postgres',
     define: {
         timestamps: false,
         freezeTableName: false,
