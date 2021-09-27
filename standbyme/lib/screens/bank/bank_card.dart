@@ -14,7 +14,7 @@ class BankCard extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            "My Cards",
+            "Meus cartões",
             style: TextStyle(
               fontFamily: "Poppins",
               color: kPrimaryColor,
@@ -63,7 +63,7 @@ class BankCard extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                "Add Card",
+                "Adicionar Cartão",
                 style: ApptextStyle.LISTTILE_TITLE,
               )
             ],

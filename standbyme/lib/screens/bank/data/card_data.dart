@@ -19,17 +19,24 @@ class CardModel {
 
 List<CardModel> myCards = [
   CardModel(
-    cardHolderName: "John Doe",
+    cardHolderName: "Beatriz Gregório",
     cardNumber: "****  ****  ****  1234",
     cvv: "**4",
     expDate: "12/21",
     cardColor: kPrimaryColor,
   ),
   CardModel(
-    cardHolderName: "John Doe",
+    cardHolderName: "Júlia Kimura",
     cardNumber: "****  ****  ****  4321",
     cvv: "**1",
     expDate: "01/22",
     cardColor: kSecondaryColor,
+  ),
+  CardModel(
+    cardHolderName: "João Rodrigues",
+    cardNumber: "****  ****  ****  765",
+    cvv: "**1",
+    expDate: "01/23",
+    cardColor: Colors.deepOrange,
   ),
 ];

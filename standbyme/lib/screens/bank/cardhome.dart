@@ -16,7 +16,7 @@ class CardHome extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "My Bank",
+          "Carteira",
           style: TextStyle(
             fontFamily: "Poppins",
             color: kPrimaryColor,
@@ -68,7 +68,7 @@ class CardHome extends StatelessWidget {
                 height: 30,
               ),
               Text(
-                "Recent Transactions",
+                "Últimas Transações",
                 style: ApptextStyle.BODY_TEXT,
               ),
               SizedBox(
