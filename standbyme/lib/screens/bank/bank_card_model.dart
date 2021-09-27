@@ -1,74 +1,55 @@
-class BankCardModel {
-  String image;
-  String icon;
-  String number;
-  double balance;
-  List<ExpenseModel> expenses;
+import 'package:flutter/material.dart';
+import 'package:standbyme_tcc/screens/bank/constants/color_constants.dart';
+import 'package:standbyme_tcc/screens/bank/home_screen.dart';
 
-  BankCardModel({
-    this.image,
-    this.icon,
-    this.number,
-    this.balance,
-    this.expenses = const [],
-  });
+import 'bank_card.dart';
+
+class BaseScreen extends StatefulWidget {
+  const BaseScreen({Key key}) : super(key: key);
+
+  @override
+  _BaseScreenState createState() => _BaseScreenState();
 }
 
-class ExpenseModel {
-  String image;
-  String title;
-  String description;
-  double amount;
+class _BaseScreenState extends State<BaseScreen> {
+  int _selectedIndex = 0;
 
-  ExpenseModel({
-    this.image,
-    this.title,
-    this.description,
-    this.amount,
-  });
+  static const List<Widget> _widgetOptions = <Widget>[
+    HomeScreen(),
+    BankCard(),
+    HomeScreen(),
+    HomeScreen(),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: kPrimaryColor,
+          unselectedItemColor: Colors.grey,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+              ),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.credit_card), label: "Cards"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.construction), label: "Settings"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.bar_chart), label: "Overview")
+          ],
+          currentIndex: _selectedIndex,
+          onTap: (int index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          }),
+    );
+  }
 }
-
-final cards = [
-  null,
-  BankCardModel(
-    image: 'assets/bg_2.jpeg',
-    icon: 'assets/icon_2.jpeg',
-    number: "0912",
-    balance: 345.00,
-    expenses: [
-      ExpenseModel(
-          image: 'assets/quinielapro.png',
-          title: "Quiniela PRO",
-          description: "100 Créditos",
-          amount: 89)
-    ],
-  ),
-  BankCardModel(
-    image: 'assets/bg_1.jpeg',
-    icon: 'assets/icon_1.png',
-    number: "0912",
-    balance: 123.00,
-    expenses: [
-      ExpenseModel(
-        image: 'assets/amazon.png',
-        title: "Amazon",
-        description: "Retail Svcs MX",
-        amount: 99,
-      )
-    ],
-  ),
-  BankCardModel(
-    image: 'assets/bg_3.jpeg',
-    icon: 'assets/icon_3.png',
-    number: "8743",
-    balance: 789.00,
-    expenses: [
-      ExpenseModel(
-        image: 'assets/netflix.png',
-        title: "Netflix",
-        description: "Subscription",
-        amount: 186,
-      )
-    ],
-  ),
-];

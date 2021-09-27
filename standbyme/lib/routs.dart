@@ -12,8 +12,6 @@ import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
 import 'package:standbyme_tcc/screens/sign_up/sign_up_screen.dart';
 import 'package:standbyme_tcc/screens/splash/splash_screen.dart';
 import 'package:standbyme_tcc/screens/list/list.dart';
-import 'package:standbyme_tcc/screens/card/card.dart';
-import 'package:standbyme_tcc/screens/editCard/editCard.dart';
 import 'package:standbyme_tcc/screens/transactions/transactions.dart';
 import 'package:standbyme_tcc/screens/graphics/graphics.dart';
 import 'package:standbyme_tcc/screens/settings/settings.dart';
@@ -29,8 +27,6 @@ final Map<String, WidgetBuilder> routes = {
   ProfileScreen.routeName: (context) => ProfileScreen(),
   ListCompras.routeName: (context) => ListCompras(),
   Despensa.routeName: (context) => Despensa(),
-  Card.routeName: (context) => Card(),
-  EditCard.routeName: (context) => EditCard(),
   Transactions.routeName: (context) => Transactions(),
   Graphics.routeName: (context) => Graphics(),
   Settings.routeName: (context) => Settings()

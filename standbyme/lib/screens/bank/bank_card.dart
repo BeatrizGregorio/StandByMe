@@ -1,87 +1,73 @@
-//import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:standbyme_tcc/screens/bank/constants/app_textstyle.dart';
+import 'package:standbyme_tcc/screens/bank/constants/color_constants.dart';
+import 'package:standbyme_tcc/screens/bank/data/card_data.dart';
+import 'package:standbyme_tcc/screens/bank/widgets/my_card.dart';
 
-import 'bank_card_model.dart';
-
-class BankCard extends StatefulWidget {
+class BankCard extends StatelessWidget {
+  const BankCard({Key key}) : super(key: key);
   static String routeName = "/bankcard";
-  const BankCard({
-    Key key,
-    this.bankCard,
-  }) : super(key: key);
-  @override
-  _BankCardState createState() => _BankCardState(this.bankCard);
-  final BankCardModel bankCard;
-}
-
-@override
-class _BankCardState extends State<BankCard> {
-  PageController _pageController;
-  final BankCardModel bankCard;
-
-  _BankCardState(this.bankCard);
-  @override
-  void initState() {
-    super.initState();
-
-    _pageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 15,
-      ),
-      padding: const EdgeInsets.all(30),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(bankCard.image),
-          fit: BoxFit.cover,
-        ),
-        borderRadius: BorderRadius.circular(
-          35,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ClipOval(
-                child: Image.asset(
-                  bankCard.icon,
-                  height: 45,
-                  width: 45,
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            "My Cards",
+            style: TextStyle(
+              fontFamily: "Poppins",
+              color: kPrimaryColor,
+            ),
+          ),
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(
+              backgroundImage:
+                  NetworkImage("https://placeimg.com/640/480/people"),
+            ),
+          ),
+          actions: [
+            IconButton(
+                icon: Icon(
+                  Icons.notifications_active_outlined,
+                  color: Colors.black,
+                  size: 27,
                 ),
+                onPressed: () {})
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.all(20),
+                child: ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: myCards.length,
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: 20,
+                      );
+                    },
+                    itemBuilder: (context, index) {
+                      return MyCard(
+                        card: myCards[index],
+                      );
+                    }),
               ),
+              CircleAvatar(
+                radius: 40,
+                child: Icon(Icons.add, size: 50),
+              ),
+              SizedBox(height: 10),
               Text(
-                bankCard.number,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline4
-                    .copyWith(color: Colors.white),
+                "Add Card",
+                style: ApptextStyle.LISTTILE_TITLE,
               )
             ],
           ),
-          Text(
-            "\$${bankCard.balance.toStringAsFixed(2)}",
-            style: Theme.of(context)
-                .textTheme
-                .headline4
-                .copyWith(color: Colors.white),
-          )
-        ],
-      ),
-    );
+        ));
   }
 }
