@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:standbyme_tcc/screens/bank/constants/app_textstyle.dart';
 import 'package:standbyme_tcc/screens/bank/data/transaction_data.dart';
 
@@ -63,12 +62,12 @@ class TransactionCard extends StatelessWidget {
                     children: [
                       transaction.changePercentageIndicator == "up"
                           ? Icon(
-                              FontAwesomeIcons.levelUpAlt,
+                              Icons.arrow_upward_outlined,
                               size: 10,
                               color: Colors.green,
                             )
                           : Icon(
-                              FontAwesomeIcons.levelDownAlt,
+                              Icons.arrow_downward_outlined,
                               size: 10,
                               color: Colors.red,
                             ),

@@ -12,7 +12,7 @@ import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
 import 'package:standbyme_tcc/screens/sign_up/sign_up_screen.dart';
 import 'package:standbyme_tcc/screens/splash/splash_screen.dart';
 import 'package:standbyme_tcc/screens/list/list.dart';
-import 'package:standbyme_tcc/screens/transactions/transactions.dart';
+import 'package:standbyme_tcc/screens/bank/cardhome.dart';
 import 'package:standbyme_tcc/screens/graphics/graphics.dart';
 import 'package:standbyme_tcc/screens/settings/settings.dart';
 
@@ -27,7 +27,7 @@ final Map<String, WidgetBuilder> routes = {
   ProfileScreen.routeName: (context) => ProfileScreen(),
   ListCompras.routeName: (context) => ListCompras(),
   Despensa.routeName: (context) => Despensa(),
-  Transactions.routeName: (context) => Transactions(),
+  CardHome.routeName: (context) => CardHome(),
   Graphics.routeName: (context) => Graphics(),
   Settings.routeName: (context) => Settings()
 };

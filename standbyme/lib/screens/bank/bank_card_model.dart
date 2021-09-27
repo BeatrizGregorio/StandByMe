@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/screens/bank/constants/color_constants.dart';
-import 'package:standbyme_tcc/screens/bank/home_screen.dart';
+import 'package:standbyme_tcc/screens/bank/cardhome.dart';
 
 import 'bank_card.dart';
 
@@ -15,10 +15,10 @@ class _BaseScreenState extends State<BaseScreen> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
+    CardHome(),
     BankCard(),
-    HomeScreen(),
-    HomeScreen(),
+    CardHome(),
+    CardHome(),
   ];
   @override
   Widget build(BuildContext context) {

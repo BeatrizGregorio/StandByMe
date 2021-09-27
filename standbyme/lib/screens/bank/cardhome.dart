@@ -6,8 +6,9 @@ import 'package:standbyme_tcc/screens/bank/data/transaction_data.dart';
 import 'package:standbyme_tcc/screens/bank/widgets/my_card.dart';
 import 'package:standbyme_tcc/screens/bank/widgets/transaction_card.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key key}) : super(key: key);
+class CardHome extends StatelessWidget {
+  const CardHome({Key key}) : super(key: key);
+  static String routeName = "/cardhome";
 
   @override
   Widget build(BuildContext context) {

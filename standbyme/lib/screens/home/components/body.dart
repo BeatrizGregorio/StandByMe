@@ -27,14 +27,13 @@ class _BodyState extends State<Body> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: 52,
-                    width:52,
-                    decoration: BoxDecoration(
-                      color: ,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(Icons.person)
-                  ),
+                      height: 52,
+                      width: 52,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(Icons.person)),
                   SizedBox(height: 20),
                   Container(
                     /*
@@ -99,7 +98,7 @@ class _BodyState extends State<Body> {
                                 "https://stories.freepiklabs.com/storage/44197/bitcoin-cuate-7077.png",
                             title: "Transações",
                             press: () {
-                              Navigator.of(context).pushNamed("/transactions");
+                              Navigator.of(context).pushNamed("/cardhome");
                             },
                           ),
                           CategoryCard(
