@@ -46,26 +46,35 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.transparent),
         shadowColor: Colors.transparent,
-        title: Image.asset(
+        /*title: Image.asset(
           "assets/images/logo_porta.PNG",
           height: SizeConfig.screenHeight * 0.08,
-        ),
-        backgroundColor: Color.fromARGB(200, 153, 51, 153),
+        ),*/
+        backgroundColor:
+            kPrimaryLightColor, //Color.fromARGB(200, 153, 51, 153),
         centerTitle: true,
-        /*actions: [
+        actions: [
           Padding(
               padding: EdgeInsets.only(right: 10.0),
-              /*child: IconButton(
-                icon: Icon(
-                  Icons.person_outline,
-                  color: Colors.black.withOpacity(0.6),
-                  size: 30,
+              child: InkWell(
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 52,
+                  width: 52,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100].withOpacity(0.7),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.black,
+                  ),
                 ),
-                onPressed: () {
+                onTap: () {
                   Navigator.of(context).pushNamed('/profile_screen');
                 },
-              ))*/
-        ],*/
+              ))
+        ],
       ),
       backgroundColor: Colors.white,
       body: Stack(children: [

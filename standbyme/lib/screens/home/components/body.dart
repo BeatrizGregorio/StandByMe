@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:standbyme_tcc/constants.dart';
+import 'package:standbyme_tcc/screens/bank/constants/color_constants.dart';
 //import 'package:standbyme_tcc/constants.dart';
 //import 'package:standbyme_tcc/screens/list/list.dart';
 
@@ -17,7 +19,7 @@ class _BodyState extends State<Body> {
     return Scaffold(
         body: Stack(
       children: [
-        HomeScreenBackground(screenHeight: MediaQuery.of(context).size.height),
+        //HomeScreenBackground(screenHeight: MediaQuery.of(context).size.height),
         SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -26,19 +28,23 @@ class _BodyState extends State<Body> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  /*Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      alignment: Alignment.center,
                       height: 52,
                       width: 52,
                       decoration: BoxDecoration(
-                        color: Colors.black,
+                        color: Colors.grey[100],
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(Icons.person)),
-                  SizedBox(height: 20),
+                      child: Icon(Icons.person),
+                    ),
+                  ),*/
+                  SizedBox(height: 10),
                   Container(
-                    /*
                     margin: EdgeInsets.symmetric(vertical: 30),
-                    decoration: BoxDecoration(
+                    /*decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(29.5)),
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),*/
@@ -55,7 +61,7 @@ class _BodyState extends State<Body> {
                     ),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   Text(
                     "Carteira",
@@ -315,7 +321,7 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.grey[100],
+          color: kPrimaryLightColor.withOpacity(0.8),
           borderRadius: BorderRadius.circular(13),
           boxShadow: [
             BoxShadow(
