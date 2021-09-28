@@ -29,7 +29,9 @@ class CardHome extends StatelessWidget {
                 color: Colors.black,
                 size: 27,
               ),
-              onPressed: () {})
+              onPressed: () {
+                Navigator.of(context).pushNamed('/profile_screen');
+              })
         ],
       ),
       body: SingleChildScrollView(
