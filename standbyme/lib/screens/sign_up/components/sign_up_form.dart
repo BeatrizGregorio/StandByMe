@@ -57,12 +57,18 @@ class _SignUpFormState extends State<SignUpForm> {
   createUser() async {
     log("NOME");
     log(nameController.text);
-    await new UsuarioController().cadastrarUsuario(new Usuario(
+    log(lastNameController.text);
+    log(telController.text);
+    log(emailController.text);
+    log(passwordController.text);
+    Usuario novoUsuario = new Usuario(
         nameController.text,
         lastNameController.text,
         telController.text,
         emailController.text,
-        passwordController.text));
+        passwordController.text);
+    novoUsuario = await new UsuarioController().cadastrarUsuario(novoUsuario);
+    log("print");
     /*
     var result = await http_post("create-user", {
       "nomeUsuario": nameController.text,
@@ -200,6 +206,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildPassFormField() {
     return TextFormField(
+      controller: passwordController,
       onTap: () {
         setState(() {
           passwordFocus = true;
@@ -314,6 +321,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildPhoneFormField() {
     return TextFormField(
+      controller: telController,
       onTap: () {
         setState(() {
           phoneFocus = true;
@@ -361,6 +369,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildLastNameFormField() {
     return TextFormField(
+      controller: lastNameController,
       onTap: () {
         setState(() {
           phoneFocus = false;
@@ -408,6 +417,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
+        controller: nameController,
         onTap: () {
           setState(() {
             phoneFocus = false;

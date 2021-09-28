@@ -9,17 +9,20 @@ class UsuarioRepository implements IUsuarioRepository {
   @override
   Future<Usuario> cadastrarUsuario(Usuario usuario) async {
     try {
-      final resposta =
-          await client.post(Uri.parse("http://192.168.15.9/usuarios"),
-              headers: <String, String>{
-                'Content-Type': 'application/json; charset=UTF-8',
-              },
-              body: jsonEncode(<String, String>{
-                'nomeUsuario': usuario.primeiroNome,
-                'sobrenomeUsuario': usuario.sobrenome,
-                'email': usuario.email,
-                'senha': usuario.senha
-              }));
+      final resposta = await client.post(
+          Uri.parse("https://standbyme-heroku.herokuapp.com/usuarios"),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'nomeUsuario': usuario.primeiroNome,
+            'sobrenomeUsuario': usuario.sobrenome,
+            'telefone': usuario.telefone,
+            'email': usuario.email,
+            'senha': usuario.senha
+          }));
+      Usuario novoUsuario = new Usuario.fromJson(json.decode(resposta.body));
+      return novoUsuario;
     } on Exception catch (e) {
       print(e.toString());
     }
