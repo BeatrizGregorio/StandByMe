@@ -3,6 +3,7 @@ import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
 import 'package:standbyme_tcc/screens/home/home_screen.dart';
 //import 'package:standbyme_tcc/screens/login_success/login_sucess_screen.dart';
+import 'dart:developer';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -20,6 +21,18 @@ class _SignFormState extends State<SignForm> {
   String password;
   bool remember = false;
   final List<String> errors = [];
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+/*
+  login() async {
+    log("NOME");
+    log(emailController.text);
+    log(passwordController.text);
+    //?????????
+    log("print");
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -68,6 +81,7 @@ class _SignFormState extends State<SignForm> {
             press: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
+                // login();
                 // se está tudo válido, direciona para a tela de sucesso do login
                 Navigator.pushNamed(context, HomeScreen.routeName);
               }
