@@ -54,7 +54,7 @@ class _SignUpFormState extends State<SignUpForm> {
       });
   }
 
-  createUser() async {
+  Future<bool> createUser() async {
     log("NOME");
     log(nameController.text);
     log(lastNameController.text);
@@ -67,21 +67,20 @@ class _SignUpFormState extends State<SignUpForm> {
         telController.text,
         emailController.text,
         passwordController.text);
-    novoUsuario = await new UsuarioController().cadastrarUsuario(novoUsuario);
+    Usuario usuarioResposta =
+        await new UsuarioController().cadastrarUsuario(novoUsuario);
     log("print");
-    /*
-    var result = await http_post("create-user", {
-      "nomeUsuario": nameController.text,
-      "sobrenomeUsuario": lastNameController.text,
-      "emailUsuario": emailController.text,
-      "senhaUsuario": passwordController.text,
-      'telefoneUsuario': telController.text
-    });
-    if (result.ok) {
-      setState(() {
-        response = result.data['status'];
-      });
-    }*/
+    if (usuarioResposta == null) return false;
+    return true;
+  }
+
+  void _showToast(BuildContext context) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: const Text('Já existe uma conta com este email!'),
+      ),
+    );
   }
 
   @override
@@ -122,8 +121,20 @@ class _SignUpFormState extends State<SignUpForm> {
                 text: "Cadastrar",
                 press: () {
                   if (_formKey.currentState.validate()) {
-                    createUser();
-                    Navigator.pushNamed(context, SignInScreen.routeName);
+                    FutureBuilder(
+                        future: createUser(),
+                        builder: (context, snapshot) {
+                          bool isSuccessful = snapshot.data;
+                          log(snapshot.data);
+                          if (isSuccessful) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => SignInScreen()));
+                            return;
+                          } else {
+                            _showToast(context);
+                            return;
+                          }
+                        });
                   }
                 },
               )

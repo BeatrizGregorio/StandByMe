@@ -8,4 +8,8 @@ class UsuarioController {
   Future<Usuario> cadastrarUsuario(Usuario usuario) {
     return _usuarioRepository.cadastrarUsuario(usuario);
   }
+
+  Future<Usuario> logarUsuario(Usuario usuario) {
+    return _usuarioRepository.cadastrarUsuario(usuario);
+  }
 }

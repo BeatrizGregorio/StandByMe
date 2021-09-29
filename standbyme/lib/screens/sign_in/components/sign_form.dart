@@ -4,7 +4,8 @@ import 'package:standbyme_tcc/components/form_error.dart';
 import 'package:standbyme_tcc/screens/home/home_screen.dart';
 //import 'package:standbyme_tcc/screens/login_success/login_sucess_screen.dart';
 import 'dart:developer';
-
+import 'package:standbyme_tcc/models/Usuario.dart';
+import 'package:standbyme_tcc/controllers/UsuarioController.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -24,14 +25,27 @@ class _SignFormState extends State<SignForm> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-/*
-  login() async {
-    log("NOME");
+  Future<bool> login() async {
     log(emailController.text);
     log(passwordController.text);
-    //?????????
+    Usuario novoUsuario = new Usuario.empty();
+    novoUsuario.email = emailController.text;
+    novoUsuario.senha = passwordController.text;
+    Usuario usuarioResposta =
+        await new UsuarioController().cadastrarUsuario(novoUsuario);
     log("print");
-  }*/
+    if (usuarioResposta == null) return Future<bool>.value(false);
+    return Future<bool>.value(true);
+  }
+
+  void _showToast(BuildContext context) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: const Text('Email ou senha incorretos!'),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +95,10 @@ class _SignFormState extends State<SignForm> {
             press: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
-                // login();
-                // se está tudo válido, direciona para a tela de sucesso do login
-                Navigator.pushNamed(context, HomeScreen.routeName);
+                if (login() == true)
+                  Navigator.pushNamed(context, HomeScreen.routeName);
+                else
+                  _showToast(context);
               }
             },
           )

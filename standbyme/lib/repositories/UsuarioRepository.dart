@@ -27,4 +27,23 @@ class UsuarioRepository implements IUsuarioRepository {
       print(e.toString());
     }
   }
+
+  @override
+  Future<Usuario> logarUsuario(Usuario usuario) async {
+    try {
+      final resposta = await client.post(
+          Uri.parse("https://standbyme-heroku.herokuapp.com/usuarios/login"),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'email': usuario.email,
+            'senha': usuario.senha
+          }));
+      Usuario novoUsuario = new Usuario.fromJson(json.decode(resposta.body));
+      return novoUsuario;
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+  }
 }
