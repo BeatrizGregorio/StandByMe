@@ -86,7 +86,7 @@ class _BodyState extends State<Body> {
                         children: [
                           CategoryCard(
                             img:
-                                "https://freepngimg.com/thumb/debit_card/4-2-debit-card-png-hd.png",
+                                "https://cdn-icons-png.flaticon.com/512/1292/1292739.png",
                             title: "Cartão",
                             press: () {
                               Navigator.of(context).pushNamed("/bankcard");
@@ -94,7 +94,7 @@ class _BodyState extends State<Body> {
                           ),
                           CategoryCard(
                             img:
-                                "https://www.pngrepo.com/png/230804/512/writing-edit.png",
+                                "https://cdn-icons-png.flaticon.com/512/2779/2779858.png",
                             title: "Editar cartão",
                             press: () {
                               Navigator.of(context).pushNamed("/editCard");
@@ -102,7 +102,7 @@ class _BodyState extends State<Body> {
                           ),
                           CategoryCard(
                             img:
-                                "https://stories.freepiklabs.com/storage/44197/bitcoin-cuate-7077.png",
+                                "https://cdn-icons-png.flaticon.com/512/1041/1041908.png",
                             title: "Transações",
                             press: () {
                               Navigator.of(context).pushNamed("/cardhome");
@@ -110,7 +110,7 @@ class _BodyState extends State<Body> {
                           ),
                           CategoryCard(
                             img:
-                                "https://library.kissclipart.com/20180921/paq/kissclipart-bar-chart-clipart-bar-chart-computer-icons-91a2464f875767ab.png",
+                                "https://img-premium.flaticon.com/png/512/1379/premium/1379897.png?token=exp=1632918863~hmac=97e0fccf98a28261b46fe94b400dd78f",
                             title: "Gráficos",
                             press: () {
                               Navigator.of(context).pushNamed("/graphics");
@@ -142,7 +142,7 @@ class _BodyState extends State<Body> {
                         children: [
                           CategoryCard(
                             img:
-                                "https://www.woodmans-food.com/portals/0/COHFood.png",
+                                "https://cdn-icons-png.flaticon.com/512/3845/3845865.png",
                             title: "Despensa",
                             press: () {
                               Navigator.of(context).pushNamed("/despensa");
@@ -150,7 +150,7 @@ class _BodyState extends State<Body> {
                           ),
                           CategoryCard(
                             img:
-                                "https://freepikpsd.com/media/2019/10/list-cartoon-png-3-Transparent-Images.png",
+                                "https://cdn-icons-png.flaticon.com/512/3845/3845758.png",
                             title: "Lista de Compras",
                             press: () {
                               Navigator.of(context).pushNamed("/list");
