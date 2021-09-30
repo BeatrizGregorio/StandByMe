@@ -24,7 +24,7 @@ class UsuarioRepository implements IUsuarioRepository {
       Usuario novoUsuario = new Usuario.fromJson(json.decode(resposta.body));
       return novoUsuario;
     } on Exception catch (e) {
-      print(e.toString());
+      throw Exception("Falha no cadastro");
     }
   }
 
@@ -43,7 +43,7 @@ class UsuarioRepository implements IUsuarioRepository {
       Usuario novoUsuario = new Usuario.fromJson(json.decode(resposta.body));
       return novoUsuario;
     } on Exception catch (e) {
-      print(e.toString());
+      throw Exception("Falha no login");
     }
   }
 }

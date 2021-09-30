@@ -54,24 +54,15 @@ class _SignUpFormState extends State<SignUpForm> {
       });
   }
 
-  Future<bool> createUser() async {
-    log("NOME");
-    log(nameController.text);
-    log(lastNameController.text);
-    log(telController.text);
-    log(emailController.text);
-    log(passwordController.text);
+  Future<Usuario> createUser() async {
     Usuario novoUsuario = new Usuario(
         nameController.text,
         lastNameController.text,
         telController.text,
         emailController.text,
         passwordController.text);
-    Usuario usuarioResposta =
-        await new UsuarioController().cadastrarUsuario(novoUsuario);
-    log("print");
-    if (usuarioResposta == null) return false;
-    return true;
+
+    return new UsuarioController().cadastrarUsuario(novoUsuario);
   }
 
   void _showToast(BuildContext context) {
@@ -119,8 +110,18 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               DefaultButton(
                 text: "Cadastrar",
-                press: () {
+                press: () async {
                   if (_formKey.currentState.validate()) {
+                    try {
+                      Usuario usuario = await createUser();
+                      log(usuario.primeiroNome);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SignInScreen()));
+                    } on Exception catch (err) {
+                      log(err.toString());
+                      _showToast(context);
+                    }
+                    /*
                     FutureBuilder(
                         future: createUser(),
                         builder: (context, snapshot) {
@@ -134,7 +135,8 @@ class _SignUpFormState extends State<SignUpForm> {
                             _showToast(context);
                             return;
                           }
-                        });
+                        }); */
+                    //_showToast(context);
                   }
                 },
               )

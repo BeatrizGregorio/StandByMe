@@ -25,17 +25,14 @@ class _SignFormState extends State<SignForm> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  Future<bool> login() async {
+  Future<Usuario> login() async {
     log(emailController.text);
     log(passwordController.text);
     Usuario novoUsuario = new Usuario.empty();
     novoUsuario.email = emailController.text;
     novoUsuario.senha = passwordController.text;
-    Usuario usuarioResposta =
-        await new UsuarioController().cadastrarUsuario(novoUsuario);
-    log("print");
-    if (usuarioResposta == null) return Future<bool>.value(false);
-    return Future<bool>.value(true);
+
+    return new UsuarioController().logarUsuario(novoUsuario);
   }
 
   void _showToast(BuildContext context) {
@@ -92,13 +89,17 @@ class _SignFormState extends State<SignForm> {
           ),
           DefaultButton(
             text: "Continuar",
-            press: () {
+            press: () async {
               if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-                if (login() == true)
-                  Navigator.pushNamed(context, HomeScreen.routeName);
-                else
+                try {
+                  Usuario usuario = await login();
+                  log("teste");
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                } on Exception catch (err) {
+                  //log(err.toString());
                   _showToast(context);
+                }
               }
             },
           )
@@ -110,6 +111,7 @@ class _SignFormState extends State<SignForm> {
   bool showPassword = false;
   TextFormField buildPasswordFormField() {
     return TextFormField(
+      controller: passwordController,
       onTap: () {
         setState(() {
           passwordFocus = true;
@@ -173,6 +175,7 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      controller: emailController,
       onTap: () {
         setState(() {
           emailFocus = true;
