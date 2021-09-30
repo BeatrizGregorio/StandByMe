@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
-import 'package:standbyme_tcc/screens/despensa/datas/product.dart';
+import 'package:standbyme_tcc/models/Product.dart';
 
 class UserProductTile extends StatefulWidget {
   final Product data;
@@ -40,11 +40,11 @@ class _UserProductTileState extends State<UserProductTile> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    this.widget.data.title,
+                    this.widget.data.nomeProduto,
                     style: TextStyle(fontSize: 20.0, color: Colors.black),
                   ),
                   Text(
-                    this.widget.data.description,
+                    this.widget.data.descricaoProduto,
                     style: TextStyle(fontSize: 14.0, color: Colors.black),
                   )
                 ],
