@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
+import 'package:standbyme_tcc/models/Product.dart';
 //import 'package:standbyme_tcc/size_config.dart';
 import 'package:standbyme_tcc/screens/despensa/components/search_field.dart';
-import 'package:standbyme_tcc/screens/despensa/datas/product.dart';
 import 'package:standbyme_tcc/screens/despensa/tiles/user_product_tile.dart';
 
 class ItensAtuais extends StatelessWidget {
-  List<Product> products = List<Product>(3);
+  List<Product> products = [];
   @override
   Widget build(BuildContext context) {
-    addProducts();
+    //addProducts();
     return Scaffold(
         body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +38,7 @@ class ItensAtuais extends StatelessWidget {
         ]));
   }
 
-  void addProducts() {
+  /*void addProducts() {
     Product product1 = Product(
         "Tomate",
         "https://superprix.vteximg.com.br/arquivos/ids/178639-210-210/Tomate-1-unidade-aprox-250g.png?v=636868090295370000",
@@ -55,5 +55,5 @@ class ItensAtuais extends StatelessWidget {
     products[0] = product1;
     products[1] = product2;
     products[2] = product3;
-  }
+  }*/
 }
