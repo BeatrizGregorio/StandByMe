@@ -14,13 +14,21 @@ class ProductRepository implements IProductRepository {
       final resposta = await client
           .get(Uri.parse("https://standbyme-heroku.herokuapp.com/produtos"));
       final res = json.decode(resposta.body);
-      var produto = new Product.fromJson(res[0]);
-      int i = 1;
-      while (produto != null) {
-        listProducts.add(produto);
+      print(res);
+      //var produto = new Product.fromJson(res[0]);
+      /*while (produto != null) {
+        if (i != 0) {
+          listProducts.add(produto);
+          print(produto.nomeProduto);
+        }
         produto = new Product.fromJson(res[i]);
         i++;
+        print(i);
+      }*/
+      for (var produto in res) {
+        listProducts.add(Product.fromJson(produto));
       }
+      print(listProducts.length);
     } on Exception catch (e) {
       print(e.toString());
     }

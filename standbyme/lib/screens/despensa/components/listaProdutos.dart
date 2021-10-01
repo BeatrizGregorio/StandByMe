@@ -16,20 +16,11 @@ class ListaProdutos extends StatefulWidget {
 }
 
 class _ListaProdutosState extends State<ListaProdutos> {
-  List<Product> products = [];
-
-  @override
-  void initState() async {
-    super.initState();
-
-    products = await ProductController().getProducts();
-    print(products[0].nomeProduto);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
           SizedBox(height: 20),
@@ -44,12 +35,22 @@ class _ListaProdutosState extends State<ListaProdutos> {
           Expanded(
             child: SizedBox(
               height: 450,
-              child: ListView.builder(
-                  itemCount: products.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(top: 5),
-                      child: ProductTile(products[index]),
+              child: FutureBuilder(
+                  future: ProductController().getProducts(),
+                  builder: (context, snapshot) {
+                    var products = snapshot.data;
+                    if (products == null)
+                      return SizedBox(
+                        height: 10,
+                      );
+                    return ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: ProductTile(products[index]),
+                        );
+                      },
                     );
                   }),
             ),
