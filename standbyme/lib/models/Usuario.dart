@@ -1,13 +1,25 @@
-class Usuario {
-  String primeiroNome, sobrenome, email, senha, telefone;
+import 'package:standbyme_tcc/models/UsuarioBase.dart';
+
+class Usuario extends UsuarioBase {
+  String id;
 
   Usuario.empty();
 
-  Usuario(
-      this.primeiroNome, this.sobrenome, this.telefone, this.email, this.senha);
+  Usuario({this.id, primeiroNome, sobrenome, telefone, email, senha})
+      : super(
+            primeiroNome: primeiroNome,
+            sobrenome: sobrenome,
+            telefone: telefone,
+            email: email,
+            senha: senha) {}
 
   factory Usuario.fromJson(Map<String, dynamic> parsedJson) {
-    return Usuario(parsedJson['nomeUsuario'], parsedJson['sobrenomeUsuario'],
-        parsedJson['telefone'], parsedJson['email'], parsedJson['senha']);
+    return Usuario(
+        id: parsedJson['id'],
+        primeiroNome: parsedJson['nomeUsuario'],
+        sobrenome: parsedJson['sobrenomeUsuario'],
+        telefone: parsedJson['telefone'],
+        email: parsedJson['email'],
+        senha: parsedJson['senha']);
   }
 }

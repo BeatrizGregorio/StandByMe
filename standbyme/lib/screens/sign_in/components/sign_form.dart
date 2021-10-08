@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
 import 'package:standbyme_tcc/screens/home/home_screen.dart';
@@ -31,6 +32,8 @@ class _SignFormState extends State<SignForm> {
     Usuario novoUsuario = new Usuario.empty();
     novoUsuario.email = emailController.text;
     novoUsuario.senha = passwordController.text;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    //preferences.setInt("id", )
 
     return new UsuarioController().logarUsuario(novoUsuario);
   }

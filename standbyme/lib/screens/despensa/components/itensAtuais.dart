@@ -5,8 +5,16 @@ import 'package:standbyme_tcc/models/Product.dart';
 import 'package:standbyme_tcc/screens/despensa/components/search_field.dart';
 import 'package:standbyme_tcc/screens/despensa/tiles/user_product_tile.dart';
 
-class ItensAtuais extends StatelessWidget {
+class ItensAtuais extends StatefulWidget {
+  const ItensAtuais({Key key}) : super(key:key);
+  
+  @override
+  _ItensAtuaisState createState() => _ItensAtuaisState();
+}
+
+class _ItensAtuaisState extends State<ItensAtuais> {
   List<Product> products = [];
+
   @override
   Widget build(BuildContext context) {
     //addProducts();
@@ -37,23 +45,4 @@ class ItensAtuais extends StatelessWidget {
           //_buildListView(),
         ]));
   }
-
-  /*void addProducts() {
-    Product product1 = Product(
-        "Tomate",
-        "https://superprix.vteximg.com.br/arquivos/ids/178639-210-210/Tomate-1-unidade-aprox-250g.png?v=636868090295370000",
-        "Tomate fresco");
-    Product product2 = Product(
-        "Feijão",
-        "https://armazemsaovito.fbitsstatic.net/img/p/feijao-carioca-150269/346758.jpg?w=344&h=344&v=no-change",
-        "Feijão Carioca");
-    Product product3 = Product(
-        "Arroz",
-        "https://pubimg.band.uol.com.br/files/fea2747ceb5cf1febf1f.png",
-        "Arroz branco");
-
-    products[0] = product1;
-    products[1] = product2;
-    products[2] = product3;
-  }*/
 }
