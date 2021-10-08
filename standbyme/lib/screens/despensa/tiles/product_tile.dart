@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:standbyme_tcc/controllers/ProductUsuarioController.dart';
 import 'package:standbyme_tcc/models/Product.dart';
+import 'package:standbyme_tcc/models/ProductUsuario.dart';
 
 import '../../../constants.dart';
 
@@ -13,6 +16,7 @@ class ProductTile extends StatefulWidget {
 
 class _ProductTileState extends State<ProductTile> {
   bool bought = false;
+  ProductUsuario productUsuario;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +71,7 @@ class _ProductTileState extends State<ProductTile> {
                     });
                   else
                     setState(() {
+                      addProductUsuario();
                       bought = true;
                     });
                 },
@@ -81,5 +86,14 @@ class _ProductTileState extends State<ProductTile> {
         ),
       ),
     );
+  }
+
+  addProductUsuario() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    int userId = preferences.getInt("id");
+    ProductUsuario productUsuario =
+        new ProductUsuario(userId, widget.data.id, 1);
+    print(productUsuario.userId);
+    await ProductUsuarioController().createProductUsuario(productUsuario);
   }
 }

@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' show Client;
+import 'package:standbyme_tcc/models/Product.dart';
 import 'package:standbyme_tcc/models/ProductUsuario.dart';
 import 'dart:convert';
 
@@ -8,8 +11,8 @@ class ProductUsuarioRepository implements IProductUsuarioRepository {
   Client client = Client();
 
   @override
-  Future<List<ProductUsuario>> getProductsUsuario(int userId) async {
-    List<ProductUsuario> listProductsUsuario = [];
+  Future<List<Product>> getProductsUsuario(int userId) async {
+    List<Product> listProductsUsuario = [];
 
     try {
       final resposta = await client.get(Uri.parse(
@@ -18,7 +21,7 @@ class ProductUsuarioRepository implements IProductUsuarioRepository {
       print(res);
 
       for (var produtoUsuario in res) {
-        listProductsUsuario.add(ProductUsuario.fromJson(produtoUsuario));
+        listProductsUsuario.add(Product.fromJson(produtoUsuario));
       }
       print(listProductsUsuario.length);
     } on Exception catch (e) {
@@ -42,6 +45,10 @@ class ProductUsuarioRepository implements IProductUsuarioRepository {
             'productId': productUsuario.productId,
             'qtd': productUsuario.qtd
           }));
+      print(resposta.body);
+
+      log(productUsuario.productId.toString());
+      log(productUsuario.userId.toString());
       novoProdutoUsuario =
           new ProductUsuario.fromJson(json.decode(resposta.body));
     } on Exception catch (e) {

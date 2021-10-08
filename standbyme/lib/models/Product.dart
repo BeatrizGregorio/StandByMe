@@ -1,12 +1,22 @@
-class Product {
-  String nomeProduto, descricaoProduto, image;
+import 'package:standbyme_tcc/models/ProdutoBase.dart';
+
+class Product extends ProdutoBase {
+  int id;
 
   Product.empty();
 
-  Product(this.nomeProduto, this.descricaoProduto, this.image);
+  Product({this.id, nomeProduto, descricaoProduto, image})
+      : super(
+            nomeProduto: nomeProduto,
+            descricaoProduto: descricaoProduto,
+            image: image) {}
 
   factory Product.fromJson(Map<String, dynamic> parsedJson) {
-    return Product(parsedJson['nomeProduto'], parsedJson['descricaoProduto'],
-        parsedJson['foto']);
+    ProdutoBase produtoBase = ProdutoBase.fromJson(parsedJson);
+    return Product(
+        id: parsedJson['id'],
+        nomeProduto: produtoBase.nomeProduto,
+        descricaoProduto: produtoBase.descricaoProduto,
+        image: produtoBase.image);
   }
 }

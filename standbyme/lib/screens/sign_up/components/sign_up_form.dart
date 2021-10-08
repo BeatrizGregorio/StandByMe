@@ -56,11 +56,11 @@ class _SignUpFormState extends State<SignUpForm> {
 
   Future<Usuario> createUser() async {
     Usuario novoUsuario = new Usuario(
-        nameController.text,
-        lastNameController.text,
-        telController.text,
-        emailController.text,
-        passwordController.text);
+        primeiroNome: nameController.text,
+        sobrenome: lastNameController.text,
+        telefone: telController.text,
+        email: emailController.text,
+        senha: passwordController.text);
 
     return new UsuarioController().cadastrarUsuario(novoUsuario);
   }

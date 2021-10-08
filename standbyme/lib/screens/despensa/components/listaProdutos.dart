@@ -1,5 +1,8 @@
 //import 'package:flutter/gestures.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/controllers/ProductController.dart';
@@ -9,13 +12,16 @@ import 'package:standbyme_tcc/screens/despensa/components/search_field.dart';
 import 'package:standbyme_tcc/screens/despensa/tiles/product_tile.dart';
 
 class ListaProdutos extends StatefulWidget {
-  const ListaProdutos({Key key}) : super(key: key);
-
   @override
   _ListaProdutosState createState() => _ListaProdutosState();
 }
 
 class _ListaProdutosState extends State<ListaProdutos> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

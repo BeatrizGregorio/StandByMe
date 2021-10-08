@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/models/Product.dart';
+import 'package:standbyme_tcc/models/ProductUsuario.dart';
 
 class UserProductTile extends StatefulWidget {
   final Product data;
-  UserProductTile(this.data);
+  int userId;
+  UserProductTile(this.data, this.userId);
 
   @override
   _UserProductTileState createState() => _UserProductTileState();

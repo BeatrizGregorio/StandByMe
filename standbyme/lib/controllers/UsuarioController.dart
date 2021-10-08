@@ -10,6 +10,6 @@ class UsuarioController {
   }
 
   Future<Usuario> logarUsuario(Usuario usuario) {
-    return _usuarioRepository.cadastrarUsuario(usuario);
+    return _usuarioRepository.logarUsuario(usuario);
   }
 }

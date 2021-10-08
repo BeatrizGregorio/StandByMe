@@ -33,9 +33,10 @@ class _SignFormState extends State<SignForm> {
     novoUsuario.email = emailController.text;
     novoUsuario.senha = passwordController.text;
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    //preferences.setInt("id", )
+    novoUsuario = await new UsuarioController().logarUsuario(novoUsuario);
+    preferences.setInt("id", novoUsuario.id);
 
-    return new UsuarioController().logarUsuario(novoUsuario);
+    return novoUsuario;
   }
 
   void _showToast(BuildContext context) {
