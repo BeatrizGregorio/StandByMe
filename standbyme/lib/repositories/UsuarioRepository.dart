@@ -1,6 +1,7 @@
 import 'package:http/http.dart' show Client;
 import 'package:standbyme_tcc/models/Usuario.dart';
 import 'package:standbyme_tcc/repositories/Interfaces/UsuarioRepositoryInterface.dart';
+import 'package:standbyme_tcc/models/Evento.dart';
 import 'dart:convert';
 
 class UsuarioRepository implements IUsuarioRepository {
@@ -45,5 +46,27 @@ class UsuarioRepository implements IUsuarioRepository {
     } on Exception catch (e) {
       throw Exception("Falha no login");
     }
+  }
+
+  @override
+  Future<List<Evento>> getEventsByDate(DateTime data) async {
+    List<Evento> listEvents = [];
+    try {
+      final resposta = await client.post(
+          Uri.parse("https://standbyme-heroku.herokuapp.com/usuarios/eventos"),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, DateTime>{'dataEvento': data}));
+      final res = json.decode(resposta.body);
+      print(res);
+      for (var evento in res) {
+        listEvents.add(Evento.fromJson(evento));
+      }
+      print(listEvents.length);
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+    return listEvents;
   }
 }
