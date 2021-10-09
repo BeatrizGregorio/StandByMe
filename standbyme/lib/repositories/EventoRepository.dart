@@ -1,4 +1,4 @@
-import 'package:http/http.dart' show Client;
+/*import 'package:http/http.dart' show Client;
 import 'package:standbyme_tcc/models/Evento.dart';
 import 'package:standbyme_tcc/repositories/Interfaces/EventoRepositoryInterface.dart';
 import 'dart:convert';
@@ -45,3 +45,4 @@ class EventoRepository implements IEventoRepository {
     return listEvents;
   }
 }
+*/

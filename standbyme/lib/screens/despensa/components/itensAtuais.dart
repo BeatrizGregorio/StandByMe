@@ -33,40 +33,44 @@ class _ItensAtuaisState extends State<ItensAtuais> {
   Widget build(BuildContext context) {
     //addProducts();
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.save),
+          onPressed: () {},
+          backgroundColor: kPrimaryColor,
+        ),
         body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-          SizedBox(height: 20),
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: kDefaultPaddin),
-              child: Text("Itens atuais",
-                  style: Theme.of(context).textTheme.headline5.copyWith(
-                      fontWeight: FontWeight.bold, color: kPrimaryColor))),
-          SizedBox(height: 20),
-          SearchField(),
-          Expanded(
-            child: SizedBox(
-              height: 450,
-              child: FutureBuilder(
-                  future: ProductUsuarioController()
-                      .getProductsUsuario(widget.userId),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return LinearProgressIndicator();
-                    }
-                    var products = snapshot.data;
-                    return ListView.builder(
-                        itemCount: products.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                              padding: EdgeInsets.only(top: 5),
-                              child: UserProductTile(
-                                  products[index], widget.userId));
-                        });
-                  }),
-            ),
-          ),
-          //_buildListView(),
-        ]));
+              SizedBox(height: 20),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: kDefaultPaddin),
+                  child: Text("Itens atuais",
+                      style: Theme.of(context).textTheme.headline5.copyWith(
+                          fontWeight: FontWeight.bold, color: kPrimaryColor))),
+              SizedBox(height: 20),
+              SearchField(),
+              SizedBox(
+                height: 450,
+                child: FutureBuilder(
+                    future: ProductUsuarioController()
+                        .getProductsUsuario(widget.userId),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return SizedBox(
+                            height: 10, child: CircularProgressIndicator());
+                      }
+                      var products = snapshot.data;
+                      return ListView.builder(
+                          itemCount: products.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                                padding: EdgeInsets.only(top: 5),
+                                child: UserProductTile(
+                                    products[index], widget.userId));
+                          });
+                    }),
+              ),
+              //_buildListView(),
+            ]));
   }
 }

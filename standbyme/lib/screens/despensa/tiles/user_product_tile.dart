@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/models/Product.dart';
 import 'package:standbyme_tcc/models/ProductUsuario.dart';
+import 'package:standbyme_tcc/size_config.dart';
 
 class UserProductTile extends StatefulWidget {
   final Product data;
@@ -35,8 +36,8 @@ class _UserProductTileState extends State<UserProductTile> {
               width: 10,
             ),
             Container(
-              height: 60,
-              width: 100,
+              height: getProportionateScreenHeight(80),
+              width: getProportionateScreenWidth(100),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
