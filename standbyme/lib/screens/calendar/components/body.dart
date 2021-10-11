@@ -1,7 +1,10 @@
+import 'dart:html';
 import 'dart:ui';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
+import 'package:standbyme_tcc/controllers/EventoController.dart';
+import 'package:standbyme_tcc/models/Evento.dart';
 import 'package:standbyme_tcc/size_config.dart';
 
 //import 'package:provider/provider.dart';
@@ -16,6 +19,9 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   DateTime _selectedDay = DateTime.now();
+  TextEditingController descricaoController = TextEditingController();
+  TextEditingController dataController = TextEditingController();
+  TextEditingController horarioController = TextEditingController();
 
   CalendarController _calendarController;
   Map<DateTime, List<dynamic>> _events = {};
@@ -74,6 +80,7 @@ class _BodyState extends State<Body> {
     var content = Container(
         child: Column(children: [
       TextField(
+        controller: descricaoController,
         autofocus: true,
         decoration: InputDecoration(
           labelText: 'Descrição do evento ',
@@ -85,6 +92,7 @@ class _BodyState extends State<Body> {
       ),
       SizedBox(height: 20),
       TextField(
+        controller: horarioController,
         autofocus: true,
         decoration: InputDecoration(
           labelText: 'Horário de início',
@@ -100,7 +108,7 @@ class _BodyState extends State<Body> {
       child: Text('Salvar',
           style: TextStyle(
               color: kTextColor, fontSize: 15, fontWeight: FontWeight.bold)),
-      onPressed: () => {} /*_addEvent(_name)*/,
+      onPressed: () => /*createEvent()*/ {},
     );
     var cancelButton = FlatButton(
         child: Text('Cancelar',
@@ -159,8 +167,37 @@ class _BodyState extends State<Body> {
       ),
     );
   }
+// CRIAR EVENTO
+/*
+  Future<Evento> createEvent() async {
+    Evento novoEvento = new Evento(
+        descricaoEvento: descricaoController.text,
+        dataEvento: ,//dataController.text,
+        horarioEvento: horarioController.text,
+        userId: .text);
 
-  /*
+    return new EventoController().createEvent(novoEvento);
+  }
+
+//LISTAR EVENTOS
+  Future<List<Evento>> getEventsByDate(DateTime data) async{
+    _events = {};
+    List<Map<String, dynamic>> _results = await DB.query(CalendarItem.table);
+    _data = _results.map((item) => CalendarItem.fromMap(item)).toList();
+      _data.forEach((element) {
+        DateTime formattedDate = DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.parse(element.date.toString())));
+      if(_events.containsKey(formattedDate)){
+        _events[formattedDate].add(element.name.toString());
+      }
+      else{
+          _events[formattedDate] = [element.name.toString()];
+        }
+      }
+    );
+    setState(() {});
+  }
+
+  
   void _fetchEvents() async{
     _events = {};
     List<Map<String, dynamic>> _results = await DB.query(CalendarItem.table);

@@ -16,9 +16,9 @@ class EventoRepository implements IEventoRepository {
           },
           body: jsonEncode(<String, String>{
             'descricaoEvento': evento.descricaoEvento,
-            'dataEvento': evento.dataEvento,
+            'dataEvento': evento.dataEvento.toString(),
             'horarioEvento': evento.horarioEvento,
-            'userId': evento.userId,
+            'userId': evento.userId.toString(),
           }));
       Evento novoEvento = new Evento.fromJson(json.decode(resposta.body));
       return novoEvento;

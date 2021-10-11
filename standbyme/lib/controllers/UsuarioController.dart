@@ -1,3 +1,4 @@
+import 'package:standbyme_tcc/models/Evento.dart';
 import 'package:standbyme_tcc/models/Usuario.dart';
 import 'package:standbyme_tcc/repositories/UsuarioRepository.dart';
 import 'package:standbyme_tcc/repositories/Interfaces/UsuarioRepositoryInterface.dart';
@@ -11,5 +12,9 @@ class UsuarioController {
 
   Future<Usuario> logarUsuario(Usuario usuario) {
     return _usuarioRepository.logarUsuario(usuario);
+  }
+
+  Future<List<Evento>> getEventsByDate(DateTime data) {
+    return _usuarioRepository.getEventsByDate(data);
   }
 }
