@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/models/Product.dart';
-import 'package:standbyme_tcc/models/ProductUsuario.dart';
+//import 'package:standbyme_tcc/models/ProductUsuario.dart';
 import 'package:standbyme_tcc/size_config.dart';
 
 class UserProductTile extends StatefulWidget {

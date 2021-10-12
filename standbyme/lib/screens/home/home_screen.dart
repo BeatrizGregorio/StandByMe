@@ -1,7 +1,7 @@
 //import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:standbyme_tcc/components/custom_drawer.dart';
+//import 'package:standbyme_tcc/components/custom_drawer.dart';
 import 'package:standbyme_tcc/constants.dart';
 //import 'package:standbyme_tcc/screens/bank/bank_card.dart';
 import 'package:standbyme_tcc/screens/chatbot_Tina/chatbot_Tina.dart';

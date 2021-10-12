@@ -1,4 +1,4 @@
-/*import 'package:standbyme_tcc/models/Evento.dart';
+import 'package:standbyme_tcc/models/Evento.dart';
 import 'package:standbyme_tcc/repositories/EventoRepository.dart';
 import 'package:standbyme_tcc/repositories/Interfaces/EventoRepositoryInterface.dart';
 
@@ -12,4 +12,4 @@ class EventoController {
   Future<List<Evento>> findEventsByUser() async {
     return _eventoRepository.findEventsByUser();
   }
-}*/
+}

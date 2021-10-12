@@ -2,11 +2,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/controllers/ProductController.dart';
-import 'package:standbyme_tcc/models/Product.dart';
+//import 'package:standbyme_tcc/models/Product.dart';
 //import 'package:standbyme_tcc/size_config.dart';
 import 'package:standbyme_tcc/screens/despensa/components/search_field.dart';
 import 'package:standbyme_tcc/screens/despensa/tiles/product_tile.dart';

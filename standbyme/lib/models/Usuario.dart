@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+//import 'package:flutter/widgets.dart';
 import 'package:standbyme_tcc/models/UsuarioBase.dart';
 
 class Usuario extends UsuarioBase {

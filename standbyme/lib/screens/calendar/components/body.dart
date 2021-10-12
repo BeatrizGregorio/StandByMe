@@ -1,11 +1,13 @@
-import 'dart:html';
+//import 'dart:html';
 import 'dart:ui';
-import 'package:intl/date_symbol_data_local.dart';
+//import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/controllers/EventoController.dart';
 import 'package:standbyme_tcc/models/Evento.dart';
-import 'package:standbyme_tcc/size_config.dart';
+//import 'package:standbyme_tcc/controllers/EventoController.dart';
+//import 'package:standbyme_tcc/models/Evento.dart';
+//import 'package:standbyme_tcc/size_config.dart';
 
 //import 'package:provider/provider.dart';
 //import 'package:standbyme_tcc/constants.dart';
@@ -21,12 +23,14 @@ class _BodyState extends State<Body> {
   DateTime _selectedDay = DateTime.now();
   TextEditingController descricaoController = TextEditingController();
   TextEditingController dataController = TextEditingController();
-  TextEditingController horarioController = TextEditingController();
 
   CalendarController _calendarController;
   Map<DateTime, List<dynamic>> _events = {};
   //List<CalendarItem> _data = [];
+  //List<String> horarios = ['oii', 'teste'];
 
+  String horarioSelecionado;
+  TimeOfDay horarioController = TimeOfDay(hour: 00, minute: 00);
   List<dynamic> _selectedEvents = [];
   List<Widget> get _eventWidgets =>
       _selectedEvents.map((e) => events(e)).toList();
@@ -35,6 +39,18 @@ class _BodyState extends State<Body> {
     super.initState();
     //DB.init().then((value) => _fetchEvents());
     _calendarController = CalendarController();
+  }
+
+  void _selectTime() async {
+    final TimeOfDay newTime = await showTimePicker(
+      context: context,
+      initialTime: horarioController,
+    );
+    if (newTime != null) {
+      setState(() {
+        horarioController = newTime;
+      });
+    }
   }
 
   void dispose() {
@@ -66,13 +82,13 @@ class _BodyState extends State<Body> {
           ])),
     );
   }
-
+/*
   void _onDaySelected(DateTime day, List events) {
     setState(() {
       _selectedDay = day;
       _selectedEvents = events;
     });
-  }
+  }*/
 
   void _create(BuildContext context) {
     String _name = "";
@@ -91,17 +107,11 @@ class _BodyState extends State<Body> {
         },
       ),
       SizedBox(height: 20),
-      TextField(
-        controller: horarioController,
-        autofocus: true,
-        decoration: InputDecoration(
-          labelText: 'Horário de início',
-          labelStyle: TextStyle(color: kPrimaryColor, fontSize: 18),
-        ),
-        onChanged: (value) {
-          _name = value;
-        },
-      )
+      Text("Horário de início: ", style: TextStyle(color: kPrimaryColor)),
+      IconButton(
+        icon: Icon(Icons.watch_later_outlined),
+        onPressed: _selectTime,
+      ),
     ]));
 
     var btn = FlatButton(
@@ -167,18 +177,18 @@ class _BodyState extends State<Body> {
       ),
     );
   }
-// CRIAR EVENTO
+// CRIAR EVENTO ===consertar esse
 /*
   Future<Evento> createEvent() async {
     Evento novoEvento = new Evento(
         descricaoEvento: descricaoController.text,
-        dataEvento: ,//dataController.text,
-        horarioEvento: horarioController.text,
+        dataEvento: dataController.text,
+        horarioEvento: horarioController.toString(),
         userId: .text);
 
     return new EventoController().createEvent(novoEvento);
-  }
-
+  }*/
+/*
 //LISTAR EVENTOS
   Future<List<Evento>> getEventsByDate(DateTime data) async{
     _events = {};
