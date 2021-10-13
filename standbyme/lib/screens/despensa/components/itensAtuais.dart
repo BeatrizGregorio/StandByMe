@@ -50,14 +50,21 @@ class _ItensAtuaisState extends State<ItensAtuais> {
               SizedBox(height: 20),
               SearchField(),
               SizedBox(
-                height: 450,
+                height: 500,
                 child: FutureBuilder(
                     future: ProductUsuarioController()
                         .getProductsUsuario(widget.userId),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
-                        return SizedBox(
-                            height: 10, child: CircularProgressIndicator());
+                        return Center(
+                          child: SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: CircularProgressIndicator(
+                                valueColor:
+                                    new AlwaysStoppedAnimation(kPrimaryColor),
+                              )),
+                        );
                       }
                       var products = snapshot.data;
                       return ListView.builder(

@@ -46,8 +46,14 @@ class _ListaProdutosState extends State<ListaProdutos> {
                   builder: (context, snapshot) {
                     var products = snapshot.data;
                     if (products == null)
-                      return SizedBox(
-                        height: 10,
+                      return Center(
+                        child: SizedBox(
+                            height: 30,
+                            width: 30,
+                            child: CircularProgressIndicator(
+                              valueColor:
+                                  new AlwaysStoppedAnimation(kPrimaryColor),
+                            )),
                       );
                     return ListView.builder(
                       itemCount: snapshot.data.length,

@@ -46,7 +46,7 @@ class ProductUsuarioRepository implements IProductUsuarioRepository {
             'qtd': productUsuario.qtd
           }));
       print(resposta.body);
-
+      if (resposta.statusCode != 200) throw Exception("Produto já adicionado");
       log(productUsuario.productId.toString());
       log(productUsuario.userId.toString());
       novoProdutoUsuario =
