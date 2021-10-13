@@ -1,7 +1,9 @@
 //import 'dart:html';
+import 'dart:developer';
 import 'dart:ui';
 //import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/controllers/EventoController.dart';
 import 'package:standbyme_tcc/models/Evento.dart';
@@ -15,6 +17,7 @@ import 'package:standbyme_tcc/models/Evento.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Body extends StatefulWidget {
+  int userId;
   @override
   _BodyState createState() => _BodyState();
 }
@@ -23,13 +26,8 @@ class _BodyState extends State<Body> {
   DateTime _selectedDay = DateTime.now();
   TextEditingController descricaoController = TextEditingController();
   TextEditingController dataController = TextEditingController();
-
   CalendarController _calendarController;
   Map<DateTime, List<dynamic>> _events = {};
-  //List<CalendarItem> _data = [];
-  //List<String> horarios = ['oii', 'teste'];
-
-  String horarioSelecionado;
   TimeOfDay horarioController = TimeOfDay(hour: 00, minute: 00);
   List<dynamic> _selectedEvents = [];
   List<Widget> get _eventWidgets =>
@@ -38,6 +36,7 @@ class _BodyState extends State<Body> {
   void initState() {
     super.initState();
     //DB.init().then((value) => _fetchEvents());
+    getId();
     _calendarController = CalendarController();
   }
 
@@ -51,6 +50,13 @@ class _BodyState extends State<Body> {
         horarioController = newTime;
       });
     }
+  }
+
+  void getId() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      widget.userId = preferences.getInt("id");
+    });
   }
 
   void dispose() {
@@ -118,7 +124,7 @@ class _BodyState extends State<Body> {
       child: Text('Salvar',
           style: TextStyle(
               color: kTextColor, fontSize: 15, fontWeight: FontWeight.bold)),
-      onPressed: () => /*createEvent()*/ {},
+      onPressed: () => createEvent(),
     );
     var cancelButton = FlatButton(
         child: Text('Cancelar',
@@ -178,16 +184,16 @@ class _BodyState extends State<Body> {
     );
   }
 // CRIAR EVENTO ===consertar esse
-/*
+
   Future<Evento> createEvent() async {
+    log(widget.userId.toString());
     Evento novoEvento = new Evento(
         descricaoEvento: descricaoController.text,
-        dataEvento: dataController.text,
+        dataEvento: _selectedDay,
         horarioEvento: horarioController.toString(),
-        userId: .text);
-
+        userId: widget.userId);
     return new EventoController().createEvent(novoEvento);
-  }*/
+  } /* */
 /*
 //LISTAR EVENTOS
   Future<List<Evento>> getEventsByDate(DateTime data) async{
@@ -267,6 +273,12 @@ class _BodyState extends State<Body> {
             ]),
         child: TableCalendar(
           locale: 'pt_Br',
+          onDaySelected: (date, events, e) {
+            setState(() {
+              _selectedDay = date;
+              log(_selectedDay.toString());
+            });
+          },
           calendarStyle: CalendarStyle(
             canEventMarkersOverflow: true,
             markersColor: Colors.white,
