@@ -6,5 +6,5 @@ abstract class IUsuarioRepository {
 
   Future<Usuario> logarUsuario(Usuario usuario);
 
-  Future<List<Evento>> getEventsByDate(DateTime data);
+  Future<List<Evento>> getEventsByDate(DateTime data, int userId);
 }

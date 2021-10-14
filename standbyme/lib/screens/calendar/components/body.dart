@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/controllers/EventoController.dart';
+import 'package:standbyme_tcc/controllers/UsuarioController.dart';
 import 'package:standbyme_tcc/models/Evento.dart';
 //import 'package:standbyme_tcc/controllers/EventoController.dart';
 //import 'package:standbyme_tcc/models/Evento.dart';
@@ -30,6 +31,7 @@ class _BodyState extends State<Body> {
   Map<DateTime, List<dynamic>> _events = {};
   TimeOfDay horarioController = TimeOfDay(hour: 00, minute: 00);
   List<dynamic> _selectedEvents = [];
+
   List<Widget> get _eventWidgets =>
       _selectedEvents.map((e) => events(e)).toList();
 
@@ -88,13 +90,6 @@ class _BodyState extends State<Body> {
           ])),
     );
   }
-/*
-  void _onDaySelected(DateTime day, List events) {
-    setState(() {
-      _selectedDay = day;
-      _selectedEvents = events;
-    });
-  }*/
 
   void _create(BuildContext context) {
     String _name = "";
@@ -183,7 +178,6 @@ class _BodyState extends State<Body> {
       ),
     );
   }
-// CRIAR EVENTO ===consertar esse
 
   Future<Evento> createEvent() async {
     log(widget.userId.toString());
@@ -193,7 +187,11 @@ class _BodyState extends State<Body> {
         horarioEvento: horarioController.toString(),
         userId: widget.userId);
     return new EventoController().createEvent(novoEvento);
-  } /* */
+  }
+
+  Future<List<Evento>> getEventsByDate(DateTime dataAtual, int userId) async {
+    return new UsuarioController().getEventsByDate(dataAtual, userId);
+  }
 /*
 //LISTAR EVENTOS
   Future<List<Evento>> getEventsByDate(DateTime data) async{
@@ -309,6 +307,21 @@ class _BodyState extends State<Body> {
         ));
   }
 
+  Widget eventTitle() {
+    if (_selectedEvents.length == 0) {
+      return Container(
+        padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
+        child: Text("Não há eventos",
+            style: Theme.of(context).primaryTextTheme.headline1),
+      );
+    }
+    return Container(
+      padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
+      child:
+          Text("Eventos", style: Theme.of(context).primaryTextTheme.headline1),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -324,9 +337,8 @@ class _BodyState extends State<Body> {
               style: TextStyle(color: kPrimaryColor, fontSize: 24),
             ),
           ),
-
           calendar(),
-          //eventTitle(),
+          eventTitle(),
           Column(children: _eventWidgets),
           SizedBox(height: 60)
         ],

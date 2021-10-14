@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' show Client;
 import 'package:standbyme_tcc/models/Usuario.dart';
 import 'package:standbyme_tcc/repositories/Interfaces/UsuarioRepositoryInterface.dart';
@@ -49,15 +50,21 @@ class UsuarioRepository implements IUsuarioRepository {
   }
 
   @override
-  Future<List<Evento>> getEventsByDate(DateTime data) async {
+  Future<List<Evento>> getEventsByDate(DateTime data, int userId) async {
     List<Evento> listEvents = [];
+    var dataDateTime = new TimeOfDay.fromDateTime(data).toString();
+    var idUsuario = userId.toString();
     try {
       final resposta = await client.post(
-          Uri.parse("https://standbyme-heroku.herokuapp.com/usuarios/eventos"),
+          Uri.parse(
+              "https://standbyme-heroku.herokuapp.com/usuarios/:userId/eventos"),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
-          body: jsonEncode(<String, DateTime>{'dataEvento': data}));
+          body: jsonEncode(<String, String>{
+            'dataEvento': dataDateTime,
+            'userId': idUsuario
+          }));
       final res = json.decode(resposta.body);
       print(res);
       for (var evento in res) {
