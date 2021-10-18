@@ -1,20 +1,11 @@
-//import 'dart:html';
 import 'dart:developer';
 import 'dart:ui';
-//import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/controllers/EventoController.dart';
 import 'package:standbyme_tcc/controllers/UsuarioController.dart';
 import 'package:standbyme_tcc/models/Evento.dart';
-//import 'package:standbyme_tcc/controllers/EventoController.dart';
-//import 'package:standbyme_tcc/models/Evento.dart';
-//import 'package:standbyme_tcc/size_config.dart';
-
-//import 'package:provider/provider.dart';
-//import 'package:standbyme_tcc/constants.dart';
-//import 'package:syncfusion_flutter_calendar/calendar.dart' as prefix;
 import 'package:table_calendar/table_calendar.dart';
 
 class Body extends StatefulWidget {
@@ -32,12 +23,8 @@ class _BodyState extends State<Body> {
   TimeOfDay horarioController = TimeOfDay(hour: 00, minute: 00);
   List<dynamic> _selectedEvents = [];
 
-  List<Widget> get _eventWidgets =>
-      _selectedEvents.map((e) => events(e)).toList();
-
   void initState() {
     super.initState();
-    //DB.init().then((value) => _fetchEvents());
     getId();
     _calendarController = CalendarController();
   }
@@ -66,29 +53,46 @@ class _BodyState extends State<Body> {
     super.dispose();
   }
 
-  Widget events(var d) {
+  Widget events() {
     return Container(
-      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-      child: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-          decoration: BoxDecoration(
-              border: Border(
-            top: BorderSide(color: Theme.of(context).dividerColor),
-          )),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text(d, style: Theme.of(context).primaryTextTheme.bodyText1),
-            /*
-            IconButton(
-                icon: Icon(
-                  Icons.check,
-                  color: Colors.redAccent,
-                  size: 15,
-                ),
-                onPressed: () => {} /*_deleteEvent(d)*/)*/
-          ])),
+      constraints: BoxConstraints(maxHeight: double.infinity, minHeight: 100),
+      child: ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          itemCount: _selectedEvents.length,
+          itemBuilder: (context, index) {
+            return Column(children: <Widget>[
+              Container(
+                  margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                  padding: EdgeInsets.fromLTRB(15, 7, 10, 10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: kPrimaryLightColor.withOpacity(0.5)),
+                  child: ListTile(
+                    title: Text(
+                      _selectedEvents[index].descricaoEvento +
+                          ' - ' +
+                          _selectedEvents[index].horarioEvento,
+                    ),
+                    trailing: IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.black.withOpacity(0.6),
+                          size: 23,
+                        ),
+                        onPressed: () => EventoController().deleteEvent(
+                            widget.userId, _selectedEvents[index].id)),
+                  )),
+              SizedBox(height: 10),
+            ]);
+          }),
     );
+  }
+
+  void salvarEsair() async {
+    createEvent();
+    Navigator.of(context).pop(false);
   }
 
   void _create(BuildContext context) {
@@ -119,7 +123,7 @@ class _BodyState extends State<Body> {
       child: Text('Salvar',
           style: TextStyle(
               color: kTextColor, fontSize: 15, fontWeight: FontWeight.bold)),
-      onPressed: () => createEvent(),
+      onPressed: () => salvarEsair(),
     );
     var cancelButton = FlatButton(
         child: Text('Cancelar',
@@ -181,10 +185,12 @@ class _BodyState extends State<Body> {
 
   Future<Evento> createEvent() async {
     log(widget.userId.toString());
+    log(_selectedDay.toString());
+    log(horarioController.format(context));
     Evento novoEvento = new Evento(
         descricaoEvento: descricaoController.text,
         dataEvento: _selectedDay,
-        horarioEvento: horarioController.toString(),
+        horarioEvento: horarioController.format(context),
         userId: widget.userId);
     return new EventoController().createEvent(novoEvento);
   }
@@ -192,65 +198,69 @@ class _BodyState extends State<Body> {
   Future<List<Evento>> getEventsByDate(DateTime dataAtual, int userId) async {
     return new UsuarioController().getEventsByDate(dataAtual, userId);
   }
-/*
-//LISTAR EVENTOS
-  Future<List<Evento>> getEventsByDate(DateTime data) async{
-    _events = {};
-    List<Map<String, dynamic>> _results = await DB.query(CalendarItem.table);
-    _data = _results.map((item) => CalendarItem.fromMap(item)).toList();
-      _data.forEach((element) {
-        DateTime formattedDate = DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.parse(element.date.toString())));
-      if(_events.containsKey(formattedDate)){
-        _events[formattedDate].add(element.name.toString());
-      }
-      else{
-          _events[formattedDate] = [element.name.toString()];
-        }
-      }
-    );
-    setState(() {});
-  }
 
-  
-  void _fetchEvents() async{
-    _events = {};
-    List<Map<String, dynamic>> _results = await DB.query(CalendarItem.table);
-    _data = _results.map((item) => CalendarItem.fromMap(item)).toList();
-      _data.forEach((element) {
-        DateTime formattedDate = DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.parse(element.date.toString())));
-      if(_events.containsKey(formattedDate)){
-        _events[formattedDate].add(element.name.toString());
-      }
-      else{
-          _events[formattedDate] = [element.name.toString()];
-        }
-      }
-    );
-    setState(() {});
-  }
+  void confirm(BuildContext context) {
+    String _name = "";
 
-   void _addEvent(String event) async{
-    CalendarItem item = CalendarItem(
-      date: _selectedDay.toString(),
-      name: event
+    var btn = FlatButton(
+      child: Text('Sim',
+          style: TextStyle(
+              color: kTextColor, fontSize: 15, fontWeight: FontWeight.bold)),
+      onPressed: () => EventoController().deleteEvent,
     );
-    await DB.insert(CalendarItem.table, item);
-    _selectedEvents.add(event);
-    _fetchEvents();
-    
-    Navigator.pop(context);
+    var cancelButton = FlatButton(
+        child: Text('Cancelar',
+            style: TextStyle(
+                color: kTextColor, fontSize: 15, fontWeight: FontWeight.bold)),
+        onPressed: () => Navigator.of(context).pop(false));
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        child: Stack(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(6),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min, // To make the card compact
+                children: <Widget>[
+                  SizedBox(height: 16.0),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(25, 20, 40, 20),
+                    child: Text(
+                        "Tem certeza que deseja\n     deletar este evento?",
+                        style: TextStyle(
+                          color: kTextColor,
+                          fontSize: 17,
+                        )),
+                  ),
+                  Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[cancelButton, btn]),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
-
-  // Delete doesnt refresh yet, thats it, then done!
-  void _deleteEvent(String s){
-    List<CalendarItem> d = _data.where((element) => element.name == s).toList();
-    if(d.length == 1){
-      DB.delete(CalendarItem.table, d[0]);
-      _selectedEvents.removeWhere((e) => e == s);
-      _fetchEvents();
-    }
-  }
-*/
 
   Widget calendar() {
     return Container(
@@ -271,10 +281,14 @@ class _BodyState extends State<Body> {
             ]),
         child: TableCalendar(
           locale: 'pt_Br',
-          onDaySelected: (date, events, e) {
+
+          onDaySelected: (date, events, e) async {
+            log(date.toString());
+            log(widget.userId.toString());
+            var response = await getEventsByDate(date, widget.userId);
             setState(() {
               _selectedDay = date;
-              log(_selectedDay.toString());
+              _selectedEvents = response;
             });
           },
           calendarStyle: CalendarStyle(
@@ -308,17 +322,22 @@ class _BodyState extends State<Body> {
   }
 
   Widget eventTitle() {
+    log(_selectedEvents.length.toString());
     if (_selectedEvents.length == 0) {
       return Container(
-        padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
+        padding: EdgeInsets.fromLTRB(30, 7, 15, 15),
         child: Text("Não há eventos",
-            style: Theme.of(context).primaryTextTheme.headline1),
+            style: TextStyle(
+                color: kPrimaryColor,
+                fontSize: 20,
+                fontWeight: FontWeight.bold)),
       );
     }
     return Container(
-      padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
-      child:
-          Text("Eventos", style: Theme.of(context).primaryTextTheme.headline1),
+      padding: EdgeInsets.fromLTRB(30, 7, 15, 15),
+      child: Text("Eventos",
+          style: TextStyle(
+              color: kPrimaryColor, fontSize: 20, fontWeight: FontWeight.bold)),
     );
   }
 
@@ -339,8 +358,8 @@ class _BodyState extends State<Body> {
           ),
           calendar(),
           eventTitle(),
-          Column(children: _eventWidgets),
-          SizedBox(height: 60)
+          events(),
+          SizedBox(height: 20)
         ],
       ),
       floatingActionButton: FloatingActionButton(

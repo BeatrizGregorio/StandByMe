@@ -62,7 +62,7 @@ class UsuarioRepository implements IUsuarioRepository {
             'Content-Type': 'application/json; charset=UTF-8',
           },
           body: jsonEncode(<String, String>{
-            'dataEvento': dataDateTime,
+            'dataEvento': data.toString(),
             'userId': idUsuario
           }));
       final res = json.decode(resposta.body);

@@ -12,4 +12,8 @@ class EventoController {
   Future<List<Evento>> findEventsByUser() async {
     return _eventoRepository.findEventsByUser();
   }
+
+  void deleteEvent(int userId, int id) async {
+    return _eventoRepository.deleteEvent(userId, id);
+  }
 }

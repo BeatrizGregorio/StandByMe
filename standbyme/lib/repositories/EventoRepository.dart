@@ -44,4 +44,16 @@ class EventoRepository implements IEventoRepository {
     }
     return listEvents;
   }
+
+  @override
+  void deleteEvent(int userId, int id) async {
+    try {
+      final resposta = await client.delete(Uri.parse(
+          "https://standbyme-heroku.herokuapp.com/usuarios/$userId/eventos/$id"));
+      final res = json.decode(resposta.body);
+      print(res);
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+  }
 }

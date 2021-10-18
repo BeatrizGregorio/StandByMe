@@ -1,21 +1,15 @@
-class Evento {
-  int id;
+class EventoBase {
   String descricaoEvento, horarioEvento;
   DateTime dataEvento;
   int userId;
 
-  Evento.empty();
+  EventoBase.empty();
 
-  Evento(
-      {this.id,
-      this.descricaoEvento,
-      this.dataEvento,
-      this.horarioEvento,
-      this.userId});
+  EventoBase(
+      {this.descricaoEvento, this.dataEvento, this.horarioEvento, this.userId});
 
-  factory Evento.fromJson(Map<String, dynamic> parsedJson) {
-    return Evento(
-      id: parsedJson['id'],
+  factory EventoBase.fromJson(Map<String, dynamic> parsedJson) {
+    return EventoBase(
       descricaoEvento: parsedJson['descricaoEvento'],
       dataEvento: DateTime.parse(parsedJson['dataEvento']),
       horarioEvento: parsedJson['horarioEvento'],
