@@ -81,8 +81,14 @@ class _BodyState extends State<Body> {
                           color: Colors.black.withOpacity(0.6),
                           size: 23,
                         ),
-                        onPressed: () => EventoController().deleteEvent(
-                            widget.userId, _selectedEvents[index].id)),
+                        onPressed: () {
+                          EventoController().deleteEvent(
+                              widget.userId, _selectedEvents[index].id);
+
+                          setState(() {
+                            _selectedEvents.removeAt(index);
+                          });
+                        }),
                   )),
               SizedBox(height: 10),
             ]);
@@ -123,7 +129,9 @@ class _BodyState extends State<Body> {
       child: Text('Salvar',
           style: TextStyle(
               color: kTextColor, fontSize: 15, fontWeight: FontWeight.bold)),
-      onPressed: () => salvarEsair(),
+      onPressed: () {
+        salvarEsair();
+      },
     );
     var cancelButton = FlatButton(
         child: Text('Cancelar',
@@ -192,74 +200,14 @@ class _BodyState extends State<Body> {
         dataEvento: _selectedDay,
         horarioEvento: horarioController.format(context),
         userId: widget.userId);
+    setState(() {
+      _selectedEvents.add(novoEvento);
+    });
     return new EventoController().createEvent(novoEvento);
   }
 
   Future<List<Evento>> getEventsByDate(DateTime dataAtual, int userId) async {
     return new UsuarioController().getEventsByDate(dataAtual, userId);
-  }
-
-  void confirm(BuildContext context) {
-    String _name = "";
-
-    var btn = FlatButton(
-      child: Text('Sim',
-          style: TextStyle(
-              color: kTextColor, fontSize: 15, fontWeight: FontWeight.bold)),
-      onPressed: () => EventoController().deleteEvent,
-    );
-    var cancelButton = FlatButton(
-        child: Text('Cancelar',
-            style: TextStyle(
-                color: kTextColor, fontSize: 15, fontWeight: FontWeight.bold)),
-        onPressed: () => Navigator.of(context).pop(false));
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6),
-        ),
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(6),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10.0,
-                    offset: const Offset(0.0, 10.0),
-                  ),
-                ],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min, // To make the card compact
-                children: <Widget>[
-                  SizedBox(height: 16.0),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(25, 20, 40, 20),
-                    child: Text(
-                        "Tem certeza que deseja\n     deletar este evento?",
-                        style: TextStyle(
-                          color: kTextColor,
-                          fontSize: 17,
-                        )),
-                  ),
-                  Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[cancelButton, btn]),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   Widget calendar() {
