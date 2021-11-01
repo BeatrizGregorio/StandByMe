@@ -17,7 +17,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  void response(query) async {
+  /*void response(query) async {
     AuthGoogle authGoogle =
         await AuthGoogle(fileJson: "assets/chatbotLuna/chatbotLuna.json")
             .build();
@@ -32,10 +32,10 @@ class _BodyState extends State<Body> {
     });
 
     print(aiResponse.getListMessage()[0]["text"]["text"][0].toString());
-  }
+  }*/
 
   final messageInsert = TextEditingController();
-  List<Map> messsages = List();
+  //List<Map> messsages = List();
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +60,7 @@ class _BodyState extends State<Body> {
             ),
             Flexible(
                 child: ListView.builder(
-                    reverse: true,
-                    itemCount: messsages.length,
-                    itemBuilder: (context, index) => chat(
-                        messsages[index]["message"].toString(),
-                        messsages[index]["data"]))),
+                    ),),
             SizedBox(
               height: 30,
             ),
@@ -100,12 +96,7 @@ class _BodyState extends State<Body> {
                       if (messageInsert.text.isEmpty) {
                         print("empty message");
                       } else {
-                        setState(() {
-                          messsages.insert(
-                              0, {"data": 1, "message": messageInsert.text});
-                        });
-                        print(messageInsert.text);
-                        response(messageInsert.text);
+                        setState(() {});
                         messageInsert.clear();
                       }
                       FocusScopeNode currentFocus = FocusScope.of(context);
