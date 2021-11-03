@@ -76,4 +76,19 @@ class UsuarioRepository implements IUsuarioRepository {
     }
     return listEvents;
   }
+
+  @override
+  Future<Usuario> getUsuarioById(int userId) async {
+    Usuario usuario;
+    try {
+      final resposta = await client.get(
+          Uri.parse("https://standbyme-heroku.herokuapp.com/usuarios/$userId"));
+      final res = json.decode(resposta.body);
+      print(res);
+      usuario = Usuario.fromJson(res);
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+    return usuario;
+  }
 }

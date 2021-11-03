@@ -17,4 +17,8 @@ class UsuarioController {
   Future<List<Evento>> getEventsByDate(DateTime data, int userId) {
     return _usuarioRepository.getEventsByDate(data, userId);
   }
+
+  Future<Usuario> getUsuarioById(int userId) {
+    return _usuarioRepository.getUsuarioById(userId);
+  }
 }
