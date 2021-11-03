@@ -69,9 +69,7 @@ class _BodyState extends State<Body> {
   // Método incompleto ainda
   Future _dialogFlowRequest({String query}) async {
     _addMessage(
-        name: 'Professor',
-        text: 'Escrevendo...',
-        type: ChatMessageType.received);
+        name: 'Luna', text: 'Escrevendo...', type: ChatMessageType.received);
 
     // Faz a autenticação com o serviço, envia a mensagem e recebe uma resposta da Intent
     AuthGoogle authGoogle =
