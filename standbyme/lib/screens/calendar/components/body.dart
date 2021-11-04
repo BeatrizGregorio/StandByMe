@@ -256,7 +256,7 @@ class _BodyState extends State<Body> {
           ),
           //onDaySelected: _onDaySelected,
           calendarController: _calendarController,
-          events: _events,
+          //events: _events,
           headerStyle: HeaderStyle(
             centerHeaderTitle: true,
             formatButtonVisible: false,

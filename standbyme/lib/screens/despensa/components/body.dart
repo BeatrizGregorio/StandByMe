@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/screens/despensa/components/itensAtuais.dart';
 import 'package:standbyme_tcc/screens/despensa/components/listaProdutos.dart';
-import 'package:standbyme_tcc/screens/despensa/components/receitasFavoritas.dart';
-import 'package:standbyme_tcc/screens/despensa/components/refeicoes.dart';
+//import 'package:standbyme_tcc/screens/despensa/components/receitasFavoritas.dart';
+//import 'package:standbyme_tcc/screens/despensa/components/refeicoes.dart';
 //import 'package:standbyme_tcc/screens/list/components/body.dart';
 //import 'package:standbyme_tcc/size_config.dart';
 
@@ -47,8 +47,8 @@ class _BodyState extends State<Body> {
           children: [
             ItensAtuais(),
             ListaProdutos(),
-            Refeicoes(),
-            ReceitasFavoritas()
+            //Refeicoes(),
+            //ReceitasFavoritas()
           ],
         ),
       ]),
@@ -74,6 +74,7 @@ class _BodyState extends State<Body> {
             ),
             label: '',
           ),
+          /*
           BottomNavigationBarItem(
             icon: Icon(
               Icons.restaurant,
@@ -87,7 +88,7 @@ class _BodyState extends State<Body> {
               size: 30,
             ),
             label: '',
-          ),
+          ),*/
         ],
       ),
     );

@@ -73,7 +73,8 @@ class _BodyState extends State<Body> {
 
     // Faz a autenticação com o serviço, envia a mensagem e recebe uma resposta da Intent
     AuthGoogle authGoogle =
-        await AuthGoogle(fileJson: "assets/chatbotluna.json").build();
+        await AuthGoogle(fileJson: "assets/chatbotluna-aca23dd6de77.json")
+            .build();
     Dialogflow dialogflow =
         Dialogflow(authGoogle: authGoogle, language: "pt-BR");
     AIResponse response = await dialogflow.detectIntent(query);
