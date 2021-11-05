@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:standbyme_tcc/screens/chatbot_Luna/components/chat_message.dart';
 import 'package:standbyme_tcc/screens/chatbot_Luna/components/chat_message_list_item.dart';
 import 'package:flutter/material.dart';
@@ -73,10 +75,11 @@ class _BodyState extends State<Body> {
 
     // Faz a autenticação com o serviço, envia a mensagem e recebe uma resposta da Intent
     AuthGoogle authGoogle =
-        await AuthGoogle(fileJson: "assets/chatbotluna-aca23dd6de77.json")
+        await AuthGoogle(fileJson: "assets/chatbot-luna-caev-46faf597329b.json")
             .build();
     Dialogflow dialogflow =
         Dialogflow(authGoogle: authGoogle, language: "pt-BR");
+    log(query);
     AIResponse response = await dialogflow.detectIntent(query);
 
     // remove a mensagem temporária

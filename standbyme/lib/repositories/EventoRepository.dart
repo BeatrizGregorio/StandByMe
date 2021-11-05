@@ -28,11 +28,11 @@ class EventoRepository implements IEventoRepository {
   }
 
   @override
-  Future<List<Evento>> findEventsByUser() async {
+  Future<List<Evento>> findEventsByUser(int userId) async {
     List<Evento> listEvents = [];
     try {
       final resposta = await client.get(Uri.parse(
-          "https://standbyme-heroku.herokuapp.com/usuarios/:userId/eventos"));
+          "https://standbyme-heroku.herokuapp.com/usuarios/$userId/eventos"));
       final res = json.decode(resposta.body);
       print(res);
       for (var produto in res) {

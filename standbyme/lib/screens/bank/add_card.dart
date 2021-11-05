@@ -9,8 +9,8 @@ import 'package:standbyme_tcc/screens/bank/bank_card.dart';
 import 'package:standbyme_tcc/screens/bank/bank_card_model.dart';
 import 'package:standbyme_tcc/screens/bank/data/card_data.dart';
 import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
-import '../../../constants.dart';
-import '../../../size_config.dart';
+import 'package:standbyme_tcc/constants.dart';
+import 'package:standbyme_tcc/size_config.dart';
 
 class AddCard extends StatefulWidget {
   @override

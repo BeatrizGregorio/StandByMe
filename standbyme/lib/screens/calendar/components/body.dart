@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/controllers/EventoController.dart';
@@ -8,13 +9,15 @@ import 'package:standbyme_tcc/controllers/UsuarioController.dart';
 import 'package:standbyme_tcc/models/Evento.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class Body extends StatefulWidget {
+class BodyCalendar extends StatefulWidget {
   int userId;
   @override
-  _BodyState createState() => _BodyState();
+  _BodyCalendarState createState() => _BodyCalendarState();
+
+  BodyCalendar(this.userId);
 }
 
-class _BodyState extends State<Body> {
+class _BodyCalendarState extends State<BodyCalendar> {
   DateTime _selectedDay = DateTime.now();
   TextEditingController descricaoController = TextEditingController();
   TextEditingController dataController = TextEditingController();
@@ -25,8 +28,8 @@ class _BodyState extends State<Body> {
 
   void initState() {
     super.initState();
-    getId();
     _calendarController = CalendarController();
+    getEventsByUser(widget.userId);
   }
 
   void _selectTime() async {
@@ -41,13 +44,14 @@ class _BodyState extends State<Body> {
     }
   }
 
+/*
   void getId() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       widget.userId = preferences.getInt("id");
     });
   }
-
+*/
   void dispose() {
     _calendarController.dispose();
     super.dispose();
@@ -210,6 +214,21 @@ class _BodyState extends State<Body> {
     return new UsuarioController().getEventsByDate(dataAtual, userId);
   }
 
+  void getEventsByUser(int userId) async {
+    var response = await (new EventoController().findEventsByUser(userId));
+    response.forEach((element) {
+      DateTime formattedDate = DateTime.parse(DateFormat('yyyy-MM-dd')
+          .format(DateTime.parse(element.dataEvento.toString())));
+      if (_events.containsKey(formattedDate)) {
+        _events[formattedDate].add(element);
+      } else {
+        _events[formattedDate] = [element];
+      }
+    });
+
+    setState(() {});
+  }
+
   Widget calendar() {
     return Container(
         margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
@@ -233,10 +252,9 @@ class _BodyState extends State<Body> {
           onDaySelected: (date, events, e) async {
             log(date.toString());
             log(widget.userId.toString());
-            var response = await getEventsByDate(date, widget.userId);
             setState(() {
               _selectedDay = date;
-              _selectedEvents = response;
+              _selectedEvents = events;
             });
           },
           calendarStyle: CalendarStyle(
@@ -256,7 +274,7 @@ class _BodyState extends State<Body> {
           ),
           //onDaySelected: _onDaySelected,
           calendarController: _calendarController,
-          //events: _events,
+          events: _events,
           headerStyle: HeaderStyle(
             centerHeaderTitle: true,
             formatButtonVisible: false,

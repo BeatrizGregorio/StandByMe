@@ -13,6 +13,10 @@ class Evento {
       this.horarioEvento,
       this.userId});
 
+  String toString() {
+    return "";
+  }
+
   factory Evento.fromJson(Map<String, dynamic> parsedJson) {
     return Evento(
       id: parsedJson['id'],

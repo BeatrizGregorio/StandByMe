@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
-import '../../../constants.dart';
-import '../../../size_config.dart';
+import 'package:standbyme_tcc/constants.dart';
+import 'package:standbyme_tcc/size_config.dart';
 
 class AddTransaction extends StatefulWidget {
   @override
