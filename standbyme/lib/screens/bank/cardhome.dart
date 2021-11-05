@@ -62,17 +62,18 @@ class CardHome extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              IconButton(
-                  icon: Icon(
-                    Icons.add,
-                    color: Colors.black,
-                    size: 50,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/add_transaction_screen');
-                  }),
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/add_transaction_screen');
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0))),
+                ),
+                child: const Text("ADICIONAR TRANSAÇÃO"),
+              ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               Text(
                 "Últimas Transações",

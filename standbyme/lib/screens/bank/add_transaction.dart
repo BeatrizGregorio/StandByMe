@@ -87,7 +87,7 @@ class _AddTransactionState extends State<AddTransaction> {
             child: AnimatedContainer(
               duration: Duration(milliseconds: 700),
               curve: Curves.bounceInOut,
-              height: 290,
+              height: 270,
               padding: EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
@@ -262,7 +262,7 @@ class _AddTransactionState extends State<AddTransaction> {
     return AnimatedPositioned(
       duration: Duration(milliseconds: 700),
       curve: Curves.bounceInOut,
-      top: 380,
+      top: 355,
       right: 0,
       left: 0,
       child: Center(
