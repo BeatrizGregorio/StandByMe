@@ -2,6 +2,8 @@
 //import 'dart:js_util';
 
 import 'package:flutter/widgets.dart';
+import 'package:standbyme_tcc/screens/bank/add_card.dart';
+import 'package:standbyme_tcc/screens/bank/add_transaction.dart';
 import 'package:standbyme_tcc/screens/bank/bank_card.dart';
 import 'package:standbyme_tcc/screens/despensa/despensa.dart';
 import 'package:standbyme_tcc/screens/home/home_screen.dart';
@@ -29,5 +31,7 @@ final Map<String, WidgetBuilder> routes = {
   Despensa.routeName: (context) => Despensa(),
   CardHome.routeName: (context) => CardHome(),
   Graphics.routeName: (context) => Graphics(),
-  Settings.routeName: (context) => Settings()
+  Settings.routeName: (context) => Settings(),
+  AddCard.routeName: (context) => AddCard(),
+  AddTransaction.routeName: (context) => AddTransaction(),
 };

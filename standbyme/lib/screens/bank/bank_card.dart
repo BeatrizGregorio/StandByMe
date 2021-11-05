@@ -52,11 +52,18 @@ class BankCard extends StatelessWidget {
                       );
                     }),
               ),
-              CircleAvatar(
-                radius: 40,
-                child: Icon(Icons.add, size: 50),
-              ),
-              SizedBox(height: 10),
+              IconButton(
+                  icon: Icon(
+                    Icons.add_circle_outline_rounded,
+                    color: Colors.black,
+                    size: 50,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/add_card_screen');
+                  }),
+              Container(
+                padding: EdgeInsets.all(20),
+              )
             ],
           ),
         ));

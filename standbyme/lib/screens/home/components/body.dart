@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:standbyme_tcc/constants.dart';
 //import 'package:standbyme_tcc/screens/bank/constants/color_constants.dart';
 
@@ -61,9 +62,6 @@ class _BodyState extends State<Body> {
                           )),
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
                   Text(
                     "Carteira",
                     textAlign: TextAlign.left,
@@ -75,50 +73,55 @@ class _BodyState extends State<Body> {
                   SizedBox(
                     height: 15,
                   ),
+                  Container(
+                    height: 200,
+                    child: ListView.separated(
+                        physics: ClampingScrollPhysics(),
+                        separatorBuilder: (context, index) {
+                          return SizedBox(
+                            width: 10,
+                          );
+                        },
+                        itemCount: 1,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Row(children: [
+                            CategoryCard(
+                              img:
+                                  "https://cdn-icons-png.flaticon.com/512/1292/1292739.png",
+                              title: "Cartões",
+                              press: () {
+                                Navigator.of(context).pushNamed("/bankcard");
+                              },
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            CategoryCard(
+                              img:
+                                  "https://cdn-icons-png.flaticon.com/512/1041/1041908.png",
+                              title: "Transações",
+                              press: () {
+                                Navigator.of(context).pushNamed("/cardhome");
+                              },
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            CategoryCard(
+                              img:
+                                  "https://cdn-icons-png.flaticon.com/512/2779/2779858.png",
+                              title: "Editar cartão",
+                              press: () {
+                                Navigator.of(context).pushNamed("/editCard");
+                              },
+                            ),
+                          ]);
+                        }),
+                  ),
                   SizedBox(
-                    height: 500,
-                    child: Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 2,
-                        childAspectRatio: .85,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                        children: [
-                          CategoryCard(
-                            img:
-                                "https://cdn-icons-png.flaticon.com/512/1292/1292739.png",
-                            title: "Cartão",
-                            press: () {
-                              Navigator.of(context).pushNamed("/bankcard");
-                            },
-                          ),
-                          CategoryCard(
-                            img:
-                                "https://cdn-icons-png.flaticon.com/512/2779/2779858.png",
-                            title: "Editar cartão",
-                            press: () {
-                              Navigator.of(context).pushNamed("/editCard");
-                            },
-                          ),
-                          CategoryCard(
-                            img:
-                                "https://cdn-icons-png.flaticon.com/512/1041/1041908.png",
-                            title: "Transações",
-                            press: () {
-                              Navigator.of(context).pushNamed("/cardhome");
-                            },
-                          ),
-                          CategoryCard(
-                            img:
-                                "https://img-premium.flaticon.com/png/512/1379/premium/1379897.png?token=exp=1632918863~hmac=97e0fccf98a28261b46fe94b400dd78f",
-                            title: "Gráficos",
-                            press: () {
-                              Navigator.of(context).pushNamed("/graphics");
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
+                    height: 30,
                   ),
                   Text(
                     "Cozinha",

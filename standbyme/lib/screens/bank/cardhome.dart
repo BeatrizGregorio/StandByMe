@@ -60,6 +60,18 @@ class CardHome extends StatelessWidget {
                     }),
               ),
               SizedBox(
+                height: 15,
+              ),
+              IconButton(
+                  icon: Icon(
+                    Icons.add,
+                    color: Colors.black,
+                    size: 50,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/add_transaction_screen');
+                  }),
+              SizedBox(
                 height: 30,
               ),
               Text(
