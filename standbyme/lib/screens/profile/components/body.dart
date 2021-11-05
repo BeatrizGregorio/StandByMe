@@ -14,18 +14,8 @@ class Body extends StatelessWidget {
           SizedBox(height: 20),
           ProfileMenu(
             text: "Minha conta",
-            icon: "assets/icons/User Icon.svg",
-            press: () => {},
-          ),
-          ProfileMenu(
-            text: "Notificações",
-            icon: "assets/icons/Bell.svg",
-            press: () {},
-          ),
-          ProfileMenu(
-            text: "Ajustes",
-            icon: "assets/icons/Settings.svg",
-            press: () {},
+            icon: "",
+            press: () => {Navigator.of(context).pushNamed("/my_Info")},
           ),
           ProfileMenu(
             text: "Cartões",

@@ -4,7 +4,7 @@ import 'package:standbyme_tcc/screens/myInfo/components/body.dart';
 //import 'package:standbyme_tcc/size_config.dart';
 
 class MyInfo extends StatelessWidget {
-  static String routeName = "/my_info";
+  static String routeName = "/my_Info";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

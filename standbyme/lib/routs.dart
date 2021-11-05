@@ -17,6 +17,7 @@ import 'package:standbyme_tcc/screens/list/list.dart';
 import 'package:standbyme_tcc/screens/bank/cardhome.dart';
 import 'package:standbyme_tcc/screens/graphics/graphics.dart';
 import 'package:standbyme_tcc/screens/settings/settings.dart';
+import 'package:standbyme_tcc/screens/myInfo/myInfo.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (context) => SplashScreen(),
@@ -34,4 +35,5 @@ final Map<String, WidgetBuilder> routes = {
   Settings.routeName: (context) => Settings(),
   AddCard.routeName: (context) => AddCard(),
   AddTransaction.routeName: (context) => AddTransaction(),
+  MyInfo.routeName: (context) => MyInfo()
 };
