@@ -19,7 +19,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   void response(query) async {
     AuthGoogle authGoogle =
-        await AuthGoogle(fileJson: "assets/chatbotOtto/chatbotOtto.json")
+        await AuthGoogle(fileJson: "assets/chatbot-otto-alcx-7a0f8472c439.json")
             .build();
     Dialogflow dialogflow = await Dialogflow(
         authGoogle: authGoogle, language: Language.portugueseBrazilian);
