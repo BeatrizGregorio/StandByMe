@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -6,18 +7,139 @@ import 'package:standbyme_tcc/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:bubble/bubble.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
+import 'package:standbyme_tcc/screens/chatbot_Otto/components/chat_message.dart';
+import 'package:standbyme_tcc/screens/chatbot_Otto/components/chat_message_list_item.dart';
 
 class Body extends StatefulWidget {
-  Body({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
-  void response(query) async {
+  final _messageList = <ChatMessage>[];
+  final _controllerText = new TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controllerText.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: new AppBar(
+        title: Text('Otto'),
+      ),
+      body: Column(
+        children: <Widget>[
+          _buildList(),
+          Divider(height: 1.0),
+          _buildUserInput(),
+        ],
+      ),
+    );
+  }
+
+  // Cria a lista de mensagens (de baixo para cima)
+  Widget _buildList() {
+    return Flexible(
+      child: ListView.builder(
+        padding: EdgeInsets.all(8.0),
+        reverse: true,
+        itemBuilder: (_, int index) =>
+            ChatMessageListItem(chatMessage: _messageList[index]),
+        itemCount: _messageList.length,
+      ),
+    );
+  }
+
+  // Envia uma mensagem com o padrão a direita
+  void _sendMessage({String text}) {
+    _controllerText.clear();
+    _addMessage(name: 'Você', text: text, type: ChatMessageType.sent);
+  }
+
+  // Adiciona uma mensagem na lista de mensagens
+  void _addMessage({String name, String text, ChatMessageType type}) {
+    var message = ChatMessage(text: text, name: name, type: type);
+    setState(() {
+      _messageList.insert(0, message);
+    });
+
+    if (type == ChatMessageType.sent) {
+      // Envia a mensagem para o chatbot e aguarda sua resposta
+      _dialogFlowRequest(query: message.text);
+    }
+  }
+
+  // Método incompleto ainda
+  Future _dialogFlowRequest({String query}) async {
+    _addMessage(
+        name: 'Otto', text: 'Escrevendo...', type: ChatMessageType.received);
+
+    // Faz a autenticação com o serviço, envia a mensagem e recebe uma resposta da Intent
+    AuthGoogle authGoogle =
+        await AuthGoogle(fileJson: "assets/chatbot-otto-alcx-7a0f8472c439.json")
+            .build();
+    Dialogflow dialogflow =
+        Dialogflow(authGoogle: authGoogle, language: "pt-BR");
+    log(query);
+    AIResponse response = await dialogflow.detectIntent(query);
+
+    // remove a mensagem temporária
+    setState(() {
+      _messageList.removeAt(0);
+    });
+
+    // adiciona a mensagem com a resposta do DialogFlow
+    _addMessage(
+        name: 'Otto',
+        text: response.getMessage() ?? '',
+        type: ChatMessageType.received);
+  }
+
+  // Campo para escrever a mensagem
+  Widget _buildTextField() {
+    return new Flexible(
+      child: new TextField(
+        controller: _controllerText,
+        decoration: new InputDecoration.collapsed(
+          hintText: "Enviar mensagem",
+        ),
+      ),
+    );
+  }
+
+  // Botão para enviar a mensagem
+  Widget _buildSendButton() {
+    return new Container(
+      margin: new EdgeInsets.only(left: 8.0),
+      child: new IconButton(
+          icon: new Icon(Icons.send, color: Theme.of(context).accentColor),
+          onPressed: () {
+            if (_controllerText.text.isNotEmpty) {
+              _sendMessage(text: _controllerText.text);
+            }
+          }),
+    );
+  }
+
+  // Monta uma linha com o campo de text e o botão de enviao
+  Widget _buildUserInput() {
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: new Row(
+        children: <Widget>[
+          _buildTextField(),
+          _buildSendButton(),
+        ],
+      ),
+    );
+  }
+}
+  /*void response(query) async {
     AuthGoogle authGoogle =
         await AuthGoogle(fileJson: "assets/chatbot-otto-alcx-7a0f8472c439.json")
             .build();
@@ -186,5 +308,5 @@ class _BodyState extends State<Body> {
         ],
       ),
     );
-  }
-}
+  }*/
+
