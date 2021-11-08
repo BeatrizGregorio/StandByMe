@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "chatbot-tina-tove",
+  "private_key_id": "7b0ee63e45bb82e97c8b8323def1ce45c4105dd6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCsPraxHryYuubB\nvAaWd0gheweJYQbeL8oh+HParCnVYUImyu10PbADS+iaXxAi7081++IBordjUMNs\nc+CwysTvHw/5LoHxvI0QiMqU1uVNvjNGqpJUZBALyUvb3S9Vf3zXSUF4FNma0TwY\n76O+E2DEYB6Q6yJIljTtGIxH54XqiM3bKxqk3WefBO/B9XO3fyZ9SHZ95fj6j7cA\ni24F4FGsXaQij5MtSrJ12TxcH9HL5KGSrFOxmYm0rfnqHYc1xHYtFW94AbQZuj0L\nNRhzIRfZx/kNgUEVIDRbVCIkRHnUBlTDN6lFfQdGNRl1lgFYxbhVm8DMOene38Dj\nyApRGQH1AgMBAAECggEAIv3Hi/JoUmevvr5FoVYgoWqWtJ4xMLyJJf8M/Ci7A+Xy\n9CIH/LQWeIj4ezniM5KlpxwhRP9LHaI33SWqSQgcW06WZmMAE32gM7JyYyvH4BQK\nYyn+OaYtS1OstUD5H3ebgznW0r/7l/O3L4KpY1EY+LPlKcAW0iOvo1X4E5hxcFxe\njKtaiDvnvxLSVzjnhLDqdohZO1DfNlRIfcp4Ig2oElYJ9RA4tYZagi0EeuS1BOde\n9Rq2FiuPgOnlZxX0LwFSH3rBMsK+F0CmCsBXz8qsKuMsE57iuRCsADhzctdhrhmq\n58x8i7RMQr+fuP83jTTHB3z2RKsIpKOb4VVcZt5SEQKBgQDWrQZcmT7phmGJpW6y\naBcyT6Vs8BS2ej2DRajFSerG/ynF+HL8ZDAT/+cs7AooNla5pyOvgxGFtQ0BV/QG\nzP8jGNDJApbhOzBN2Q3gC9SL3o5Al7eV5wGYdp5OwxEwrY8PU0394qFTuy0jvqlP\nD8/4+5zPSwMliYC0DrLdCeRrxQKBgQDNZr5kMKxSpoM2Ytbf5A+VKbQY6Mx0/Gaq\nFBOLJ+uPUgF4QzEEwbqPEWVQ8gLUfqQkKaDMRmGQvrYcdLxt1Ky/lUrBr4CLfArW\n8jsrHTynyzmp3q7wiswCCmrymwSjOuiQXY6C6W9Tq5FHY5S4svfxz5sHTCXV1SmC\nO0MDMVawcQKBgQCf+P3loRj9onMqxImyDtlCV5G5lUqKFJukKBO1OPjoY5r4eMUP\nCYW+UZMuqZKEFsIXxNJV5wD2t01CtA0XyElUGRj0waY3nwjG6jlpvMcdl7I/tg9L\neIJ63+HmZXx43szdqcFTsT9xCul/WoQGc40SSEW5P3fP0CCFjPKCvu1l1QKBgQCi\n7Kx4rGMD7DCIIz5tuWji2IGSgJYs9Ug6AFLAPpoKxPGFg0aOj1x7v0CuREkaZJmu\nVZbGcc1SEvRA/he4xsl/7duuZpeADJRMizeDq11Be2Hx7EC3bGEF/V13sp6rGz79\nxDgWfzNfGufRyJtfJhamKBbAYxZf1wVl17v//FLXAQKBgQCxQZz71GAAdkVvDxIH\nS8aK8iyitXNTtMDwaWY6qEFoIc/jrHTOVlm2/K+xqjwxne+jvf9W6pGYY9NMwJrM\ncH6S5qUV/R0fFxjX/fUE0wq9ToeRgViYa9TQQuYQsFtNtsrAxcQv4MMMfeMrM+MI\nfBICfNwTYl467dTR0EPOlJbaWQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "chatbottina@chatbot-tina-tove.iam.gserviceaccount.com",
+  "client_id": "117313819578448840893",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chatbottina%40chatbot-tina-tove.iam.gserviceaccount.com"
+}
