@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/screens/chatbot_Otto/components/chat_message.dart';
 
 class ChatMessageListItem extends StatelessWidget {
@@ -16,7 +17,13 @@ class ChatMessageListItem extends StatelessWidget {
   Widget _showSentMessage({EdgeInsets padding, TextAlign textAlign}) {
     return ListTile(
       contentPadding: EdgeInsets.fromLTRB(64.0, 0.0, 8.0, 0.0),
-      trailing: CircleAvatar(child: Text(chatMessage.name.toUpperCase()[0])),
+      trailing: CircleAvatar(
+        child: Text(
+          chatMessage.name.toUpperCase()[0],
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: kPrimaryLightColor,
+      ),
       title: Text(chatMessage.name, textAlign: TextAlign.right),
       subtitle: Text(chatMessage.text, textAlign: TextAlign.right),
     );
@@ -25,7 +32,10 @@ class ChatMessageListItem extends StatelessWidget {
   Widget _showReceivedMessage() {
     return ListTile(
       contentPadding: EdgeInsets.fromLTRB(8.0, 0.0, 64.0, 0.0),
-      leading: CircleAvatar(child: Text(chatMessage.name.toUpperCase()[0])),
+      leading: CircleAvatar(
+        child: Image.asset("assets/images/otto_oficial.PNG"),
+        backgroundColor: kPrimaryLightColor,
+      ),
       title: Text(chatMessage.name, textAlign: TextAlign.left),
       subtitle: Text(chatMessage.text, textAlign: TextAlign.left),
     );

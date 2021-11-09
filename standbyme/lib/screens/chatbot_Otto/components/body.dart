@@ -10,6 +10,8 @@ import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:standbyme_tcc/screens/chatbot_Otto/components/chat_message.dart';
 import 'package:standbyme_tcc/screens/chatbot_Otto/components/chat_message_list_item.dart';
 
+import '../../../size_config.dart';
+
 class Body extends StatefulWidget {
   @override
   _BodyState createState() => _BodyState();
@@ -29,7 +31,15 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: Text('Otto'),
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.transparent),
+        title:
+            Text("Otto", style: TextStyle(color: kPrimaryColor, fontSize: 24)),
+        centerTitle: false,
+        leading: Image.asset(
+          "assets/images/otto_oficial.PNG",
+          height: SizeConfig.screenHeight * 0.05,
+        ),
       ),
       body: Column(
         children: <Widget>[
@@ -101,22 +111,49 @@ class _BodyState extends State<Body> {
 
   // Campo para escrever a mensagem
   Widget _buildTextField() {
-    return new Flexible(
+    return Flexible(
+      child: Container(
+        height: 60,
+        child: ListTile(
+          title: Container(
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Colors.grey.withOpacity(0.2),
+            ),
+            padding: EdgeInsets.only(left: 15),
+            child: TextField(
+              controller: _controllerText,
+              decoration: InputDecoration(
+                  hintText: "Digite uma mensagem...",
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
+                  contentPadding: EdgeInsets.only(left: 0),
+                  border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none),
+              style: TextStyle(fontSize: 16, color: kTextColor),
+            ),
+          ),
+        ),
+      ),
+    ); /*new Flexible(
       child: new TextField(
         controller: _controllerText,
         decoration: new InputDecoration.collapsed(
           hintText: "Enviar mensagem",
         ),
       ),
-    );
+    );*/
   }
 
   // Botão para enviar a mensagem
   Widget _buildSendButton() {
     return new Container(
-      margin: new EdgeInsets.only(left: 8.0),
+      margin: new EdgeInsets.only(left: 8.0, right: 10),
       child: new IconButton(
-          icon: new Icon(Icons.send, color: Theme.of(context).accentColor),
+          icon: new Icon(Icons.send, color: kPrimaryColor),
           onPressed: () {
             if (_controllerText.text.isNotEmpty) {
               _sendMessage(text: _controllerText.text);
@@ -129,7 +166,7 @@ class _BodyState extends State<Body> {
   Widget _buildUserInput() {
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 0.5),
       child: new Row(
         children: <Widget>[
           _buildTextField(),
