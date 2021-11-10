@@ -56,18 +56,15 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Padding(
               padding: EdgeInsets.only(right: 10.0),
-              child: InkWell(
+              child: GestureDetector(
                 child: Container(
                   alignment: Alignment.center,
                   height: 52,
                   width: 52,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100].withOpacity(0.7),
-                    shape: BoxShape.circle,
-                  ),
                   child: Icon(
                     Icons.person,
-                    color: Colors.black,
+                    color: Colors.white,
+                    size: 30,
                   ),
                 ),
                 onTap: () {

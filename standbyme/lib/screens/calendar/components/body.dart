@@ -75,10 +75,10 @@ class _BodyCalendarState extends State<BodyCalendar> {
                       color: kPrimaryLightColor.withOpacity(0.5)),
                   child: ListTile(
                     title: Text(
-                      _selectedEvents[index].descricaoEvento +
-                          ' - ' +
-                          _selectedEvents[index].horarioEvento,
-                    ),
+                        _selectedEvents[index].descricaoEvento +
+                            ' - ' +
+                            _selectedEvents[index].horarioEvento,
+                        style: TextStyle(color: Color(0XFF036666))),
                     trailing: IconButton(
                         icon: Icon(
                           Icons.delete,

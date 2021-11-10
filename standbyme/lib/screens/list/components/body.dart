@@ -61,11 +61,11 @@ class BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Color.fromARGB(200, 153, 51, 153),
-          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: kPrimaryColor,
+          iconTheme: IconThemeData(color: Colors.white),
           shadowColor: Colors.transparent,
           title: Image.asset(
-            "assets/images/logo_porta.PNG",
+            "assets/images/logo_porta_branca.png",
             height: SizeConfig.screenHeight * 0.08,
           ),
           centerTitle: true,

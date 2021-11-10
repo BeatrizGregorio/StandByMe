@@ -29,6 +29,7 @@ class SearchField extends StatelessWidget {
             ),
             fillColor: Colors.transparent,
             hintText: 'Pesquisar...',
+            contentPadding: EdgeInsets.only(left: 10),
             suffixIcon: IconButton(
               onPressed: () {},
               icon: Icon(

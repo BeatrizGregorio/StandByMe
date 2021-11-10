@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:standbyme_tcc/constants.dart';
+import 'package:standbyme_tcc/screens/despensa/components/search_field.dart';
 //import 'package:standbyme_tcc/screens/bank/constants/color_constants.dart';
 
 //import 'package:standbyme_tcc/constants.dart';
@@ -44,7 +45,7 @@ class _BodyState extends State<Body> {
                     ),
                   ),*/
                   SizedBox(height: 10),
-                  Container(
+                  /*Container(
                     margin: EdgeInsets.symmetric(vertical: 30),
                     /*decoration: BoxDecoration(
                         color: Colors.white,
@@ -61,13 +62,43 @@ class _BodyState extends State<Body> {
                             size: 25,
                           )),
                     ),
+                  ),*/
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 30),
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.grey.withOpacity(0.15),
+                    ),
+                    child: TextField(
+                      cursorColor: kPrimaryColor,
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.transparent, width: 5.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.transparent, width: 5.0),
+                          ),
+                          fillColor: Colors.transparent,
+                          hintText: 'Pesquisar...',
+                          contentPadding: EdgeInsets.only(left: 10),
+                          suffixIcon: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.search,
+                              color: kPrimaryColor,
+                            ),
+                          )),
+                    ),
                   ),
                   Text(
                     "Carteira",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         fontSize: 25,
-                        color: Colors.black,
+                        color: kPrimaryColor,
                         fontWeight: FontWeight.w600),
                   ),
                   SizedBox(
@@ -128,7 +159,7 @@ class _BodyState extends State<Body> {
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         fontSize: 25,
-                        color: Colors.black,
+                        color: kPrimaryColor,
                         fontWeight: FontWeight.w600),
                   ),
                   SizedBox(
@@ -354,10 +385,7 @@ class CategoryCard extends StatelessWidget {
                 Text(
                   title,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      .copyWith(fontSize: 18),
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 )
               ],
             ),
