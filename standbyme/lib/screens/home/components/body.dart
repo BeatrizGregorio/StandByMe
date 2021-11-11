@@ -44,7 +44,7 @@ class _BodyState extends State<Body> {
                       child: Icon(Icons.person),
                     ),
                   ),*/
-                  SizedBox(height: 10),
+                  SizedBox(height: 5),
                   /*Container(
                     margin: EdgeInsets.symmetric(vertical: 30),
                     /*decoration: BoxDecoration(
