@@ -1,12 +1,14 @@
 class Transacao {
   int id;
   String nome, tipo;
-  int valor;
+  double valor;
+  DateTime data;
   int userId;
 
   Transacao.empty();
 
-  Transacao({this.id, this.nome, this.tipo, this.valor, this.userId});
+  Transacao(
+      {this.id, this.nome, this.tipo, this.valor, this.data, this.userId});
 
   String toString() {
     return "";
@@ -16,8 +18,9 @@ class Transacao {
     return Transacao(
       id: parsedJson['id'],
       tipo: parsedJson['tipo'],
-      valor: int.parse(parsedJson['valor']),
+      valor: parsedJson['valor'],
       nome: parsedJson['nome'],
+      data: DateTime.parse(parsedJson['data']),
       userId: parsedJson['userId'],
     );
   }

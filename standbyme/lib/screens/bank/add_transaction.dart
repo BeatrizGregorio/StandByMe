@@ -301,14 +301,14 @@ class _AddTransactionState extends State<AddTransaction> {
 
   @override
   Future<Transacao> createTransaction() async {
-    log(widget.userId.toString());
-    log(nomeController.text);
-    log(TipoTransacao.values.toString());
-    log(valorController.toString());
+    log(DateTime.now().toString());
     Transacao transacao = new Transacao(
         nome: nomeController.text,
-        tipo: TipoTransacao.values.toString(),
-        valor: 1, //achar jeito melhor
+        tipo: isAdicionar
+            ? TipoTransacao.adicionar.toString()
+            : TipoTransacao.retirar.toString(),
+        valor: double.parse(valorController.text),
+        data: DateTime.now(),
         userId: widget.userId);
     setState(() {
       _transactions.add(transacao);

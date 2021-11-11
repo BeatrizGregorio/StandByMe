@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' show Client;
 import 'package:standbyme_tcc/models/Transacao.dart';
 import 'package:standbyme_tcc/repositories/Interfaces/TransacaoRepositoryInterface.dart';
@@ -11,7 +13,7 @@ class TransacaoRepository implements ITransacaoRepository {
     try {
       final resposta = await client.post(
           Uri.parse(
-              "https://standbyme-heroku.herokuapp.com/usuarios/transacoes"),
+              "https://standbyme-heroku.herokuapp.com/usuarios/$userId/transacoes"),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
@@ -19,8 +21,10 @@ class TransacaoRepository implements ITransacaoRepository {
             'nome': transacao.nome,
             'valor': transacao.valor.toString(),
             'tipo': transacao.tipo,
+            'data': transacao.data.toString(),
             'userId': transacao.userId.toString(),
           }));
+      log(transacao.data.toString());
       Transacao novaTransacao =
           new Transacao.fromJson(json.decode(resposta.body));
       return novaTransacao;
