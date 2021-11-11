@@ -7,7 +7,7 @@ class TransacaoRepository implements ITransacaoRepository {
   Client client = Client();
 
   @override
-  Future<Transacao> createTransaction(Transacao transacao) async {
+  Future<Transacao> createTransaction(Transacao transacao, int userId) async {
     try {
       final resposta = await client.post(
           Uri.parse(
