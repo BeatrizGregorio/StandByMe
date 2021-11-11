@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
+import 'package:standbyme_tcc/controllers/CartaoController.dart';
 import 'package:standbyme_tcc/controllers/UsuarioController.dart';
+import 'package:standbyme_tcc/models/Cartao.dart';
 import 'package:standbyme_tcc/models/Usuario.dart';
 import 'package:standbyme_tcc/screens/bank/bank_card.dart';
 import 'package:standbyme_tcc/screens/bank/bank_card_model.dart';
@@ -16,9 +18,21 @@ class AddCard extends StatefulWidget {
   @override
   _AddCardState createState() => _AddCardState();
   static String routeName = "/add_card_screen";
+  int userId;
 }
 
 class _AddCardState extends State<AddCard> {
+  TextEditingController nomeController = TextEditingController();
+  TextEditingController numeroController = TextEditingController();
+  TextEditingController cvvController = TextEditingController();
+  TextEditingController dataExpController = TextEditingController();
+  List<dynamic> _cards = [];
+
+  void initState() {
+    super.initState();
+    getCardsByUser(widget.userId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,16 +164,125 @@ class _AddCardState extends State<AddCard> {
       margin: EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          buildTextField(Icons.person, "Nome"),
-          buildTextField(Icons.credit_card, "Número"),
-          buildTextField(Icons.lock, "CVV"),
-          buildTextField(Icons.calendar_today, "Data de Vencimento"),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: TextField(
+              controller: nomeController,
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.person,
+                  color: kPrimaryLightColor,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kPrimaryColor),
+                  borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kPrimaryColor),
+                  borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                ),
+                contentPadding: EdgeInsets.all(10),
+                hintText: 'Nome',
+                hintStyle: TextStyle(fontSize: 14, color: kPrimaryColor),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: TextField(
+              controller: numeroController,
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.credit_card,
+                  color: kPrimaryLightColor,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kPrimaryColor),
+                  borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kPrimaryColor),
+                  borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                ),
+                contentPadding: EdgeInsets.all(10),
+                hintText: 'Número',
+                hintStyle: TextStyle(fontSize: 14, color: kPrimaryColor),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: TextField(
+              controller: cvvController,
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: kPrimaryLightColor,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kPrimaryColor),
+                  borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kPrimaryColor),
+                  borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                ),
+                contentPadding: EdgeInsets.all(10),
+                hintText: 'CVV',
+                hintStyle: TextStyle(fontSize: 14, color: kPrimaryColor),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: TextField(
+              controller: dataExpController,
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.calendar_today,
+                  color: kPrimaryLightColor,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kPrimaryColor),
+                  borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kPrimaryColor),
+                  borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                ),
+                contentPadding: EdgeInsets.all(10),
+                hintText: 'Data de Vencimento',
+                hintStyle: TextStyle(fontSize: 14, color: kPrimaryColor),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 10),
           ),
         ],
       ),
     );
+  }
+
+  Future<Cartao> createCard() async {
+    log(widget.userId.toString());
+    Cartao cartao = new Cartao(
+        //achar um jeito melhor
+        userId: widget.userId);
+    setState(() {
+      _cards.add(cartao);
+    });
+    return new CartaoController().createCard(cartao);
+  }
+
+  void salvarEsair() async {
+    createCard();
+    Navigator.of(context).pop(false);
+  }
+
+  void getCardsByUser(int userId) async {
+    var response = await (new CartaoController().findCardsByUser(userId));
+    setState(() {});
   }
 
   TextButton buildTextButton(
@@ -191,75 +314,55 @@ class _AddCardState extends State<AddCard> {
 
   Widget buildBottomHalfContainer(bool showShadow) {
     return AnimatedPositioned(
-      duration: Duration(milliseconds: 700),
-      curve: Curves.bounceInOut,
-      top: 395,
-      right: 0,
-      left: 0,
-      child: Center(
-        child: Container(
-          height: 90,
-          width: 90,
-          padding: EdgeInsets.all(15),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(50),
-              boxShadow: [
-                if (showShadow)
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.3),
-                    spreadRadius: 1.5,
-                    blurRadius: 10,
-                  )
-              ]),
-          child: !showShadow
-              ? Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        kPrimaryLightColor.withOpacity(0.1),
-                        kPrimaryColor
-                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                      borderRadius: BorderRadius.circular(30),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(.3),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(0, 1))
-                      ]),
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  ),
-                )
-              : Center(),
-        ),
-      ),
-    );
-  }
-
-  Widget buildTextField(IconData icon, String hintText) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: TextField(
-        decoration: InputDecoration(
-          prefixIcon: Icon(
-            icon,
-            color: kPrimaryLightColor,
+        duration: Duration(milliseconds: 700),
+        curve: Curves.bounceInOut,
+        top: 355,
+        right: 0,
+        left: 0,
+        child: Center(
+          child: Container(
+            height: 90,
+            width: 90,
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  if (showShadow)
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.3),
+                      spreadRadius: 1.5,
+                      blurRadius: 10,
+                    )
+                ]),
+            child: GestureDetector(
+              onTap: salvarEsair,
+              child: !showShadow
+                  ? Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              colors: [
+                                kPrimaryLightColor.withOpacity(0.1),
+                                kPrimaryColor
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(.3),
+                                spreadRadius: 1,
+                                blurRadius: 2,
+                                offset: Offset(0, 1))
+                          ]),
+                      child: Icon(
+                        Icons.check,
+                        color: Colors.white,
+                      ),
+                    )
+                  : Center(),
+            ),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: kPrimaryColor),
-            borderRadius: BorderRadius.all(Radius.circular(35.0)),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: kPrimaryColor),
-            borderRadius: BorderRadius.all(Radius.circular(35.0)),
-          ),
-          contentPadding: EdgeInsets.all(10),
-          hintText: hintText,
-          hintStyle: TextStyle(fontSize: 14, color: kPrimaryColor),
-        ),
-      ),
-    );
+        ));
   }
 }
