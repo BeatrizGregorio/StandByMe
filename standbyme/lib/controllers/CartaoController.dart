@@ -5,8 +5,8 @@ import 'package:standbyme_tcc/repositories/Interfaces/CartaoRepositoryInterface.
 class CartaoController {
   final ICartaoRepository _cartaoRepository = CartaoRepository();
 
-  Future<Cartao> createCard(Cartao cartao) async {
-    return _cartaoRepository.createCard(cartao);
+  Future<Cartao> createCard(Cartao cartao, int userId) async {
+    return _cartaoRepository.createCard(cartao, userId);
   }
 
   Future<List<Cartao>> findCardsByUser(int userId) async {

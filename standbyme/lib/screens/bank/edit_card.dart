@@ -272,7 +272,7 @@ class _EditCardState extends State<EditCard> {
     setState(() {
       _cards.add(cartao);
     });
-    return new CartaoController().createCard(cartao);
+    return new CartaoController().createCard(cartao, widget.userId);
   }
 
   void salvarEsair() async {

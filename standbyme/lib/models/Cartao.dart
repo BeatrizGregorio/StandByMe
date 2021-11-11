@@ -1,7 +1,6 @@
 class Cartao {
   int id;
-  String nome, numero, cvv;
-  DateTime dataExp;
+  String nome, numero, cvv, dataExp;
   int userId;
 
   Cartao.empty();
@@ -17,7 +16,7 @@ class Cartao {
     return Cartao(
       id: parsedJson['id'],
       nome: parsedJson['nome'],
-      dataExp: DateTime.parse(parsedJson['dataExp']),
+      dataExp: parsedJson['dataExp'],
       numero: parsedJson['numero'],
       cvv: parsedJson['cvv'],
       userId: parsedJson['userId'],

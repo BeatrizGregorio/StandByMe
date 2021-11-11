@@ -7,10 +7,11 @@ class CartaoRepository implements ICartaoRepository {
   Client client = Client();
 
   @override
-  Future<Cartao> createCard(Cartao cartao) async {
+  Future<Cartao> createCard(Cartao cartao, int userId) async {
     try {
       final resposta = await client.post(
-          Uri.parse("https://standbyme-heroku.herokuapp.com/usuarios/cartoes"),
+          Uri.parse(
+              "https://standbyme-heroku.herokuapp.com/usuarios/$userId/cartoes"),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
@@ -18,7 +19,7 @@ class CartaoRepository implements ICartaoRepository {
             'nome': cartao.nome,
             'numero': cartao.numero,
             'cvv': cartao.cvv,
-            'dataExp': cartao.dataExp.toString(),
+            'dataExp': cartao.dataExp,
             'userId': cartao.userId.toString(),
           }));
       Cartao novoCartao = new Cartao.fromJson(json.decode(resposta.body));

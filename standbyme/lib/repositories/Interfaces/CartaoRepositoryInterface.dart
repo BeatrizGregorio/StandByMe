@@ -1,7 +1,7 @@
 import 'package:standbyme_tcc/models/Cartao.dart';
 
 abstract class ICartaoRepository {
-  Future<Cartao> createCard(Cartao cartao);
+  Future<Cartao> createCard(Cartao cartao, int userId);
 
   Future<List<Cartao>> findCardsByUser(int userId);
 

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/components/form_error.dart';
 import 'package:standbyme_tcc/controllers/CartaoController.dart';
@@ -30,7 +31,14 @@ class _AddCardState extends State<AddCard> {
 
   void initState() {
     super.initState();
-    getCardsByUser(widget.userId);
+    getId();
+  }
+
+  void getId() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      widget.userId = preferences.getInt("id");
+    });
   }
 
   @override
@@ -190,6 +198,7 @@ class _AddCardState extends State<AddCard> {
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: TextField(
+              keyboardType: TextInputType.number,
               controller: numeroController,
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -213,6 +222,7 @@ class _AddCardState extends State<AddCard> {
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: TextField(
+              keyboardType: TextInputType.number,
               controller: cvvController,
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -251,7 +261,7 @@ class _AddCardState extends State<AddCard> {
                   borderRadius: BorderRadius.all(Radius.circular(35.0)),
                 ),
                 contentPadding: EdgeInsets.all(10),
-                hintText: 'Data de Vencimento',
+                hintText: 'Data de Vencimento (**/**/****)',
                 hintStyle: TextStyle(fontSize: 14, color: kPrimaryColor),
               ),
             ),
@@ -266,13 +276,21 @@ class _AddCardState extends State<AddCard> {
 
   Future<Cartao> createCard() async {
     log(widget.userId.toString());
+    log(nomeController.text);
+    log(numeroController.text);
+    log(cvvController.text);
+    log(dataExpController.text);
+
     Cartao cartao = new Cartao(
-        //achar um jeito melhor
+        nome: nomeController.text,
+        numero: numeroController.text,
+        cvv: cvvController.text,
+        dataExp: dataExpController.text,
         userId: widget.userId);
     setState(() {
       _cards.add(cartao);
     });
-    return new CartaoController().createCard(cartao);
+    return new CartaoController().createCard(cartao, widget.userId);
   }
 
   void salvarEsair() async {
@@ -316,7 +334,7 @@ class _AddCardState extends State<AddCard> {
     return AnimatedPositioned(
         duration: Duration(milliseconds: 700),
         curve: Curves.bounceInOut,
-        top: 355,
+        top: 400,
         right: 0,
         left: 0,
         child: Center(

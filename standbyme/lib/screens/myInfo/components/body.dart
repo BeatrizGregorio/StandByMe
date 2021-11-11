@@ -59,59 +59,136 @@ class _BodyState extends State<Body> {
                       SizedBox(height: 20),
                       Container(
                         margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
-                        padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
-                        child: Text('Primeiro nome: ' + usuario.primeiroNome,
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: kPrimaryColor,
-                            )),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0.0)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(35.0)),
+                            ),
+                            hintText: 'Primeiro nome: ' + usuario.primeiroNome,
+                            hintStyle:
+                                TextStyle(fontSize: 17, color: kPrimaryColor),
+                          ),
+                        ),
                       ),
                       Container(
                         margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
-                        padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
-                        child: Text('Sobrenome: ' + usuario.sobrenome,
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: kPrimaryColor,
-                            )),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0.0)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(35.0)),
+                            ),
+                            hintText: 'Sobrenome: ' + usuario.sobrenome,
+                            hintStyle:
+                                TextStyle(fontSize: 17, color: kPrimaryColor),
+                          ),
+                        ),
                       ),
                       Container(
                         margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
-                        padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
-                        child: Text('Telefone: ' + usuario.telefone,
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: kPrimaryColor,
-                            )),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0.0)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(35.0)),
+                            ),
+                            hintText: 'Telefone: ' + usuario.telefone,
+                            hintStyle:
+                                TextStyle(fontSize: 17, color: kPrimaryColor),
+                          ),
+                        ),
                       ),
                       Container(
                         margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
-                        padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
-                        child: Text('Email: ' + usuario.email,
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: kPrimaryColor,
-                            )),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(35.0)),
+                            ),
+                            hintText: 'Email: ' + usuario.email,
+                            hintStyle:
+                                TextStyle(fontSize: 17, color: kPrimaryColor),
+                          ),
+                        ),
                       ),
                       Container(
                         margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
-                        padding: EdgeInsets.fromLTRB(30, 25, 0, 25),
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
-                        child: Text('Senha: ',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: kPrimaryColor,
-                            )),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0.0)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(35.0)),
+                            ),
+                            hintText: 'Senha: ' + usuario.senha,
+                            hintStyle:
+                                TextStyle(fontSize: 17, color: kPrimaryColor),
+                          ),
+                        ),
                       ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(175, 20, 0, 20),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: kSecondaryColor.withOpacity(0.3)),
+                        child: Column(children: <Widget>[
+                          TextButton(
+                            child: Text(
+                              "Salvar",
+                              style:
+                                  TextStyle(fontSize: 18, color: kPrimaryColor),
+                            ),
+                            onPressed: () {},
+                          ),
+                          TextButton(
+                            child: Text(
+                              "Cancelar",
+                              style:
+                                  TextStyle(fontSize: 17, color: kPrimaryColor),
+                            ),
+                            onPressed: () {},
+                          ),
+                        ]),
+                      )
                     ],
                   ));
             }));
