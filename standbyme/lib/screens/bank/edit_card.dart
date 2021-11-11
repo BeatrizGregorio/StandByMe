@@ -316,7 +316,7 @@ class _EditCardState extends State<EditCard> {
     return AnimatedPositioned(
         duration: Duration(milliseconds: 700),
         curve: Curves.bounceInOut,
-        top: 355,
+        top: 390,
         right: 0,
         left: 0,
         child: Center(

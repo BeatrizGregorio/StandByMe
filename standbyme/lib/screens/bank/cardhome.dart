@@ -41,24 +41,6 @@ class CardHome extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 200,
-                child: ListView.separated(
-                    physics: ClampingScrollPhysics(),
-                    separatorBuilder: (context, index) {
-                      return SizedBox(
-                        width: 10,
-                      );
-                    },
-                    itemCount: myCards.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return MyCard(
-                        card: myCards[index],
-                      );
-                    }),
-              ),
               SizedBox(
                 height: 15,
               ),
