@@ -18,7 +18,10 @@ class _BodyState extends State<Body> {
       "text": "Bem-vindo ao Stand By Me!",
       "image": "assets/images/logo_preta.PNG"
     },
-    {"text": "Nós teremos 3 chatbots para te auxiliar!", "image": ""},
+    {
+      "text": "Nós teremos 3 chatbots para te auxiliar!",
+      "image": "assets/images/todos.PNG"
+    },
     {
       "text": "Eu sou a Tina e te ajudarei na parte doméstica!",
       "image": "assets/images/tina.PNG"
