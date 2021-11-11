@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:standbyme_tcc/constants.dart';
-import 'package:standbyme_tcc/screens/despensa/components/search_field.dart';
-//import 'package:standbyme_tcc/screens/bank/constants/color_constants.dart';
-
-//import 'package:standbyme_tcc/constants.dart';
-//import 'package:standbyme_tcc/screens/list/list.dart';
-
-//import 'home_screen_background.dart';
 
 class Body extends StatefulWidget {
   const Body({Key key}) : super(key: key);

@@ -2,14 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/controllers/TransacaoController.dart';
 import 'package:standbyme_tcc/models/Transacao.dart';
-import 'package:standbyme_tcc/screens/bank/widgets/transaction_card.dart';
-import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
 import 'package:standbyme_tcc/constants.dart';
-import 'package:standbyme_tcc/size_config.dart';
-import 'package:standbyme_tcc/controllers/UsuarioController.dart';
 
 class AddTransaction extends StatefulWidget {
   @override

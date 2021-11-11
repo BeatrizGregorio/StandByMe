@@ -2,18 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:standbyme_tcc/components/default_button.dart';
-import 'package:standbyme_tcc/components/form_error.dart';
 import 'package:standbyme_tcc/controllers/CartaoController.dart';
-import 'package:standbyme_tcc/controllers/UsuarioController.dart';
 import 'package:standbyme_tcc/models/Cartao.dart';
-import 'package:standbyme_tcc/models/Usuario.dart';
-import 'package:standbyme_tcc/screens/bank/bank_card.dart';
-import 'package:standbyme_tcc/screens/bank/bank_card_model.dart';
-import 'package:standbyme_tcc/screens/bank/data/card_data.dart';
-import 'package:standbyme_tcc/screens/sign_in/sign_in_screen.dart';
 import 'package:standbyme_tcc/constants.dart';
-import 'package:standbyme_tcc/size_config.dart';
 
 class AddCard extends StatefulWidget {
   @override

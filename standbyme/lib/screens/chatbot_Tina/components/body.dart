@@ -4,8 +4,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
 //import 'package:standbyme_tcc/screens/chatbot_Tina/chatbot_Tina.dart';
-import 'package:intl/intl.dart';
-import 'package:bubble/bubble.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:standbyme_tcc/screens/chatbot_Tina/components/chat_message.dart';
 import 'package:standbyme_tcc/screens/chatbot_Tina/components/chat_message_list_item.dart';
@@ -138,7 +136,8 @@ class _BodyState extends State<Body> {
           ),
         ),
       ),
-    ); /*new Flexible(
+    );
+    /*new Flexible(
       child: new TextField(
         controller: _controllerText,
         decoration: new InputDecoration.collapsed(

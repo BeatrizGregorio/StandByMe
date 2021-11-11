@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/controllers/EventoController.dart';
 import 'package:standbyme_tcc/controllers/UsuarioController.dart';
@@ -207,15 +206,18 @@ class _BodyCalendarState extends State<BodyCalendar> {
     setState(() {
       _selectedEvents.add(novoEvento);
     });
-    return new EventoController().createEvent(novoEvento);
+    await new EventoController().createEvent(novoEvento);
+    await getEventsByUser(widget.userId);
+    //onDaySelected(_selectedDay, _events, null);
   }
 
   Future<List<Evento>> getEventsByDate(DateTime dataAtual, int userId) async {
     return new UsuarioController().getEventsByDate(dataAtual, userId);
   }
 
-  void getEventsByUser(int userId) async {
+  Future<void> getEventsByUser(int userId) async {
     var response = await (new EventoController().findEventsByUser(userId));
+    _events = {};
     response.forEach((element) {
       DateTime formattedDate = DateTime.parse(DateFormat('yyyy-MM-dd')
           .format(DateTime.parse(element.dataEvento.toString())));
@@ -227,6 +229,15 @@ class _BodyCalendarState extends State<BodyCalendar> {
     });
 
     setState(() {});
+  }
+
+  void onDaySelected(date, events, e) async {
+    log(date.toString());
+    log(widget.userId.toString());
+    setState(() {
+      _selectedDay = date;
+      _selectedEvents = events;
+    });
   }
 
   Widget calendar() {
@@ -249,14 +260,7 @@ class _BodyCalendarState extends State<BodyCalendar> {
         child: TableCalendar(
           locale: 'pt_Br',
 
-          onDaySelected: (date, events, e) async {
-            log(date.toString());
-            log(widget.userId.toString());
-            setState(() {
-              _selectedDay = date;
-              _selectedEvents = events;
-            });
-          },
+          onDaySelected: onDaySelected,
           calendarStyle: CalendarStyle(
             canEventMarkersOverflow: true,
             markersColor: Colors.white,

@@ -1,4 +1,3 @@
-import 'package:bubble/bubble.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/screens/chatbot_Luna/components/chat_message.dart';
 import 'package:flutter/material.dart';
