@@ -145,7 +145,8 @@ class _BodyState extends State<Body> {
                                   "https://cdn-icons-png.flaticon.com/512/2779/2779858.png",
                               title: "Editar cartão",
                               press: () {
-                                Navigator.of(context).pushNamed("/editCard");
+                                Navigator.of(context)
+                                    .pushNamed("/edit_card_screen");
                               },
                             ),
                           ]);
