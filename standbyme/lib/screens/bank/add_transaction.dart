@@ -294,7 +294,7 @@ class _AddTransactionState extends State<AddTransaction> {
     Transacao transacao = new Transacao(
         nome: nomeController.text,
         tipo: TipoTransacao.values.toString(),
-        valor: 1, //achar um jeito melhor
+        valor: 1, //achar jeito melhor
         userId: widget.userId);
     setState(() {
       _transactions.add(transacao);
