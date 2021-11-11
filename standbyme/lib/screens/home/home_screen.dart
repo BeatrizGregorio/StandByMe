@@ -46,7 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.transparent),
         shadowColor: Colors.transparent,
-        /*title: Image.asset(
+        title: Text(
+          "StandByMe",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+        ),
+        /*Image.asset(
           "assets/images/logo_porta.PNG",
           height: SizeConfig.screenHeight * 0.08,
         ),*/

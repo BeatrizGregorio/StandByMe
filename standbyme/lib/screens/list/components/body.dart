@@ -144,11 +144,11 @@ class BodyState extends State<Body> {
       ),
       direction: DismissDirection.startToEnd,
       child: CheckboxListTile(
-        activeColor: Color.fromARGB(200, 153, 51, 153),
+        activeColor: kPrimaryLightColor,
         title: Text(listaCompras[index]["title"]),
         value: listaCompras[index]["ok"],
         secondary: CircleAvatar(
-          backgroundColor: Color.fromARGB(200, 153, 51, 153),
+          backgroundColor: kPrimaryLightColor,
           child: Icon(
             listaCompras[index]["ok"] ? Icons.check_outlined : Icons.circle,
             color: Colors.white,

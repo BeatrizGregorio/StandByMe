@@ -5,8 +5,8 @@ import 'package:standbyme_tcc/repositories/Interfaces/TransacaoRepositoryInterfa
 class TransacaoController {
   final ITransacaoRepository _transacaoRepository = TransacaoRepository();
 
-  Future<Transacao> createTransaction(Transacao transacao) async {
-    return _transacaoRepository.createTransaction(transacao);
+  Future<Transacao> createTransaction(Transacao transacao, int userId) async {
+    return _transacaoRepository.createTransaction(transacao, userId);
   }
 
   Future<List<Transacao>> findTransactionByUser(int userId) async {

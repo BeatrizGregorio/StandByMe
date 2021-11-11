@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:standbyme_tcc/components/default_button.dart';
 import 'package:standbyme_tcc/controllers/TransacaoController.dart';
 import 'package:standbyme_tcc/models/Transacao.dart';
@@ -27,7 +28,15 @@ class _AddTransactionState extends State<AddTransaction> {
 
   void initState() {
     super.initState();
+    getId();
     getTransactionByUser(widget.userId);
+  }
+
+  void getId() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      widget.userId = preferences.getInt("id");
+    });
   }
 
   @override
@@ -186,6 +195,7 @@ class _AddTransactionState extends State<AddTransaction> {
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: TextField(
+              keyboardType: TextInputType.number,
               controller: valorController,
               decoration: InputDecoration(
                 prefixIcon: Icon(
@@ -289,8 +299,12 @@ class _AddTransactionState extends State<AddTransaction> {
         ]));
   }
 
+  @override
   Future<Transacao> createTransaction() async {
     log(widget.userId.toString());
+    log(nomeController.text);
+    log(TipoTransacao.values.toString());
+    log(valorController.toString());
     Transacao transacao = new Transacao(
         nome: nomeController.text,
         tipo: TipoTransacao.values.toString(),
@@ -299,7 +313,8 @@ class _AddTransactionState extends State<AddTransaction> {
     setState(() {
       _transactions.add(transacao);
     });
-    return new TransacaoController().createTransaction(transacao);
+    return new TransacaoController()
+        .createTransaction(transacao, widget.userId);
   }
 
   void salvarEsair() async {
