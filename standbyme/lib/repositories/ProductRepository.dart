@@ -34,4 +34,22 @@ class ProductRepository implements IProductRepository {
     }
     return listProducts;
   }
+
+  @override
+  Future<List<Product>> getProductsByName(String name) async {
+    List<Product> listProducts = [];
+    try {
+      final resposta = await client.get(Uri.parse(
+          "https://standbyme-heroku.herokuapp.com/produtos/nomes?nomeProduto=$name"));
+      final res = json.decode(resposta.body);
+      print(res);
+      for (var produto in res) {
+        listProducts.add(Product.fromJson(produto));
+      }
+      print(listProducts.length);
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+    return listProducts;
+  }
 }

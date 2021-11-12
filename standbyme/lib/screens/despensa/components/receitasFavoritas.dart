@@ -17,7 +17,7 @@ class ReceitasFavoritas extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline5.copyWith(
                       fontWeight: FontWeight.bold, color: kPrimaryColor))),
           SizedBox(height: 20),
-          SearchField()
+          //SearchField()
 
           //_buildListView(),
         ]));

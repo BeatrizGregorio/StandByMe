@@ -48,7 +48,7 @@ class _ItensAtuaisState extends State<ItensAtuais> {
                       style: Theme.of(context).textTheme.headline5.copyWith(
                           fontWeight: FontWeight.bold, color: kPrimaryColor))),
               SizedBox(height: 20),
-              SearchField(),
+              //SearchField(),
               SizedBox(
                 height: 500,
                 child: FutureBuilder(

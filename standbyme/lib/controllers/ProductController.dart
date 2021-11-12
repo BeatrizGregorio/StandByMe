@@ -8,4 +8,8 @@ class ProductController {
   Future<List<Product>> getProducts() async {
     return _productRepository.getProducts();
   }
+
+  Future<List<Product>> getProductsByName(String name) async {
+    return _productRepository.getProductsByName(name);
+  }
 }
