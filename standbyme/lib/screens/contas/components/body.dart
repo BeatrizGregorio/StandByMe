@@ -1,10 +1,13 @@
 import 'dart:developer';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_dialogflow/flutter_dialogflow.dart';
 import 'package:intl/intl.dart';
 import 'package:standbyme_tcc/constants.dart';
+import 'package:standbyme_tcc/controllers/ContaController.dart';
 import 'package:standbyme_tcc/controllers/EventoController.dart';
 import 'package:standbyme_tcc/controllers/UsuarioController.dart';
+import 'package:standbyme_tcc/models/Conta.dart';
 import 'package:standbyme_tcc/models/Evento.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -16,52 +19,33 @@ class BodyContas extends StatefulWidget {
   BodyContas(this.userId);
 }
 
+enum Status { faltaPagar, jaPagou }
+
 class _BodyContasState extends State<BodyContas> {
   TextEditingController descricaoController = TextEditingController();
   TextEditingController valorController = TextEditingController();
-  TextEditingController dataVenc = TextEditingController();
+  DateTime dataVenc;
   TextEditingController status = TextEditingController();
-
-  List<dynamic> _selectedEvents = [];
+  bool faltaPagar = true;
+  List<dynamic> _selectedContas = [];
 
   void initState() {
     super.initState();
-    getEventsByUser(widget.userId);
+    getContasByUser(widget.userId);
   }
 
-  void _selectTime() async {
-    final TimeOfDay newTime = await showTimePicker(
-      context: context,
-      initialTime: horarioController,
-    );
-    if (newTime != null) {
-      setState(() {
-        horarioController = newTime;
-      });
-    }
-  }
-
-/*
-  void getId() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      widget.userId = preferences.getInt("id");
-    });
-  }
-*/
   void dispose() {
-    _calendarController.dispose();
     super.dispose();
   }
 
-  Widget events() {
+  Widget contas() {
     return Container(
       constraints: BoxConstraints(maxHeight: double.infinity, minHeight: 100),
       child: ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
-          itemCount: _selectedEvents.length,
+          itemCount: _selectedContas.length,
           itemBuilder: (context, index) {
             return Column(children: <Widget>[
               Container(
@@ -72,9 +56,9 @@ class _BodyContasState extends State<BodyContas> {
                       color: kPrimaryLightColor.withOpacity(0.5)),
                   child: ListTile(
                     title: Text(
-                        _selectedEvents[index].descricaoEvento +
+                        _selectedContas[index].descricao +
                             ' - ' +
-                            _selectedEvents[index].horarioEvento,
+                            _selectedContas[index].valor.toString(),
                         style: TextStyle(color: Color(0XFF036666))),
                     trailing: IconButton(
                         icon: Icon(
@@ -84,10 +68,10 @@ class _BodyContasState extends State<BodyContas> {
                         ),
                         onPressed: () {
                           EventoController().deleteEvent(
-                              widget.userId, _selectedEvents[index].id);
+                              widget.userId, _selectedContas[index].id);
 
                           setState(() {
-                            _selectedEvents.removeAt(index);
+                            _selectedContas.removeAt(index);
                           });
                         }),
                   )),
@@ -98,7 +82,7 @@ class _BodyContasState extends State<BodyContas> {
   }
 
   void salvarEsair() async {
-    createEvent();
+    createConta();
     Navigator.of(context).pop(false);
   }
 
@@ -111,7 +95,7 @@ class _BodyContasState extends State<BodyContas> {
         controller: descricaoController,
         autofocus: true,
         decoration: InputDecoration(
-          labelText: 'Descrição do evento ',
+          labelText: 'Descrição/nome da conta: ',
           labelStyle: TextStyle(color: kPrimaryColor, fontSize: 18),
         ),
         onChanged: (value) {
@@ -119,10 +103,104 @@ class _BodyContasState extends State<BodyContas> {
         },
       ),
       SizedBox(height: 20),
-      Text("Horário de início: ", style: TextStyle(color: kPrimaryColor)),
+      TextField(
+        keyboardType: TextInputType.number,
+        controller: valorController,
+        autofocus: true,
+        decoration: InputDecoration(
+          labelText: 'Valor da conta: ',
+          labelStyle: TextStyle(color: kPrimaryColor, fontSize: 18),
+        ),
+        onChanged: (value) {
+          _name = value;
+        },
+      ),
+      SizedBox(height: 20),
+      Text("Data de vencimento: ", style: TextStyle(color: kPrimaryColor)),
       IconButton(
-        icon: Icon(Icons.watch_later_outlined),
-        onPressed: _selectTime,
+          icon: Icon(Icons.event),
+          onPressed: () {
+            showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(2021),
+              lastDate: DateTime(2100),
+            ).then((date) => {dataVenc = date});
+          }),
+      SizedBox(height: 20),
+      Padding(
+        padding: const EdgeInsets.only(top: 10, left: 10),
+        child: Row(
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  faltaPagar = true;
+                });
+              },
+              child: Row(
+                children: [
+                  Container(
+                    width: 30,
+                    height: 30,
+                    margin: EdgeInsets.only(right: 8),
+                    decoration: BoxDecoration(
+                        color: faltaPagar ? kPrimaryColor : Colors.transparent,
+                        border: Border.all(
+                            width: 1,
+                            color: faltaPagar
+                                ? Colors.transparent
+                                : kPrimaryColor),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Icon(
+                      Icons.add,
+                      color: faltaPagar ? Colors.white : kPrimaryLightColor,
+                    ),
+                  ),
+                  Text(
+                    "Falta pagar",
+                    style: TextStyle(color: kPrimaryColor),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 30,
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  faltaPagar = false;
+                });
+              },
+              child: Row(
+                children: [
+                  Container(
+                    width: 30,
+                    height: 30,
+                    margin: EdgeInsets.only(right: 8),
+                    decoration: BoxDecoration(
+                        color: faltaPagar ? Colors.transparent : kPrimaryColor,
+                        border: Border.all(
+                            width: 1,
+                            color: faltaPagar
+                                ? kPrimaryColor
+                                : Colors.transparent),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Icon(
+                      Icons.remove_rounded,
+                      color: faltaPagar ? kPrimaryLightColor : Colors.white,
+                    ),
+                  ),
+                  Text(
+                    "Ja foi paga",
+                    style: TextStyle(color: kPrimaryColor),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     ]));
 
@@ -167,7 +245,7 @@ class _BodyContasState extends State<BodyContas> {
                 mainAxisSize: MainAxisSize.min, // To make the card compact
                 children: <Widget>[
                   SizedBox(height: 16.0),
-                  Text("Adicionar evento",
+                  Text("Adicionar conta a pagar",
                       style: TextStyle(
                         color: kTextColor,
                         fontSize: 17,
@@ -192,109 +270,33 @@ class _BodyContasState extends State<BodyContas> {
     );
   }
 
-  Future<Evento> createEvent() async {
+  Future<Conta> createConta() async {
     log(widget.userId.toString());
-    log(_selectedDay.toString());
-    log(horarioController.format(context));
-    Evento novoEvento = new Evento(
-        descricaoEvento: descricaoController.text,
-        dataEvento: _selectedDay,
-        horarioEvento: horarioController.format(context),
+    Conta novaConta = new Conta(
+        descricao: descricaoController.text,
+        valor: double.parse(valorController.text),
+        //dataVenc: dataVenc.(context),
+        status: faltaPagar
+            ? Status.faltaPagar.toString()
+            : Status.jaPagou.toString(),
         userId: widget.userId);
     setState(() {
-      _selectedEvents.add(novoEvento);
+      _selectedContas.add(novaConta);
     });
-    await new EventoController().createEvent(novoEvento);
-    await getEventsByUser(widget.userId);
-    //onDaySelected(_selectedDay, _events, null);
+    await new ContaController().createConta(novaConta, widget.userId);
+    await getContasByUser(widget.userId);
   }
 
-  Future<List<Evento>> getEventsByDate(DateTime dataAtual, int userId) async {
-    return new UsuarioController().getEventsByDate(dataAtual, userId);
+  Future<List<Conta>> getContasByUser(int userId) async {
+    return new ContaController().findContasByUser(userId);
   }
 
-  Future<void> getEventsByUser(int userId) async {
-    var response = await (new EventoController().findEventsByUser(userId));
-    _events = {};
-    response.forEach((element) {
-      DateTime formattedDate = DateTime.parse(DateFormat('yyyy-MM-dd')
-          .format(DateTime.parse(element.dataEvento.toString())));
-      if (_events.containsKey(formattedDate)) {
-        _events[formattedDate].add(element);
-      } else {
-        _events[formattedDate] = [element];
-      }
-    });
-
-    setState(() {});
-  }
-
-  void onDaySelected(date, events, e) async {
-    log(date.toString());
-    log(widget.userId.toString());
-    setState(() {
-      _selectedDay = date;
-      _selectedEvents = events;
-    });
-  }
-
-  Widget calendar() {
-    return Container(
-        margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-            gradient: LinearGradient(colors: [
-              kPrimaryLightColor.withOpacity(0.6),
-              kPrimaryLightColor.withOpacity(0.6)
-            ]),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 5,
-                  offset: new Offset(0.0, 5))
-            ]),
-        child: TableCalendar(
-          locale: 'pt_Br',
-
-          onDaySelected: onDaySelected,
-          calendarStyle: CalendarStyle(
-            canEventMarkersOverflow: true,
-            markersColor: Colors.white,
-            weekdayStyle: TextStyle(color: Colors.white, fontSize: 17),
-            todayColor: Colors.white54,
-            todayStyle: TextStyle(
-                color: kPrimaryColor,
-                fontSize: 17,
-                fontWeight: FontWeight.bold),
-            selectedColor: kPrimaryLightColor.withOpacity(0.7),
-            outsideWeekendStyle: TextStyle(color: Colors.white60, fontSize: 17),
-            outsideStyle: TextStyle(color: Colors.white54, fontSize: 17),
-            weekendStyle: TextStyle(color: Colors.white, fontSize: 17),
-            renderDaysOfWeek: true,
-          ),
-          //onDaySelected: _onDaySelected,
-          calendarController: _calendarController,
-          events: _events,
-          headerStyle: HeaderStyle(
-            centerHeaderTitle: true,
-            formatButtonVisible: false,
-            leftChevronIcon:
-                Icon(Icons.arrow_back_ios, size: 17, color: Colors.white),
-            rightChevronIcon:
-                Icon(Icons.arrow_forward_ios, size: 17, color: Colors.white),
-            titleTextStyle: TextStyle(color: Colors.white, fontSize: 18),
-          ),
-        ));
-  }
-
-  Widget eventTitle() {
-    log(_selectedEvents.length.toString());
-    if (_selectedEvents.length == 0) {
+  Widget contasTitle() {
+    log(_selectedContas.length.toString());
+    if (_selectedContas.length == 0) {
       return Container(
         padding: EdgeInsets.fromLTRB(30, 7, 15, 15),
-        child: Text("Não há eventos",
+        child: Text("Não há contas cadastradas.",
             style: TextStyle(
                 color: kPrimaryColor,
                 fontSize: 20,
@@ -303,7 +305,7 @@ class _BodyContasState extends State<BodyContas> {
     }
     return Container(
       padding: EdgeInsets.fromLTRB(30, 7, 15, 15),
-      child: Text("Eventos",
+      child: Text("Contas a pagar",
           style: TextStyle(
               color: kPrimaryColor, fontSize: 20, fontWeight: FontWeight.bold)),
     );
@@ -320,13 +322,12 @@ class _BodyContasState extends State<BodyContas> {
           Container(
             padding: EdgeInsets.only(left: 20, bottom: 20),
             child: Text(
-              "Calendário",
+              "Organização das contas",
               style: TextStyle(color: kPrimaryColor, fontSize: 24),
             ),
           ),
-          calendar(),
-          eventTitle(),
-          events(),
+          contasTitle(),
+          contas(),
           SizedBox(height: 20)
         ],
       ),

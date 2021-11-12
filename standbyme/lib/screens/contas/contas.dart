@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/screens/contas/components/body.dart';
-//import 'package:standbyme_tcc/size_config.dart';
+import 'package:standbyme_tcc/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ContasScreen extends StatelessWidget {
@@ -20,7 +20,7 @@ class ContasScreen extends StatelessWidget {
                 )),
           );
 
-        return BodyCalendar(snapshot.data);
+        return BodyContas(snapshot.data);
       },
       future: getId(),
     ));
