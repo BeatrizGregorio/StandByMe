@@ -21,4 +21,8 @@ class UsuarioController {
   Future<Usuario> getUsuarioById(int userId) {
     return _usuarioRepository.getUsuarioById(userId);
   }
+
+  void updateUser(Usuario usuario, int userId) {
+    return _usuarioRepository.updateUser(usuario, userId);
+  }
 }

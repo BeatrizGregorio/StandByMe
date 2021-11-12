@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:standbyme_tcc/controllers/CartaoController.dart';
@@ -267,9 +268,12 @@ class _EditCardState extends State<EditCard> {
     return new CartaoController().createCard(cartao, widget.userId);
   }
 
-  void salvarEsair() async {
-    createCard();
-    Navigator.of(context).pop(false);
+  void updateCard(Cartao cartao, int id) async {
+    return new CartaoController().updateCard(id, cartao);
+  }
+
+  void salvarEsair(Cartao cartao, int id) async {
+    return updateCard(cartao, id);
   }
 
   void getCardsByUser(int userId) async {
@@ -280,7 +284,35 @@ class _EditCardState extends State<EditCard> {
   TextButton buildTextButton(
       IconData icon, String title, Color backgroundColor) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return CupertinoAlertDialog(
+                  title: Text("Atualizar"),
+                  content: Text("Deseja atualizar o cartão?"),
+                  actions: [
+                    CupertinoDialogAction(
+                        child: Text("Não"),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        }),
+                    CupertinoDialogAction(
+                        child: Text("Sim"),
+                        onPressed: () {
+                          Cartao cartao = new Cartao(
+                            nome: nomeController.text,
+                            numero: numeroController.text,
+                            cvv: cvvController.text,
+                            dataExp: dataExpController.text,
+                            userId: widget.userId,
+                          );
+                          updateCard(cartao, 2);
+                          Navigator.pop(context);
+                        }),
+                  ]);
+            });
+      },
       style: TextButton.styleFrom(
           side: BorderSide(width: 1, color: Colors.grey),
           minimumSize: Size(145, 40),
@@ -328,7 +360,7 @@ class _EditCardState extends State<EditCard> {
                     )
                 ]),
             child: GestureDetector(
-              onTap: salvarEsair,
+              onTap: () {},
               child: !showShadow
                   ? Container(
                       decoration: BoxDecoration(

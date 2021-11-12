@@ -9,4 +9,6 @@ abstract class IUsuarioRepository {
   Future<List<Evento>> getEventsByDate(DateTime data, int userId);
 
   Future<Usuario> getUsuarioById(int userId);
+
+  void updateUser(Usuario usuario, int userId);
 }

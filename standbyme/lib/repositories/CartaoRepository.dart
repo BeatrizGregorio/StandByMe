@@ -58,4 +58,27 @@ class CartaoRepository implements ICartaoRepository {
       print(e.toString());
     }
   }
+
+  @override
+  void updateCard(int id, Cartao cartao) async {
+    try {
+      final resposta = await client.put(
+          Uri.parse(
+              "https://standbyme-heroku.herokuapp.com/usuarios/${cartao.userId}/cartoes/$id"),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'nome': cartao.nome,
+            'numero': cartao.numero,
+            'cvv': cartao.cvv,
+            'dataExp': cartao.dataExp,
+            'userId': cartao.userId.toString(),
+          }));
+      final res = resposta.body;
+      print(res);
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+  }
 }

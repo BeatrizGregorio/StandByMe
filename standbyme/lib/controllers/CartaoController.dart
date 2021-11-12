@@ -16,4 +16,8 @@ class CartaoController {
   void deleteCard(int userId, int id) async {
     return _cartaoRepository.deleteCard(userId, id);
   }
+
+  void updateCard(int id, Cartao cartao) async {
+    return _cartaoRepository.updateCard(id, cartao);
+  }
 }

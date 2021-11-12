@@ -91,4 +91,26 @@ class UsuarioRepository implements IUsuarioRepository {
     }
     return usuario;
   }
+
+  @override
+  void updateUser(Usuario usuario, int userId) async {
+    try {
+      final resposta = await client.put(
+          Uri.parse("https://standbyme-heroku.herokuapp.com/usuarios/$userId"),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'nomeUsuario': usuario.primeiroNome,
+            'sobrenomeUsuario': usuario.sobrenome,
+            'telefone': usuario.telefone,
+            'email': usuario.email,
+            'senha': usuario.senha
+          }));
+      final res = resposta.body;
+      print(res);
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+  }
 }

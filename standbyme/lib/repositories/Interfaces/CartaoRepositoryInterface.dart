@@ -6,4 +6,6 @@ abstract class ICartaoRepository {
   Future<List<Cartao>> findCardsByUser(int userId);
 
   void deleteCard(int userId, int id);
+
+  void updateCard(int id, Cartao cartao);
 }

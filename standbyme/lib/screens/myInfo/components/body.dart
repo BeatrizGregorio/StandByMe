@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:standbyme_tcc/models/Usuario.dart';
@@ -15,6 +17,12 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  TextEditingController _primeiroNomeController = new TextEditingController();
+  TextEditingController _sobreNomeController = new TextEditingController();
+  TextEditingController _telefoneController = new TextEditingController();
+  TextEditingController _emailController = new TextEditingController();
+  TextEditingController _senhaController = new TextEditingController();
+
   void initState() {
     getId();
     super.initState();
@@ -30,6 +38,10 @@ class _BodyState extends State<Body> {
 
   Future<Usuario> getUsuarioById(int userId) async {
     return new UsuarioController().getUsuarioById(userId);
+  }
+
+  void updateUser(Usuario usuario, int userId) async {
+    return new UsuarioController().updateUser(usuario, userId);
   }
 
   @override
@@ -62,6 +74,7 @@ class _BodyState extends State<Body> {
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
                         child: TextField(
+                          controller: _primeiroNomeController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
@@ -84,6 +97,7 @@ class _BodyState extends State<Body> {
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
                         child: TextField(
+                          controller: _sobreNomeController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
@@ -106,6 +120,7 @@ class _BodyState extends State<Body> {
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
                         child: TextField(
+                          controller: _telefoneController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
@@ -128,6 +143,7 @@ class _BodyState extends State<Body> {
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
                         child: TextField(
+                          controller: _emailController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
@@ -148,6 +164,7 @@ class _BodyState extends State<Body> {
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
                         child: TextField(
+                          controller: _senhaController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
@@ -172,20 +189,87 @@ class _BodyState extends State<Body> {
                             color: kSecondaryColor.withOpacity(0.3)),
                         child: Column(children: <Widget>[
                           TextButton(
-                            child: Text(
-                              "Salvar",
-                              style:
-                                  TextStyle(fontSize: 18, color: kPrimaryColor),
-                            ),
-                            onPressed: () {},
-                          ),
+                              child: Text(
+                                "Salvar",
+                                style: TextStyle(
+                                    fontSize: 18, color: kPrimaryColor),
+                              ),
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return CupertinoAlertDialog(
+                                        title: Text("Atualizar"),
+                                        content:
+                                            Text("Deseja atualizar o usuário?"),
+                                        actions: [
+                                          CupertinoDialogAction(
+                                              child: Text("Não"),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              }),
+                                          CupertinoDialogAction(
+                                            child: Text("Sim"),
+                                            onPressed: () {
+                                              Usuario usuario = new Usuario(
+                                                  primeiroNome:
+                                                      _primeiroNomeController
+                                                          .text,
+                                                  sobrenome:
+                                                      _sobreNomeController.text,
+                                                  telefone:
+                                                      _telefoneController.text,
+                                                  email: _emailController.text,
+                                                  senha: _senhaController.text);
+                                              updateUser(
+                                                  usuario, widget.userId);
+                                              if (updateUser.toString() != null)
+                                                Fluttertoast.showToast(
+                                                    msg: "Usuário atualizado!",
+                                                    toastLength:
+                                                        Toast.LENGTH_LONG);
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              }),
                           TextButton(
                             child: Text(
                               "Cancelar",
                               style:
                                   TextStyle(fontSize: 17, color: kPrimaryColor),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return CupertinoAlertDialog(
+                                      title: Text("Cancelar"),
+                                      content:
+                                          Text("Deseja cancelar as alterções?"),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                            child: Text("Não"),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            }),
+                                        CupertinoDialogAction(
+                                          child: Text("Sim"),
+                                          onPressed: () {
+                                            _primeiroNomeController.text = "";
+                                            _sobreNomeController.text = "";
+                                            _telefoneController.text = "";
+                                            _emailController.text = "";
+                                            _senhaController.text = "";
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
                           ),
                         ]),
                       )
