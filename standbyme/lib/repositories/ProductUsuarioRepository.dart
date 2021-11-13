@@ -30,6 +30,23 @@ class ProductUsuarioRepository implements IProductUsuarioRepository {
     return listProductsUsuario;
   }
 
+  Future<List<Product>> getProductsUsuarioByName(
+      String name, int userId) async {
+    List<Product> listProducts = [];
+    try {
+      final resposta = await client.get(Uri.parse(
+          "https://standbyme-heroku.herokuapp.com/usuarios/$userId/produtos/nomes?nomeProduto=$name"));
+      final res = json.decode(resposta.body);
+      print(res);
+      for (var produto in res) {
+        listProducts.add(Product.fromJson(produto));
+      }
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+    return listProducts;
+  }
+
   @override
   Future<ProductUsuario> createProductUsuario(
       ProductUsuario productUsuario) async {

@@ -15,4 +15,9 @@ class ProductUsuarioController {
       ProductUsuario productUsuario) async {
     return _productUsuarioRepository.createProductUsuario(productUsuario);
   }
+
+  Future<List<Product>> getProductsUsuarioByName(
+      String name, int userId) async {
+    return _productUsuarioRepository.getProductsUsuarioByName(name, userId);
+  }
 }

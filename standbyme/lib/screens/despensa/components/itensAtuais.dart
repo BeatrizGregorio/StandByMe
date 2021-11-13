@@ -29,6 +29,8 @@ class _ItensAtuaisState extends State<ItensAtuais> {
     getId();
   }
 
+  TextEditingController _productUsuarioController = new TextEditingController();
+  String textSearched = "";
   @override
   Widget build(BuildContext context) {
     //addProducts();
@@ -49,11 +51,50 @@ class _ItensAtuaisState extends State<ItensAtuais> {
                           fontWeight: FontWeight.bold, color: kPrimaryColor))),
               SizedBox(height: 20),
               //SearchField(),
+              Container(
+                margin: EdgeInsets.fromLTRB(20, 5, 20, 15),
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.grey.withOpacity(0.15),
+                ),
+                child: TextField(
+                  onChanged: (text) {
+                    setState(() {
+                      textSearched = text;
+                    });
+                  },
+                  controller: _productUsuarioController,
+                  cursorColor: kPrimaryColor,
+                  decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.transparent, width: 5.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.transparent, width: 5.0),
+                      ),
+                      fillColor: Colors.transparent,
+                      hintText: 'Pesquisar...',
+                      contentPadding: EdgeInsets.only(left: 10),
+                      suffixIcon: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.search,
+                          color: kPrimaryColor,
+                        ),
+                      )),
+                ),
+              ),
               SizedBox(
                 height: 500,
                 child: FutureBuilder(
-                    future: ProductUsuarioController()
-                        .getProductsUsuario(widget.userId),
+                    future: textSearched.isEmpty
+                        ? ProductUsuarioController()
+                            .getProductsUsuario(widget.userId)
+                        : ProductUsuarioController().getProductsUsuarioByName(
+                            _productUsuarioController.text, widget.userId),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
                         return Center(
