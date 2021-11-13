@@ -251,9 +251,9 @@ class _BodyContasState extends State<BodyContas> {
                         fontSize: 17,
                       )),
                   Container(
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(10),
                       child: Container(
-                        padding: EdgeInsets.all(20),
+                        padding: EdgeInsets.all(10),
                         child: Container(
                           child: content,
                         ),
@@ -271,11 +271,17 @@ class _BodyContasState extends State<BodyContas> {
   }
 
   Future<Conta> createConta() async {
+    log(descricaoController.text);
+    log(valorController.text);
+    log(dataVenc.toString());
+    log(
+      faltaPagar ? Status.faltaPagar.toString() : Status.jaPagou.toString(),
+    );
     log(widget.userId.toString());
     Conta novaConta = new Conta(
         descricao: descricaoController.text,
         valor: double.parse(valorController.text),
-        //dataVenc: dataVenc.(context),
+        // dataVenc: dataVenc.(context),
         status: faltaPagar
             ? Status.faltaPagar.toString()
             : Status.jaPagou.toString(),
@@ -292,7 +298,6 @@ class _BodyContasState extends State<BodyContas> {
   }
 
   Widget contasTitle() {
-    log(_selectedContas.length.toString());
     if (_selectedContas.length == 0) {
       return Container(
         padding: EdgeInsets.fromLTRB(30, 7, 15, 15),

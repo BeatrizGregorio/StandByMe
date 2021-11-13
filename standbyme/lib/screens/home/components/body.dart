@@ -142,6 +142,17 @@ class _BodyState extends State<Body> {
                                     .pushNamed("/edit_card_screen");
                               },
                             ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            CategoryCard(
+                              img:
+                                  "https://cdn-icons-png.flaticon.com/512/1420/1420341.png",
+                              title: "Contas",
+                              press: () {
+                                Navigator.of(context).pushNamed("/contas");
+                              },
+                            ),
                           ]);
                         }),
                   ),
