@@ -143,6 +143,7 @@ class _BodyState extends State<Body> {
                         decoration: BoxDecoration(
                             color: kPrimaryLightColor.withOpacity(0.1)),
                         child: TextField(
+                          keyboardType: TextInputType.emailAddress,
                           controller: _emailController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(

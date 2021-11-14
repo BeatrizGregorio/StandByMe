@@ -58,8 +58,11 @@ class _BodyContasState extends State<BodyContas> {
                     title: Text(
                         _selectedContas[index].descricao +
                             ' - ' +
+                            'R\$ ' +
                             _selectedContas[index].valor.toString(),
                         style: TextStyle(color: Color(0XFF036666))),
+                    subtitle: Text(DateFormat('dd/MM/yyyy')
+                        .format(_selectedContas[index].dataVenc)),
                     trailing: IconButton(
                         icon: Icon(
                           Icons.delete,

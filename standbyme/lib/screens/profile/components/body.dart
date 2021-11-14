@@ -20,12 +20,16 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "Cartões",
             icon: Icon(Icons.credit_card),
-            press: () {},
+            press: () {
+              Navigator.of(context).pushNamed("/bankcard");
+            },
           ),
           ProfileMenu(
             text: "Sair",
             icon: Icon(Icons.logout),
-            press: () {},
+            press: () {
+              Navigator.popUntil(context, ModalRoute.withName("/initial"));
+            },
           ),
         ],
       ),
