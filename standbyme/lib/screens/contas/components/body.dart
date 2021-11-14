@@ -67,7 +67,7 @@ class _BodyContasState extends State<BodyContas> {
                           size: 23,
                         ),
                         onPressed: () {
-                          EventoController().deleteEvent(
+                          ContaController().deleteConta(
                               widget.userId, _selectedContas[index].id);
 
                           setState(() {
@@ -281,20 +281,29 @@ class _BodyContasState extends State<BodyContas> {
     Conta novaConta = new Conta(
         descricao: descricaoController.text,
         valor: double.parse(valorController.text),
-        // dataVenc: dataVenc.(context),
+        dataVenc: dataVenc,
         status: faltaPagar
             ? Status.faltaPagar.toString()
             : Status.jaPagou.toString(),
         userId: widget.userId);
+    log(novaConta.descricao);
     setState(() {
       _selectedContas.add(novaConta);
     });
-    await new ContaController().createConta(novaConta, widget.userId);
-    await getContasByUser(widget.userId);
+
+    return await new ContaController().createConta(novaConta, widget.userId);
   }
 
-  Future<List<Conta>> getContasByUser(int userId) async {
-    return new ContaController().findContasByUser(userId);
+  Future<void> getContasByUser(int userId) async {
+    var response = await new ContaController().findContasByUser(userId);
+    for (var conta in response) {
+      _selectedContas.add(conta);
+    }
+    log(_selectedContas.length.toString());
+    for (var conta in _selectedContas) {
+      log(conta.descricao);
+    }
+    setState(() {});
   }
 
   Widget contasTitle() {

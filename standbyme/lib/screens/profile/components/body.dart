@@ -14,17 +14,17 @@ class Body extends StatelessWidget {
           SizedBox(height: 20),
           ProfileMenu(
             text: "Minha conta",
-            icon: "",
+            icon: Icon(Icons.person),
             press: () => {Navigator.of(context).pushNamed("/my_Info")},
           ),
           ProfileMenu(
             text: "Cartões",
-            icon: "assets/icons/Question mark.svg",
+            icon: Icon(Icons.credit_card),
             press: () {},
           ),
           ProfileMenu(
             text: "Sair",
-            icon: "assets/icons/Log out.svg",
+            icon: Icon(Icons.logout),
             press: () {},
           ),
         ],
