@@ -38,6 +38,13 @@ class _BodyContasState extends State<BodyContas> {
     super.dispose();
   }
 
+  bool verificar(String faltaPagarIndex) {
+    if (faltaPagar == true)
+      return true;
+    else
+      return false;
+  }
+
   Widget contas() {
     return Container(
       constraints: BoxConstraints(maxHeight: double.infinity, minHeight: 100),
@@ -49,36 +56,101 @@ class _BodyContasState extends State<BodyContas> {
           itemBuilder: (context, index) {
             return Column(children: <Widget>[
               Container(
-                  margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                  padding: EdgeInsets.fromLTRB(15, 7, 10, 10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: kPrimaryLightColor.withOpacity(0.5)),
-                  child: ListTile(
-                    title: Text(
-                        _selectedContas[index].descricao +
-                            ' - ' +
-                            'R\$ ' +
-                            _selectedContas[index].valor.toString(),
-                        style: TextStyle(color: Color(0XFF036666))),
-                    subtitle: Text(DateFormat('dd/MM/yyyy')
-                        .format(_selectedContas[index].dataVenc)),
-                    trailing: IconButton(
-                        icon: Icon(
-                          Icons.delete,
-                          color: Colors.black.withOpacity(0.6),
-                          size: 23,
-                        ),
-                        onPressed: () {
-                          ContaController().deleteConta(
-                              widget.userId, _selectedContas[index].id);
+                padding: EdgeInsets.all(20),
+                height: 140,
+                width: 350,
+                decoration: BoxDecoration(
+                  color: kSecondaryColor.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(_selectedContas[index].descricao,
+                                      style: TextStyle(
+                                          color: kPrimaryColor,
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 22)),
+                                ],
+                              ),
+                              SizedBox(width: 70),
+                              Text(
+                                  'R\$' +
+                                      _selectedContas[index].valor.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18)),
+                              SizedBox(width: 50),
+                            ],
+                          ),
+                          SizedBox(height: 20),
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Data Venc.",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18),
+                                  ),
+                                  Text(
+                                      DateFormat('dd/MM/yyyy').format(
+                                          _selectedContas[index].dataVenc),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 18)),
+                                ],
+                              ),
+                              SizedBox(width: 34),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(_selectedContas[index].status,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 18)),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              IconButton(
+                                  icon: Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                    size: 23,
+                                  ),
+                                  onPressed: () {
+                                    ContaController().deleteConta(widget.userId,
+                                        _selectedContas[index].id);
 
-                          setState(() {
-                            _selectedContas.removeAt(index);
-                          });
-                        }),
-                  )),
-              SizedBox(height: 10),
+                                    setState(() {
+                                      _selectedContas.removeAt(index);
+                                    });
+                                  }),
+                            ],
+                          ),
+                        ]),
+                  ],
+                ),
+              ),
+              SizedBox(height: 15),
             ]);
           }),
     );
@@ -91,7 +163,6 @@ class _BodyContasState extends State<BodyContas> {
 
   void _create(BuildContext context) {
     String _name = "";
-
     var content = Container(
         child: Column(children: [
       TextField(
@@ -285,9 +356,7 @@ class _BodyContasState extends State<BodyContas> {
         descricao: descricaoController.text,
         valor: double.parse(valorController.text),
         dataVenc: dataVenc,
-        status: faltaPagar
-            ? Status.faltaPagar.toString()
-            : Status.jaPagou.toString(),
+        status: faltaPagar ? "Falta pagar" : "Ja pagou",
         userId: widget.userId);
     log(novaConta.descricao);
     setState(() {
@@ -322,7 +391,7 @@ class _BodyContasState extends State<BodyContas> {
     }
     return Container(
       padding: EdgeInsets.fromLTRB(30, 7, 15, 15),
-      child: Text("Contas a pagar",
+      child: Text("Contas",
           style: TextStyle(
               color: kPrimaryColor, fontSize: 20, fontWeight: FontWeight.bold)),
     );

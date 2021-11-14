@@ -299,9 +299,7 @@ class _AddTransactionState extends State<AddTransaction> {
     log(DateTime.now().toString());
     Transacao transacao = new Transacao(
         nome: nomeController.text,
-        tipo: isAdicionar
-            ? TipoTransacao.adicionar.toString()
-            : TipoTransacao.retirar.toString(),
+        tipo: isAdicionar ? "Adicionar" : "Retirar",
         valor: double.parse(valorController.text),
         data: DateTime.now(),
         userId: widget.userId);
