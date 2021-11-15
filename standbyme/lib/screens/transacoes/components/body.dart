@@ -62,6 +62,17 @@ class _BodyTransacoesState extends State<BodyTransacoes> {
                             borderRadius: BorderRadius.circular(20),
                             color: kPrimaryColor,
                           ),
+                          child: _selectedTransacoes[index].tipo == "adicionar"
+                              ? Icon(
+                                  Icons.add,
+                                  size: 30,
+                                  color: Colors.white,
+                                )
+                              : Icon(
+                                  Icons.remove,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
                         ),
                         SizedBox(
                           width: 10,
@@ -81,7 +92,7 @@ class _BodyTransacoesState extends State<BodyTransacoes> {
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 15)),
+                                    fontSize: 20)),
                           ],
                         ),
                       ],
@@ -94,7 +105,7 @@ class _BodyTransacoesState extends State<BodyTransacoes> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                                'R\$ ' +
+                                'R\$' +
                                     _selectedTransacoes[index].valor.toString(),
                                 style: TextStyle(
                                     color: Colors.black,
