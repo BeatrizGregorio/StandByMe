@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:standbyme_tcc/screens/bank/constants/app_textstyle.dart';
-import 'package:standbyme_tcc/screens/bank/data/transaction_data.dart';
+/*import 'package:flutter/material.dart';
 
 class TransactionCard extends StatelessWidget {
-  final TransactionModel transaction;
   const TransactionCard({Key key, this.transaction}) : super(key: key);
 
   @override
@@ -88,4 +85,4 @@ class TransactionCard extends StatelessWidget {
       ),
     );
   }
-}
+}*/

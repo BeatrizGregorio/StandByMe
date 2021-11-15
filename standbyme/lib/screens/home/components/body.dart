@@ -116,7 +116,7 @@ class _BodyState extends State<Body> {
                                   "https://cdn-icons-png.flaticon.com/512/1292/1292739.png",
                               title: "Cartões",
                               press: () {
-                                Navigator.of(context).pushNamed("/bankcard");
+                                Navigator.of(context).pushNamed("/cartoes");
                               },
                             ),
                             SizedBox(
@@ -127,7 +127,7 @@ class _BodyState extends State<Body> {
                                   "https://cdn-icons-png.flaticon.com/512/1041/1041908.png",
                               title: "Transações",
                               press: () {
-                                Navigator.of(context).pushNamed("/cardhome");
+                                Navigator.of(context).pushNamed("/transacoes");
                               },
                             ),
                             SizedBox(
