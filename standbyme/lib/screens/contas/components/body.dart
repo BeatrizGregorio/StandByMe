@@ -133,7 +133,7 @@ class _BodyContasState extends State<BodyContas> {
                               IconButton(
                                   icon: Icon(
                                     Icons.delete,
-                                    color: Colors.white,
+                                    color: Color(0XFF9d0208),
                                     size: 23,
                                   ),
                                   onPressed: () {
