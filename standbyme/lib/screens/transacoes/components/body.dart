@@ -45,101 +45,88 @@ class _BodyTransacoesState extends State<BodyTransacoes> {
           itemBuilder: (context, index) {
             return Column(children: <Widget>[
               Container(
-                padding: EdgeInsets.all(20),
-                height: 140,
-                width: 350,
+                padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: kSecondaryColor.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(20),
-                ),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.grey[300])),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(_selectedTransacoes[index].nome,
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontWeight: FontWeight.w800,
-                                          fontSize: 22)),
-                                ],
-                              ),
-                              SizedBox(width: 70),
-                              Text(
-                                  'R\$' +
-                                      _selectedTransacoes[index]
-                                          .valor
-                                          .toString(),
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 18)),
-                              SizedBox(width: 50),
-                            ],
+                    Row(
+                      children: [
+                        Container(
+                          height: 60,
+                          width: 60,
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: kPrimaryColor,
                           ),
-                          SizedBox(height: 20),
-                          Row(
-                            children: [
-                              SizedBox(width: 34),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Data",
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(_selectedTransacoes[index].nome,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20)),
+                            Text(
+                                DateFormat('dd/MM/yyyy')
+                                    .format(_selectedTransacoes[index].data),
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 15)),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                                'R\$ ' +
+                                    _selectedTransacoes[index].valor.toString(),
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20)),
+                            Row(
+                              children: [
+                                _selectedTransacoes[index].tipo == "adicionar"
+                                    ? Icon(
+                                        Icons.arrow_upward_outlined,
+                                        size: 30,
+                                        color: Colors.green,
+                                      )
+                                    : Icon(
+                                        Icons.arrow_downward_outlined,
+                                        size: 30,
+                                        color: Colors.red,
+                                      ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(_selectedTransacoes[index].tipo,
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.grey,
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 18),
-                                  ),
-                                  Text(
-                                      DateFormat('dd/MM/yyyy').format(
-                                          _selectedTransacoes[index].data),
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 18)),
-                                ],
-                              ),
-                              SizedBox(width: 34),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(_selectedTransacoes[index].tipo,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 18)),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              IconButton(
-                                  icon: Icon(
-                                    Icons.delete,
-                                    color: Colors.white,
-                                    size: 23,
-                                  ),
-                                  onPressed: () {
-                                    TransacaoController().deleteTransaction(
-                                        widget.userId,
-                                        _selectedTransacoes[index].id);
-
-                                    setState(() {
-                                      _selectedTransacoes.removeAt(index);
-                                    });
-                                  }),
-                            ],
-                          ),
-                        ]),
+                                        fontSize: 15)),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
