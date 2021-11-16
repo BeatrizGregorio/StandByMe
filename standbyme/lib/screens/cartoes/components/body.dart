@@ -105,28 +105,22 @@ class _BodyCartoesState extends State<BodyCartoes> {
                                         fontWeight: FontWeight.w700,
                                         fontSize: 20)),
                               ],
-                            )
+                            ),
+                            SizedBox(
+                              width: 70,
+                            ),
+                            Container(
+                                width: 50,
+                                height: 50,
+                                child: Icon(
+                                  Icons.credit_card,
+                                  size: 50,
+                                  color: Colors.white,
+                                )),
                           ],
                         )
                       ],
                     ),
-                    Column(
-                      children: [
-                        Text(_selectedCartoes[index].id.toString(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20)),
-                        Container(
-                            width: 50,
-                            height: 50,
-                            child: Icon(
-                              Icons.credit_card,
-                              size: 50,
-                              color: Colors.white,
-                            )),
-                      ],
-                    )
                   ],
                 ),
               ),
