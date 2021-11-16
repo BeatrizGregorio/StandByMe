@@ -59,20 +59,20 @@ class _BodyCartoesState extends State<BodyCartoes> {
                             Text("NOME",
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w600,
                                     fontSize: 15)),
-                            Text(_selectedCartoes[index].nome,
+                            Text(_selectedCartoes[index].nome.toUpperCase(),
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w500,
                                     fontSize: 20)),
                           ],
                         ),
                         Text(_selectedCartoes[index].numero,
                             style: TextStyle(
                                 color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 25)),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 22)),
                         Row(
                           children: [
                             Column(
@@ -81,12 +81,12 @@ class _BodyCartoesState extends State<BodyCartoes> {
                                 Text("VENC.",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w600,
                                         fontSize: 15)),
                                 Text(_selectedCartoes[index].dataExp,
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w500,
                                         fontSize: 20)),
                               ],
                             ),
@@ -97,12 +97,12 @@ class _BodyCartoesState extends State<BodyCartoes> {
                                 Text("CVV",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w600,
                                         fontSize: 15)),
                                 Text(_selectedCartoes[index].cvv,
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w500,
                                         fontSize: 20)),
                               ],
                             ),

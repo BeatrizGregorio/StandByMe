@@ -39,7 +39,10 @@ class _UserProductTileState extends State<UserProductTile> {
               width: 10,
             ),
             Container(
-              height: getProportionateScreenHeight(80),
+              constraints: BoxConstraints(
+                maxHeight: double.infinity,
+              ),
+              //height: getProportionateScreenHeight(80),
               width: getProportionateScreenWidth(100),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +55,7 @@ class _UserProductTileState extends State<UserProductTile> {
                   Text(
                     this.widget.data.descricaoProduto,
                     style: TextStyle(fontSize: 14.0, color: Colors.black),
-                  )
+                  ),
                 ],
               ),
             ),
