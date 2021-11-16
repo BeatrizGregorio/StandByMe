@@ -135,18 +135,6 @@ class _BodyState extends State<Body> {
                             ),
                             CategoryCard(
                               img:
-                                  "https://cdn-icons-png.flaticon.com/512/2779/2779858.png",
-                              title: "Editar cartão",
-                              press: () {
-                                Navigator.of(context)
-                                    .pushNamed("/edit_card_screen");
-                              },
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            CategoryCard(
-                              img:
                                   "https://cdn-icons-png.flaticon.com/512/1420/1420341.png",
                               title: "Contas",
                               press: () {

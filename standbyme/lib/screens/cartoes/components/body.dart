@@ -40,7 +40,7 @@ class _BodyCartoesState extends State<BodyCartoes> {
               Container(
                 padding: EdgeInsets.all(20),
                 height: 200,
-                width: 350,
+                width: 360,
                 decoration: BoxDecoration(
                   color: kPrimaryColor,
                   borderRadius: BorderRadius.circular(20),
@@ -58,7 +58,7 @@ class _BodyCartoesState extends State<BodyCartoes> {
                           children: [
                             Text("NOME",
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: kPrimaryLightColor,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15)),
                             Text(_selectedCartoes[index].nome.toUpperCase(),
@@ -80,7 +80,7 @@ class _BodyCartoesState extends State<BodyCartoes> {
                               children: [
                                 Text("VENC.",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: kPrimaryLightColor,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 15)),
                                 Text(_selectedCartoes[index].dataExp,
@@ -96,7 +96,7 @@ class _BodyCartoesState extends State<BodyCartoes> {
                               children: [
                                 Text("CVV",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: kPrimaryLightColor,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 15)),
                                 Text(_selectedCartoes[index].cvv,
@@ -107,16 +107,34 @@ class _BodyCartoesState extends State<BodyCartoes> {
                               ],
                             ),
                             SizedBox(
-                              width: 70,
+                              width: 50,
                             ),
-                            Container(
+                            RawMaterialButton(
+                              onPressed: () {
+                                CartaoController().deleteCard(
+                                    widget.userId, _selectedCartoes[index].id);
+                                setState(() {
+                                  _selectedCartoes.removeAt(index);
+                                });
+                              },
+                              elevation: 1.0,
+                              fillColor: Colors.red,
+                              child: Icon(
+                                Icons.delete,
+                                size: 20.0,
+                                color: Colors.white,
+                              ),
+                              padding: EdgeInsets.all(10.0),
+                              shape: CircleBorder(),
+                            )
+                            /*Container(
                                 width: 50,
                                 height: 50,
                                 child: Icon(
-                                  Icons.credit_card,
-                                  size: 50,
-                                  color: Colors.white,
-                                )),
+                                  Icons.delete,
+                                  size: 30,
+                                  color: Colors.redAccent,
+                                )),*/
                           ],
                         )
                       ],
@@ -146,7 +164,7 @@ class _BodyCartoesState extends State<BodyCartoes> {
     setState(() {});
   }
 
-  Widget contasTitle() {
+  Widget cartoesTitle() {
     if (_selectedCartoes.length == 0) {
       return Container(
         padding: EdgeInsets.fromLTRB(30, 7, 15, 15),
@@ -192,7 +210,7 @@ class _BodyCartoesState extends State<BodyCartoes> {
       backgroundColor: Colors.white,
       body: ListView(
         //crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[contasTitle(), cartoes(), SizedBox(height: 20)],
+        children: <Widget>[cartoesTitle(), cartoes(), SizedBox(height: 20)],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: kPrimaryLightColor,

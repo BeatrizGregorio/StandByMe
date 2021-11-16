@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:standbyme_tcc/controllers/CartaoController.dart';
 import 'package:standbyme_tcc/models/Cartao.dart';
@@ -272,25 +273,39 @@ class _AddCardState extends State<AddCard> {
     log(cvvController.text);
     log(dataExpController.text);
 
-    Cartao cartao = new Cartao(
-        nome: nomeController.text,
-        numero: numeroController.text,
-        cvv: cvvController.text,
-        dataExp: dataExpController.text,
-        userId: widget.userId);
-    setState(() {
-      _cards.add(cartao);
-    });
-    return new CartaoController().createCard(cartao, widget.userId);
+    if (cvvController.text.length == 3) {
+      Cartao cartao = new Cartao(
+          nome: nomeController.text,
+          numero: numeroController.text,
+          cvv: cvvController.text,
+          dataExp: dataExpController.text,
+          userId: widget.userId);
+      setState(() {
+        _cards.add(cartao);
+      });
+      return new CartaoController().createCard(cartao, widget.userId);
+    } else {
+      Fluttertoast.showToast(msg: "CVV incorreto!");
+    }
   }
 
   void salvarEsair() async {
     createCard();
     Navigator.of(context).pop(false);
+    setState(() {
+      getCardsByUser(widget.userId);
+    });
   }
 
   void getCardsByUser(int userId) async {
-    var response = await (new CartaoController().findCardsByUser(userId));
+    var response = await new CartaoController().findCardsByUser(userId);
+    for (var cartao in response) {
+      _cards.add(cartao);
+    }
+    log(_cards.length.toString());
+    for (var cartao in _cards) {
+      log(cartao.nome);
+    }
     setState(() {});
   }
 
