@@ -26,6 +26,8 @@ class _BodyContasState extends State<BodyContas> {
   TextEditingController valorController = TextEditingController();
   DateTime dataVenc;
   TextEditingController status = TextEditingController();
+  TextEditingController _contaController = TextEditingController();
+  String textSearched = "";
   bool faltaPagar = true;
   List<dynamic> _selectedContas = [];
 
@@ -367,11 +369,26 @@ class _BodyContasState extends State<BodyContas> {
   }
 
   Future<void> getContasByUser(int userId) async {
-    var response = await new ContaController().findContasByUser(userId);
-    for (var conta in response) {
-      _selectedContas.add(conta);
+    var response;
+    print(textSearched);
+    if (textSearched.isEmpty) {
+      _selectedContas.clear();
+      response = await new ContaController().findContasByUser(userId);
+      for (var conta in response) {
+        _selectedContas.add(conta);
+      }
+    } else {
+      response = await new ContaController()
+          .findContasByDesc(_contaController.text, userId);
+
+      _selectedContas.clear();
+      log("SelectedContas " + _selectedContas.length.toString());
+      log("Response " + response.length.toString());
+      for (var conta in response) {
+        log(conta.descricao);
+        _selectedContas.add(conta);
+      }
     }
-    log(_selectedContas.length.toString());
     for (var conta in _selectedContas) {
       log(conta.descricao);
     }
@@ -410,6 +427,44 @@ class _BodyContasState extends State<BodyContas> {
             child: Text(
               "Organização das contas",
               style: TextStyle(color: kPrimaryColor, fontSize: 24),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(20, 5, 20, 15),
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.grey.withOpacity(0.15),
+            ),
+            child: TextField(
+              onChanged: (text) {
+                setState(() {
+                  textSearched = text;
+                });
+              },
+              controller: _contaController,
+              cursorColor: kPrimaryColor,
+              decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.transparent, width: 5.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.transparent, width: 5.0),
+                  ),
+                  fillColor: Colors.transparent,
+                  hintText: 'Pesquisar...',
+                  contentPadding: EdgeInsets.only(left: 10),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      getContasByUser(widget.userId);
+                    },
+                    icon: Icon(
+                      Icons.search,
+                      color: kPrimaryColor,
+                    ),
+                  )),
             ),
           ),
           contasTitle(),

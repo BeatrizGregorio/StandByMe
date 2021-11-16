@@ -58,4 +58,22 @@ class ContaRepository implements IContaRepository {
       print(e.toString());
     }
   }
+
+  @override
+  Future<List<Conta>> findContasByDesc(String name, int userId) async {
+    List<Conta> listContas = [];
+    try {
+      final resposta = await client.get(Uri.parse(
+          "https://standbyme-heroku.herokuapp.com/usuarios/$userId/contas/desc?descricao=$name"));
+      final res = json.decode(resposta.body);
+      print(res);
+      for (var conta in res) {
+        listContas.add(Conta.fromJson(conta));
+      }
+      print(listContas.length);
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+    return listContas;
+  }
 }

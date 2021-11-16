@@ -6,4 +6,6 @@ abstract class IContaRepository {
   Future<List<Conta>> findContasByUser(int userId);
 
   void deleteConta(int userId, int id);
+
+  Future<List<Conta>> findContasByDesc(String name, int userId);
 }

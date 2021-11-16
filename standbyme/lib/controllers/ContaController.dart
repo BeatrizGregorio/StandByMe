@@ -16,4 +16,8 @@ class ContaController {
   void deleteConta(int userId, int id) async {
     return _contaRepository.deleteConta(userId, id);
   }
+
+  Future<List<Conta>> findContasByDesc(String name, int userId) async {
+    return _contaRepository.findContasByDesc(name, userId);
+  }
 }

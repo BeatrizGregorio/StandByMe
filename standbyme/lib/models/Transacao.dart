@@ -18,7 +18,7 @@ class Transacao {
     return Transacao(
       id: parsedJson['id'],
       tipo: parsedJson['tipo'],
-      valor: parsedJson['valor'],
+      valor: double.parse(parsedJson['valor'].toString()),
       nome: parsedJson['nome'],
       data: DateTime.parse(parsedJson['data']),
       userId: parsedJson['userId'],
