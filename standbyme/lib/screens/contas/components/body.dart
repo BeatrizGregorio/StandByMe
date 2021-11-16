@@ -1,15 +1,10 @@
 import 'dart:developer';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_dialogflow/flutter_dialogflow.dart';
 import 'package:intl/intl.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/controllers/ContaController.dart';
-import 'package:standbyme_tcc/controllers/EventoController.dart';
-import 'package:standbyme_tcc/controllers/UsuarioController.dart';
 import 'package:standbyme_tcc/models/Conta.dart';
-import 'package:standbyme_tcc/models/Evento.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class BodyContas extends StatefulWidget {
   int userId;

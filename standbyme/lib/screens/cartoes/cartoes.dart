@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/screens/cartoes/components/body.dart';
-import 'package:standbyme_tcc/screens/contas/components/body.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

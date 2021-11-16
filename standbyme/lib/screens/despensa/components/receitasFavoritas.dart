@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:standbyme_tcc/constants.dart';
-//import 'package:standbyme_tcc/size_config.dart';
-import 'package:standbyme_tcc/screens/despensa/components/search_field.dart';
 
 class ReceitasFavoritas extends StatelessWidget {
   @override

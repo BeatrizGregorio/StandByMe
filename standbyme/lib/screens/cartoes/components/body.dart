@@ -1,8 +1,6 @@
 import 'dart:developer';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_dialogflow/flutter_dialogflow.dart';
-import 'package:intl/intl.dart';
 import 'package:standbyme_tcc/constants.dart';
 import 'package:standbyme_tcc/controllers/CartaoController.dart';
 import 'package:standbyme_tcc/screens/bank/add_card.dart';
