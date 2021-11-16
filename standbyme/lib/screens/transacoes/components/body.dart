@@ -56,17 +56,19 @@ class _BodyTransacoesState extends State<BodyTransacoes> {
                             borderRadius: BorderRadius.circular(20),
                             color: kPrimaryColor,
                           ),
-                          child: _selectedTransacoes[index].tipo == "adicionar"
+                          child:
+                              /*_selectedTransacoes[index].tipo == "adicionar"
                               ? Icon(
-                                  Icons.add,
-                                  size: 30,
-                                  color: Colors.white,
-                                )
-                              : Icon(
                                   Icons.remove,
                                   size: 30,
                                   color: Colors.white,
-                                ),
+                                )
+                              :*/
+                              Icon(
+                            Icons.add,
+                            size: 30,
+                            color: Colors.white,
+                          ),
                         ),
                         SizedBox(
                           width: 10,
