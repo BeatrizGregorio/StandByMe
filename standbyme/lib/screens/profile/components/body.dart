@@ -21,7 +21,7 @@ class Body extends StatelessWidget {
             text: "Cartões",
             icon: Icon(Icons.credit_card),
             press: () {
-              Navigator.of(context).pushNamed("/bankcard");
+              Navigator.of(context).pushNamed("/cartoes");
             },
           ),
           ProfileMenu(
