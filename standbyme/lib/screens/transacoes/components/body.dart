@@ -56,19 +56,17 @@ class _BodyTransacoesState extends State<BodyTransacoes> {
                             borderRadius: BorderRadius.circular(20),
                             color: kPrimaryColor,
                           ),
-                          child:
-                              /*_selectedTransacoes[index].tipo == "adicionar"
+                          child: _selectedTransacoes[index].tipo == "Adicionar"
                               ? Icon(
-                                  Icons.remove,
+                                  Icons.add,
                                   size: 30,
                                   color: Colors.white,
                                 )
-                              :*/
-                              Icon(
-                            Icons.add,
-                            size: 30,
-                            color: Colors.white,
-                          ),
+                              : Icon(
+                                  Icons.remove,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
                         ),
                         SizedBox(
                           width: 10,
@@ -109,7 +107,7 @@ class _BodyTransacoesState extends State<BodyTransacoes> {
                                     fontSize: 20)),
                             Row(
                               children: [
-                                _selectedTransacoes[index].tipo == "adicionar"
+                                _selectedTransacoes[index].tipo == "Adicionar"
                                     ? Icon(
                                         Icons.arrow_upward_outlined,
                                         size: 30,
@@ -150,6 +148,7 @@ class _BodyTransacoesState extends State<BodyTransacoes> {
   Future<void> getTransacoesByUser(int userId) async {
     var response =
         await new TransacaoController().findTransactionByUser(userId);
+    _selectedTransacoes = [];
     for (var transacao in response) {
       _selectedTransacoes.add(transacao);
     }
@@ -214,7 +213,7 @@ class _BodyTransacoesState extends State<BodyTransacoes> {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => AddTransaction()),
-          );
+          ).then((value) => getTransacoesByUser(widget.userId));
         },
         child: Icon(
           Icons.add,

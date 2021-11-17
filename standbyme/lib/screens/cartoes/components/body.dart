@@ -154,6 +154,7 @@ class _BodyCartoesState extends State<BodyCartoes> {
 
   Future<void> getCartoesByUser(int userId) async {
     var response = await new CartaoController().findCardsByUser(userId);
+    _selectedCartoes = [];
     for (var cartao in response) {
       _selectedCartoes.add(cartao);
     }
@@ -218,7 +219,7 @@ class _BodyCartoesState extends State<BodyCartoes> {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => AddCard()),
-          );
+          ).then((value) => getCartoesByUser(widget.userId));
         },
         child: Icon(
           Icons.add,
